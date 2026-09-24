@@ -1,0 +1,863 @@
+<!-- /sections/footer.liquid -->
+
+<style>
+  @font-face {
+    font-family: "farro-bold (2)";
+    src: url("https://cdn.shopify.com/s/files/1/0914/9117/2729/files/Farro-Bold_2.woff?v=1779224238") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "farro-regular (1)";
+    src: url("https://cdn.shopify.com/s/files/1/0914/9117/2729/files/Farro-Regular_1.woff?v=1779224238") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  .idiom-footer {
+    background: #fffbf3;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 740px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    .idiom-footer {
+      min-height: unset;
+    }
+  }
+
+
+  /* ── Main content area ── */
+  .idiom-footer__main {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0;
+    padding: 32px 48px 40px;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Brand col (left) ── */
+  .idiom-footer__col--brand {
+    max-width: 460px;
+    min-width: 0;
+    padding-right: 40px;
+  }
+
+  .idiom-footer__col-heading--lg {
+    font-family: "farro-bold (2)", sans-serif;
+    font-size: clamp(22px, 2.2vw, 32px);
+    font-weight: 400;
+    margin: 0 0 10px;
+    color: var(--idiom-black, #1a1a1a);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .idiom-footer__tagline {
+    font-family: "farro-regular (1)", sans-serif;
+    color: var(--idiom-black, #1a1a1a);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    max-width: 300px;
+  }
+
+  .idiom-footer__social {
+    display: flex;
+    gap: 8px;
+  }
+
+  .idiom-footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(26,26,26,0.3);
+    color: var(--idiom-black, #1a1a1a);
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .idiom-footer__social-link:hover {
+    border-color: var(--idiom-black, #1a1a1a);
+    background: var(--idiom-black, #1a1a1a);
+    color: #fff;
+  }
+
+  .idiom-footer__social-link svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  /* ── Link cols (right) ── */
+  .idiom-footer__links-group {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .idiom-footer__col-heading--sm {
+    font-family: "farro-bold (2)", sans-serif;
+    font-size: clamp(22px, 2.2vw, 32px);
+    font-weight: 400;
+    margin: 0 0 12px;
+    color: var(--idiom-black, #1a1a1a);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .idiom-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .idiom-footer__links li { margin-bottom: 0; }
+
+  .idiom-footer__links a {
+    font-family: "farro-regular (1)", sans-serif;
+    color: var(--idiom-black, #1a1a1a);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.69;
+    text-decoration: none;
+    display: block;
+    transition: opacity 0.15s;
+  }
+
+  .idiom-footer__links a:hover {
+    opacity: 0.6;
+    text-decoration: underline;
+  }
+
+  /* ── Bottom baked image (collage + idiom® logotype) ── */
+  .idiom-footer__baked-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .idiom-footer__baked-img {
+      position: static;
+      margin-top: 8px;
+    }
+  }
+
+  /* ── Copyright bottom ── */
+  .idiom-footer__bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 48px 12px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+    background: var(--idiom-cream, #faf6f0);
+  }
+
+  .idiom-footer__copyright {
+    font-family: "farro-regular (1)", sans-serif;
+    color: rgba(26,26,26,0.45);
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  /* ── Tablet ── */
+  @media (max-width: 768px) {
+    .idiom-footer__main {
+      grid-template-columns: 1fr;
+      padding: 40px 24px 32px;
+    }
+
+    .idiom-footer__col--brand {
+      padding-right: 0;
+      max-width: 100%;
+    }
+
+    .idiom-footer__links-group {
+      gap: 40px;
+      margin-top: 24px;
+    }
+
+    .idiom-footer__bottom {
+      padding: 12px 24px 16px;
+    }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 480px) {
+    .idiom-footer__main {
+      padding: 20px 16px 16px;
+    }
+
+    .idiom-footer__links-group {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .idiom-footer__bottom {
+      padding: 12px 16px 16px;
+    }
+
+    .idiom-footer__col-heading--lg,
+    .idiom-footer__col-heading--sm {
+      font-size: 16px;
+    }
+
+    .idiom-footer__tagline,
+    .idiom-footer__links a,
+    .idiom-footer__copyright {
+      font-size: 12px;
+    }
+
+    .idiom-footer__tagline{
+      margin-bottom: 8px;
+    }
+  }
+</style>
+
+<footer class="idiom-footer">
+
+  <!-- Main content: brand col + link cols -->
+  <div class="idiom-footer__main">
+
+    <!-- Column 1: brand -->
+    <div class="idiom-footer__col--brand">
+      <p class="idiom-footer__col-heading--lg">smell like no one else</p>
+      <p class="idiom-footer__tagline">
+        {%- if section.settings.tagline != blank -%}
+          {{ section.settings.tagline }}
+        {%- else -%}
+          Idiom makes rule-breaking, layer-ready fragrances for skin that wants more. Designed to be mixed, and never made to behave.
+        {%- endif -%}
+      </p>
+      <div class="idiom-footer__social">
+        <a href="https://instagram.com/idiomfragrances" class="idiom-footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://tiktok.com/@idiomfragrances" class="idiom-footer__social-link" aria-label="TikTok" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Link columns: boring stuff + shop by type -->
+    <div class="idiom-footer__links-group">
+      <div class="idiom-footer__col--links">
+        <p class="idiom-footer__col-heading--sm">the boring stuff</p>
+        <ul class="idiom-footer__links">
+          <li><a href="/policies/shipping-policy">delivery</a></li>
+          <li><a href="/policies/refund-policy">returns</a></li>
+          <li><a href="/account">accounts</a></li>
+          <li><a href="/pages/faqs">faqs</a></li>
+          <li><a href="/pages/contact">contact</a></li>
+          <li><a href="/policies/terms-of-service">terms &amp; conditions</a></li>
+          <li><a href="/policies/privacy-policy">privacy policy</a></li>
+        </ul>
+      </div>
+      <div class="idiom-footer__col--links">
+        <p class="idiom-footer__col-heading--sm">shop by type</p>
+        <ul class="idiom-footer__links">
+          <li><a href="/collections/full-size">full size</a></li>
+          <li><a href="/collections/mini-oms">mini-oms</a></li>
+          <li><a href="/collections/kits-and-gifts">kits and gifts</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Baked image: collage + idiom® logotype combined -->
+  {%- if section.settings.collage_image != blank -%}
+    <img class="idiom-footer__baked-img" src="{{ section.settings.collage_image | image_url: width: 2800 }}" alt="idiom" loading="lazy">
+  {%- else -%}
+    <img class="idiom-footer__baked-img" src="{{ 'idiom-footer-logotype.png' | asset_url }}" alt="idiom" loading="lazy">
+  {%- endif -%}
+
+
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 6,
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Idiom Design"
+    },
+    {
+      "type": "image_picker",
+      "id": "collage_image",
+      "label": "Bottom baked image (collage + idiom® logotype)",
+      "info": "Pre-composed image with idiom® text and collage baked together. Spans full footer width."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline paragraph"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer_wave",
+      "label": "Show footer wave",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_footer_parallax",
+      "label": "Enable footer parallax",
+      "default": true,
+      "info": "Desktop only. Disabled on Safari"
+    },
+    {
+      "type": "checkbox",
+      "id": "increase_border_radius",
+      "label": "Increase border radius",
+      "default": true,
+      "info": "Desktop only. Applied only when parallax effect is enabled and wave is disabled"
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar"
+    },
+    {
+      "type": "select",
+      "id": "bottom_bar_alignment",
+      "label": "Alignment",
+      "default": "text-left",
+      "options": [
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-center", "label": "Center" }
+      ],
+      "info": "Mobile only"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_links",
+      "label": "Show social icons",
+      "info": "Edit your social settings and accounts in [Theme settings](/admin/themes/current/editor?context=theme)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "Enable Follow on Shop",
+      "info": "Display follow button for your storefront on the Shop app. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/follow-on-shop)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_greyscale",
+      "label": "Enable greyscale for payment icons",
+      "default": false
+    },
+    {
+      "type": "link_list",
+      "id": "bottom_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_border",
+      "label": "Border",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Language selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Country/Region selector",
+      "info": "To add a country/region, go to your [markets settings](/admin/settings/markets)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Show country selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_flag",
+      "label": "Show country flag",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper",
+      "options": [
+        { "value": "wrapper--full-padded", "label": "Full width padded" },
+        { "value": "wrapper", "label": "Page width" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "default": "text-left",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select an image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Custom logo width (in pixels)",
+          "min":30,
+          "max":250,
+          "default": 100,
+          "step":10,
+          "unit":"px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_shop_name",
+          "label": "Show shop name",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "column_width",
+          "label": "Column width",
+          "default": "25",
+          "options": [
+            { "value": "20", "label": "20%"},
+            { "value": "25", "label": "25%"},
+            { "value": "30", "label": "30%"},
+            { "value": "33.33", "label": "33%"},
+            { "value": "50", "label": "50%"},
+            { "value": "66.66", "label": "66%"},
+            { "value": "75", "label": "75%"},
+            { "value": "80", "label": "80%"},
+            { "value": "100", "label": "100%"}
+          ],
+          "info": "Desktop only"
+        }
+      ]
+    },
+    {
+      "type": "logo_full",
+      "name": "Logo (full width)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "default": "text-center",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" },
+            { "value": "text-right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select an image",
+          "info": "Use svg or large png"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Width",
+          "min": 10,
+          "max": 100,
+          "default": 100,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 40
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Link list",
+      "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "default": "text-left",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" }
+          ]
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Link list",
+          "default": "main-menu",
+          "info":"This menu won't show dropdown items"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Shop"
+        },
+        {
+          "type": "select",
+          "id": "column_width",
+          "label": "Column width",
+          "default": "20",
+          "options": [
+            { "value": "10", "label": "10%"},
+            { "value": "15", "label": "15%"},
+            { "value": "20", "label": "20%"},
+            { "value": "25", "label": "25%"},
+            { "value": "30", "label": "30%"},
+            { "value": "33.33", "label": "33%"},
+            { "value": "50", "label": "50%"},
+            { "value": "66.66", "label": "66%"},
+            { "value": "75", "label": "75%"},
+            { "value": "80", "label": "80%"},
+            { "value": "100", "label": "100%"}
+          ],
+          "info": "Desktop only"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "default": "text-left",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Our Mission"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Text",
+          "default": "<p>Leave your customers with a final message about your brand in this rich text block.</p>"
+        },
+        {
+          "type": "select",
+          "id": "column_width",
+          "label": "Column width",
+          "default": "30",
+          "options": [
+            { "value": "20", "label": "20%"},
+            { "value": "25", "label": "25%"},
+            { "value": "30", "label": "30%"},
+            { "value": "33.33", "label": "33%"},
+            { "value": "50", "label": "50%"},
+            { "value": "66.66", "label": "66%"},
+            { "value": "75", "label": "75%"},
+            { "value": "100", "label": "100%"}
+          ],
+          "info": "Desktop only"
+        }
+      ]
+    },
+    {
+      "type": "blog",
+      "name": "Blog",
+      "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "default": "text-left",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Our Blog"
+        },
+        {
+          "type": "blog",
+          "id": "blog",
+          "label": "Choose blog to show recent article excerpts."
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "articles",
+          "options": [
+            { "label": "Show recent articles", "value": "articles" },
+            { "label": "Show article tags", "value": "tags" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "column_width",
+          "label": "Column width",
+          "default": "20",
+          "options": [
+            { "value": "20", "label": "20%"},
+            { "value": "25", "label": "25%"},
+            { "value": "30", "label": "30%"},
+            { "value": "33.33", "label": "33%"},
+            { "value": "50", "label": "50%"},
+            { "value": "66.66", "label": "66%"},
+            { "value": "75", "label": "75%"},
+            { "value": "100", "label": "100%"}
+          ],
+          "info": "Desktop only"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Subscribers are added in the Customers section of your site admin."
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "default": "text-left",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        {
+          "type": "checkbox",
+          "id": "uppercase_heading",
+          "label": "Uppercase heading",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "label": "Heading size",
+          "default": 100,
+          "min": 50,
+          "max": 200,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Stay up to date with the new collections, products and exclusive offers.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "select",
+          "id": "button_color",
+          "label": "Button color",
+          "default": "btn--white",
+          "options": [
+            { "label": "Primary", "value": "btn--primary" },
+            { "label": "Secondary", "value": "btn--secondary" },
+            { "label": "White", "value": "btn--white" },
+            { "label": "Black", "value": "btn--black" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "default": "btn--solid",
+          "options": [
+            { "label": "Solid", "value": "btn--solid" },
+            { "label": "Outline", "value": "btn--outline" },
+            { "label": "Solid with border", "value": "btn--solid-border" },
+            { "label": "Soft", "value": "btn--soft" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "column_width",
+          "label": "Column width",
+          "default": "30",
+          "options": [
+            { "value": "20", "label": "20%"},
+            { "value": "25", "label": "25%"},
+            { "value": "30", "label": "30%"},
+            { "value": "33.33", "label": "33%"},
+            { "value": "50", "label": "50%"},
+            { "value": "66.66", "label": "66%"},
+            { "value": "75", "label": "75%"},
+            { "value": "100", "label": "100%"}
+          ],
+          "info": "Desktop only"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Desktop only"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border_line",
+          "label": "Show border line",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "column_width",
+          "label": "Column width",
+          "default": "100",
+          "options": [
+            { "value": "5", "label": "5%" },
+            { "value": "10", "label": "10%" },
+            { "value": "15", "label": "15%" },
+            { "value": "20", "label": "20%" },
+            { "value": "25", "label": "25%" },
+            { "value": "30", "label": "30%" },
+            { "value": "33.33", "label": "33%" },
+            { "value": "50", "label": "50%" },
+            { "value": "66.66", "label": "66%" },
+            { "value": "75", "label": "75%" },
+            { "value": "80", "label": "80%" },
+            { "value": "100", "label": "100%" }
+          ]
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}

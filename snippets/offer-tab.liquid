@@ -1,0 +1,149 @@
+{%- comment -%}
+  idiom — site-wide "grab 10% off" offer tab.
+
+  A fixed, rotated cream tab pinned to the bottom-left of the viewport on every
+  page. Clicking it opens the theme's existing "Popup with image" promo
+  (the "start layering…" popup configured in the Theme Editor under
+  Overlay → Popups). The tab text is editable via Theme settings → "Offer tab".
+
+  Rendered once from layout/theme.liquid.
+{%- endcomment -%}
+
+{%- if settings.offer_tab_enable and settings.offer_tab_text != blank -%}
+  {%- style -%}
+    /* Wrapper pinned to the bottom-left edge of the viewport. */
+    .idiom-offer-tab {
+      position: fixed;
+      left: 0;
+      bottom: 10%;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 34px;
+      padding: 28px 0 28px;
+      border: 0;
+      cursor: pointer;
+      background: #f6f1d8;
+      /* big sweeping curve top-right, gentle round bottom-right; flush to left */
+      border-radius: 0 50px 50px 0;
+      box-shadow: 0 4px 18px rgba(26, 26, 26, 0.16);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .idiom-offer-tab.is-dismissed {
+      display: none;
+    }
+    .idiom-offer-tab:hover {
+      box-shadow: 0 6px 22px rgba(26, 26, 26, 0.22);
+    }
+    .idiom-offer-tab__open {
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+    }
+    .idiom-offer-tab__text {
+      writing-mode: vertical-rl;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--idiom-black, #1a1a1a);
+      white-space: nowrap;
+      line-height: 1;
+      padding-right: 4px;
+    }
+    .idiom-offer-tab__close {
+      margin-top: 26px;
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 50%;
+      background: #9a9a35;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      position: fixed;
+      bottom: 10%;
+      left: 20px;
+      font-weight: 100;
+      font-family: 'Space Mono';
+      line-height: 0;
+    }
+    .idiom-offer-tab__close:hover {
+      background: var(--idiom-olive-dark, #3d3d1a);
+    }
+
+    @media only screen and (max-width: 767px) {
+      .idiom-offer-tab {
+        padding: 24px 0 24px;
+        border-radius: 0 50px 50px 0;
+      }
+      .idiom-offer-tab__text { font-size: 16px; }
+      .idiom-offer-tab__close {
+        width: 12px;
+        height: 12px;
+        font-size: 19px;
+        margin-top: 16px;
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="idiom-offer-tab" data-offer-tab>
+    <button type="button" class="idiom-offer-tab__open" data-offer-open aria-haspopup="dialog">
+      <span class="idiom-offer-tab__text">{{ settings.offer_tab_text }}</span>
+    </button>
+    <button type="button" class="idiom-offer-tab__close" data-offer-dismiss aria-label="Dismiss offer">&times;</button>
+  </div>
+
+  <script>
+    (function () {
+      var tab = document.querySelector('[data-offer-tab]');
+      if (!tab) return;
+
+      var DISMISS_KEY = 'idiomOfferDismissed';
+      try {
+        if (sessionStorage.getItem(DISMISS_KEY) === '1') {
+          // tab.classList.add('is-dismissed');
+        }
+      } catch (e) {}
+
+      // Open the theme's existing "Popup with image" large-promo block. The
+      // theme JS reveals it by adding `popup--visible` to the inner element
+      // (id="popup--<block-id>", marked with [data-large-promo-inner]) and
+      // locking scroll via the `theme:scroll:lock` custom event. We reuse the
+      // exact same mechanism so the popup's own close button keeps working.
+      function openPromo() {
+        var promo = document.querySelector('[data-large-promo-inner]');
+        if (!promo) return false;
+        if (!promo.classList.contains('popup--visible')) {
+          promo.classList.add('popup--visible');
+          var body = promo.querySelector('[data-popup-body]') || promo;
+          document.dispatchEvent(new CustomEvent('theme:scroll:lock', { bubbles: true, detail: body }));
+          var input = promo.querySelector('input[type="text"], input[type="email"]');
+          if (input) { try { input.focus(); } catch (e) {} }
+        }
+        return true;
+      }
+
+      function dismiss() {
+        tab.classList.add('is-dismissed');
+        try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
+      }
+
+      tab.querySelector('[data-offer-open]').addEventListener('click', openPromo);
+      tab.querySelector('[data-offer-dismiss]').addEventListener('click', function (e) {
+        e.stopPropagation();
+        dismiss();
+      });
+    })();
+  </script>
+{%- endif -%}

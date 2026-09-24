@@ -1,0 +1,336 @@
+{{ 'idiom-theme.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .idiom-brand-story-section {
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+  }
+
+  .idiom-brand-story {
+    position: relative;
+    background: #9a9a35;
+    width: 100%;
+    padding: 0 0 72px;
+    text-align: center;
+    border-radius: 43px;
+    margin-top: 12px;
+  }
+
+  /* Butterfly — top-left, large, mostly off the top edge */
+  .idiom-brand-story__butterfly {
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    width: 290px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .idiom-brand-story__butterfly img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Moon — bottom-right, about 45% hanging below the section */
+  .idiom-brand-story__moon {
+    position: absolute;
+    bottom: -90px;
+    right: 0;
+    pointer-events: none;
+    z-index: 3;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .idiom-brand-story__moon img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    max-width: 260px;
+    right: 0;
+  }
+
+  /* Main content — centered, on top of decorative elements */
+  .idiom-brand-story__content {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .idiom-brand-story__heading {
+    font-size: 42px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .idiom-brand-story__subline {
+    font-size: 18px;
+    font-style: italic;
+    color: #fffbf3;
+    margin: 0;
+  }
+
+  .idiom-brand-story__body {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #fffbf3;
+    margin: 0;
+    max-width: 670px;
+  }
+
+  .idiom-brand-story__cta {
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  /* ── Marquee strip — top of olive block ── */
+  .idiom-brand-story__marquee-strip {
+    background: #9a9a35;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 56px;
+    border-radius: 43px 43px 0 0;
+  }
+
+  .idiom-brand-story__marquee-strip .idiom-marquee-track {
+    font-size: 12px;
+    font-weight: 400;
+    color: #fffbf3;
+    text-transform: lowercase;
+    gap: 0;
+  }
+
+  .idiom-brand-story__marquee-strip .idiom-marquee-track span {
+    padding: 0 28px;
+    color: #fffbf3;
+    font-size: 14px;
+  }
+
+
+  /* Tablet */
+  @media (max-width: 768px) {
+    .idiom-brand-story-section {
+      padding: 0 12px;
+    }
+
+    .idiom-brand-story {
+      padding: 0 0 60px;
+    }
+
+    .idiom-brand-story__content {
+      padding: 0 28px;
+    }
+
+    .idiom-brand-story__butterfly {
+      width: 260px;
+      top: -40px;
+      left: -10px;
+      display: none !important;
+    }
+
+    .idiom-brand-story__moon {
+      width: 260px;
+      bottom: -120px;
+      right: -10px;
+      display: none !important;
+    }
+
+    .idiom-brand-story__heading {
+      font-size: 32px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .idiom-brand-story-section {
+      padding: 0 12px;
+    }
+
+    .idiom-brand-story {
+      padding: 0 0 40px;
+      border-radius: 24px;
+    }
+
+    .idiom-brand-story__marquee-strip {
+      margin-bottom: 16px;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .idiom-brand-story__butterfly {
+      width: 90px;
+      top: 48px;
+      left: -6px;
+      display: block !important;
+    }
+
+    .idiom-brand-story__moon {
+      display: flex !important;
+      width: 90px;
+      bottom: -40px;
+      right: -4px;
+    }
+
+    .idiom-brand-story__moon img {
+      max-width: 90px;
+    }
+
+    .idiom-brand-story__heading {
+      font-size: 16px;
+    }
+
+    .idiom-brand-story__content {
+      padding: 0 20px;
+    }
+
+    .idiom-brand-story__subline,
+    .idiom-brand-story__body,
+    .idiom-brand-story__marquee-strip .idiom-marquee-track {
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="idiom-brand-story">
+  <div class="idiom-brand-story__marquee-strip">
+    <div class="idiom-marquee-track" aria-hidden="true">
+      {%- for i in (1..6) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.text != blank -%}
+            <span>{{ block.settings.text }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.settings.butterfly_image != blank -%}
+    <div class="idiom-brand-story__butterfly" aria-hidden="true">
+      <img src="{{ section.settings.butterfly_image | image_url: width: 700 }}" alt="" loading="lazy">
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.moon_image != blank -%}
+    <div class="idiom-brand-story__moon" aria-hidden="true">
+      <img src="{{ section.settings.moon_image | image_url: width: 600 }}" alt="" loading="lazy">
+    </div>
+  {%- endif -%}
+
+  <div class="idiom-brand-story__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="idiom-brand-story__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subline != blank -%}
+      <p class="idiom-brand-story__subline">{{ section.settings.subline }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.body != blank -%}
+      <p class="idiom-brand-story__body">{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="idiom-brand-story__cta">
+        {%- render 'idiom-cta-button', label: section.settings.cta_label, href: section.settings.cta_url -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "idiom-brand-story-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "butterfly_image",
+      "label": "Left decorative image (butterfly)"
+    },
+    {
+      "type": "image_picker",
+      "id": "moon_image",
+      "label": "Right decorative image (moon)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "sick of smelling like everyone else?"
+    },
+    {
+      "type": "text",
+      "id": "subline",
+      "label": "Subline"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body copy",
+      "default": "yeah, us too. <br /> idiom was born by 3 good friends who shared a passion for fragrance with the belief that individuality is everything and fragrance could be done better, high-quality, long lasting capsule eau du parfums ready to layer and always priced to be affordable."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "learn more"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "text",
+      "id": "grid_heading",
+      "label": "Grid transition heading",
+      "default": "holy s#*%, what are you wearing?"
+    },
+    {
+      "type": "text",
+      "id": "grid_subtext",
+      "label": "Grid transition subtext",
+      "default": "get to know our crowd-pleasers..."
+    }
+  ],
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Marquee phrase",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Phrase text",
+          "default": "smell like no one else™"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story",
+      "blocks": [
+        { "type": "phrase", "settings": { "text": "smell like no one else™" } },
+        { "type": "phrase", "settings": { "text": "find your fragrance freedom" } },
+        { "type": "phrase", "settings": { "text": "layer, or wear solo" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

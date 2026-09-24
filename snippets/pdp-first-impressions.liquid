@@ -1,0 +1,78 @@
+<!-- /snippets/pdp-first-impressions.liquid -->
+{%- comment -%}
+  Renders the "FIRST IMPRESSIONS" video-thumbnail row on the PDP.
+
+  Each thumbnail is a circular, always-playing (muted, looping) video.
+  Clicking a thumbnail opens a fullscreen vertical reel modal — the same
+  design as the "Video Reel Carousel" section (idiom-reel-video-section).
+
+  Accepts:
+  - product: {Object} Current product (required)
+
+  Video sources: reads product.metafields.custom.first_impression_videos
+  (a list of video/URL values) when present; otherwise falls back to a
+  single default video repeated 4 times.
+
+  Usage:
+  {%- render 'pdp-first-impressions', product: product -%}
+{%- endcomment -%}
+
+{{ 'idiom-first-impressions.css' | asset_url | stylesheet_tag }}
+
+{%- assign fi_default_video = 'https://cdn.shopify.com/videos/c/o/v/f8f0402a0f234aa187b9341e4e1efa89.mp4' -%}
+{%- assign fi_videos = product.metafields.custom.first_impression_videos.value -%}
+{%- assign fi_buy_url = product.url -%}
+{%- assign fi_buy_text = 'Shop Now' -%}
+
+<div class="idiom-fi">
+  <p class="idiom-fi__label">FIRST IMPRESSIONS:</p>
+  <div class="idiom-fi__thumbs">
+    {%- if fi_videos != blank -%}
+      {%- for fi_video in fi_videos -%}
+        {%- assign fi_src = fi_video -%}
+        {%- if fi_video.sources -%}
+          {%- assign fi_src = fi_video.sources.last.url -%}
+        {%- endif -%}
+        <button
+          type="button"
+          class="idiom-fi__thumb"
+          data-video-src="{{ fi_src }}"
+          data-buy-now-text="{{ fi_buy_text }}"
+          data-buy-now-url="{{ fi_buy_url }}"
+          aria-label="Play first impression video">
+          <video
+            data-src="{{ fi_src }}"
+            loop
+            muted
+            playsinline
+            preload="none"></video>
+        </button>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..4) -%}
+        <button
+          type="button"
+          class="idiom-fi__thumb"
+          data-video-src="{{ fi_default_video }}"
+          data-buy-now-text="{{ fi_buy_text }}"
+          data-buy-now-url="{{ fi_buy_url }}"
+          aria-label="Play first impression video">
+          <video
+            data-src="{{ fi_default_video }}"
+            loop
+            muted
+            playsinline
+            preload="none"></video>
+        </button>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Fullscreen first-impressions reel modal -->
+<div id="idiomFiModal" class="idiom-fi-modal" aria-hidden="true">
+  <button class="idiom-fi-close-btn" aria-label="Close" onclick="idiomCloseFi()">&#x2715;</button>
+  <div class="idiom-fi-modal__wrapper" id="idiomFiWrapper"></div>
+</div>
+
+<script src="{{ 'idiom-first-impressions.js' | asset_url }}" defer></script>

@@ -1,0 +1,24 @@
+<!-- /snippets/pdp-star-rating.liquid -->
+{%- comment -%}
+  Renders the star rating + review count row on the PDP.
+
+  Accepts:
+  - product: {Object} Current product (required)
+
+  Usage:
+  {%- render 'pdp-star-rating', product: product -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value.rating | default: 0
+  assign full_stars = rating | round
+  assign review_count = product.metafields.custom.rating_count.value | default: 0
+-%}
+<div class="idiom-pdp-stars">
+  <span class="idiom-pdp-stars__icons">
+    {%- for i in (1..5) -%}
+      {%- if i <= full_stars -%}★{%- else -%}☆{%- endif -%}
+    {%- endfor -%}
+  </span>
+  <span class="idiom-pdp-stars__count">{{ review_count }} reviews</span>
+</div>

@@ -1,0 +1,105 @@
+{{ 'idiom-reel-video-section.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="idiom-reel-section"
+  style="
+    {%- if section.settings.bg_image_desktop != blank -%}
+      --reel-bg-desktop: url('{{ section.settings.bg_image_desktop | image_url: width: 2000 }}');
+    {%- endif -%}
+    {%- if section.settings.bg_image_mobile != blank -%}
+      --reel-bg-mobile: url('{{ section.settings.bg_image_mobile | image_url: width: 800 }}');
+    {%- endif -%}
+  ">
+  <h2 class="idiom-reel-section__title">{{ section.settings.section_title }}</h2>
+  {% if section.settings.section_subtitle != blank %}
+    <p class="idiom-reel-section__subtitle">{{ section.settings.section_subtitle }}</p>
+  {% endif %}
+
+  <div class="idiom-reel-slider-wrapper">
+    <div class="idiom-reel-slider">
+      {% for block in section.blocks %}
+        <div
+          class="idiom-reel-card"
+          data-video-src="{{ block.settings.video_url }}"
+          data-buy-now-text="{{ block.settings.buy_now_text }}"
+          data-buy-now-url="{{ block.settings.buy_now_url }}"
+          {{ block.shopify_attributes }}>
+          <video
+            data-src="{{ block.settings.video_url }}"
+            loop
+            muted
+            playsinline
+            preload="none"></video>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Fullscreen reel modal -->
+<div id="idiomReelModal" class="idiom-reel-modal" aria-hidden="true">
+  <button class="idiom-reel-close-btn" aria-label="Close" onclick="idiomCloseReel()">&#x2715;</button>
+  <div class="idiom-reel-modal__wrapper" id="idiomReelWrapper"></div>
+</div>
+
+<script src="{{ 'idiom-reel-video-section.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Video Reel Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "See it in action"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_desktop",
+      "label": "Background Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image (Mobile)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL"
+        },
+        {
+          "type": "text",
+          "id": "buy_now_text",
+          "label": "CTA Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "buy_now_url",
+          "label": "CTA Button URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Video Reel Carousel",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

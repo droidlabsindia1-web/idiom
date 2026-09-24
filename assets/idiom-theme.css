@@ -1,0 +1,194 @@
+/* ============================================
+   idiom Theme — Shared CSS Foundation
+   ============================================ */
+
+/* --- Global resets --- */
+* {
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+}
+/* Prevent decorative overflow (e.g. floating moon/cloud) from causing
+   horizontal page scroll, while still allowing vertical overflow to show. */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* --- Brand tokens --- */
+:root {
+  --idiom-cream: #fffbf3;
+  --idiom-olive: #5a5a1e;
+  --idiom-olive-dark: #3d3d1a;
+  --idiom-black: #1a1a1a;
+  --idiom-white: #ffffff;
+
+  /* --- Farro font overrides (applied globally over theme defaults) --- */
+  --FONT-STACK-BODY: "farro-regular (1)", sans-serif;
+  --FONT-STACK-HEADING: "farro-bold (2)", sans-serif;
+  --FONT-STACK-NAV: "farro-regular (1)", sans-serif;
+  --FONT-STACK-BUTTON: "farro-regular (1)", sans-serif;
+  --FONT-STACK-SUBHEADING: "farro-regular (1)", sans-serif;
+  --FONT-STACK-LABEL: "farro-regular (1)", sans-serif;
+  --FONT-STACK-HIGHLIGHT: "farro-bold (2)", sans-serif;
+}
+
+/* --- Header background override --- */
+.site-header {
+  background-color: #fffbf3 !important;
+}
+
+/* --- Marquee / ticker strip --- */
+.idiom-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.idiom-marquee-track {
+  display: inline-flex;
+  animation: idiom-marquee 30s linear infinite;
+}
+
+@keyframes idiom-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Product card base --- */
+.idiom-product-card-wrap {
+  position: relative;
+}
+
+.idiom-product-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.idiom-product-card__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.idiom-product-card__bottle {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 75%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+/* --- Personality tag badge --- */
+.idiom-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--idiom-olive);
+  color: var(--idiom-white);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 600;
+  z-index: 3;
+  transform: rotate(3deg);
+  text-align: center;
+  max-width: 90px;
+  white-space: normal;
+}
+
+/* --- CTA buttons --- */
+.idiom-btn {
+  display: inline-block;
+  background: var(--idiom-olive);
+  color: var(--idiom-white);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 14px;
+  border: 2px solid var(--idiom-olive);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.idiom-btn--outline {
+  background: transparent;
+  color: var(--idiom-olive);
+}
+
+/* --- idiom CTA Button (shared across hero, brand-story, dual-promo) --- */
+.idiom-cta-button {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  width: 360px;
+  max-width: 100%;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.idiom-cta-button:hover {
+  background: #333333;
+}
+
+@media (max-width: 480px) {
+  .idiom-cta-button {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    line-height: 44px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 12px;
+  }
+}
+
+/* --- Announcement bar (design spec: thin olive strip, white uppercase text) --- */
+.announcement-bar-static {
+  --bg: #202020 !important;
+}
+
+.announcement-bar-static .announcement {
+  --text: #ffffff !important;
+  --padding: 7px !important;
+  background: #202020;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+.announcement-bar-static .announcement.announcement--bottom-border,
+.announcement-bar-static .announcement.announcement--top-border {
+  border-color: #202020 !important;
+}
+
+/* --- Section heading pair --- */
+.idiom-section-heading h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.idiom-section-heading p {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 6px;
+  opacity: 0.7;
+}

@@ -1,0 +1,175 @@
+{%- comment -%}
+  /snippets/idiom-collection-card.liquid
+  Collection-page product card. Mirrors the "idiom Product Trio" card design:
+  a centred bottle over a hover-reveal image, with a title + price row and a
+  tagline below. Used only by sections/collection.liquid.
+  Accepts: product
+{%- endcomment -%}
+
+{%- unless idiom_collection_card_styles_rendered -%}
+  {%- assign idiom_collection_card_styles_rendered = true -%}
+<style>
+.idiom-collection-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Media zone: bottle centred, reveal image hidden behind until hover */
+.idiom-collection-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.idiom-collection-card__reveal {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.idiom-collection-card__reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.idiom-collection-card__bottle {
+  position: relative;
+  z-index: 2;
+  height: 82%;
+  width: auto;
+  max-width: 88%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.idiom-collection-card:hover .idiom-collection-card__reveal,
+.idiom-collection-card:focus-visible .idiom-collection-card__reveal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.idiom-collection-card:hover .idiom-collection-card__bottle,
+.idiom-collection-card:focus-visible .idiom-collection-card__bottle {
+  transform: scale(1.06);
+}
+
+/* Touch devices have no hover: hide the reveal image, show only the bottle */
+@media (hover: none) {
+  .idiom-collection-card__reveal {
+    opacity: 0;
+  }
+}
+
+.idiom-collection-card__info {
+  margin-top: 24px;
+}
+
+.idiom-collection-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.idiom-collection-card__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--idiom-black, #1a1a1a);
+}
+
+.idiom-collection-card__price {
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #202020;
+}
+
+.idiom-collection-card__tagline {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--idiom-black, #1a1a1a);
+}
+
+@media (max-width: 480px) {
+  .idiom-collection-card__bottle {
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .idiom-collection-card__title {
+    font-size: 18px;
+  }
+
+  .idiom-collection-card__price {
+    font-size: 15px;
+  }
+
+  .idiom-collection-card__tagline {
+    font-size: 11px;
+  }
+}
+</style>
+{%- endunless -%}
+
+{%- assign bottle_image = product.featured_image -%}
+{%- assign hover_image = product.metafields.custom.pdp_main_banner_image.value | default: product.metafields.custom.card_hover_image -%}
+{%- assign card_tagline = product.metafields.custom.product_trio_description.value | default: product.metafields.custom.scent_descriptor -%}
+
+{%- if product.price_varies -%}
+  {%- capture price_label -%}from {{ product.price_min | money }}{%- endcapture -%}
+{%- else -%}
+  {%- assign price_label = product.price | money -%}
+{%- endif -%}
+
+<a href="{{ product.url }}" class="idiom-collection-card">
+  <div class="idiom-collection-card__media">
+    {%- if hover_image != blank -%}
+      <div class="idiom-collection-card__reveal">
+        <img
+          src="{{ hover_image | image_url: width: 1200 }}"
+          alt=""
+          loading="lazy"
+        >
+      </div>
+    {%- endif -%}
+
+    {%- if bottle_image != blank -%}
+      <img
+        class="idiom-collection-card__bottle"
+        src="{{ bottle_image | image_url: width: 900 }}"
+        alt="{{ product.title | escape }}"
+        loading="lazy"
+      >
+    {%- endif -%}
+  </div>
+
+  <div class="idiom-collection-card__info">
+    <div class="idiom-collection-card__row">
+      {%- if product.title != blank -%}
+        <h3 class="idiom-collection-card__title">{{ product.title }}</h3>
+      {%- endif -%}
+      {%- if price_label != blank -%}
+        <span class="idiom-collection-card__price">{{ price_label }}</span>
+      {%- endif -%}
+    </div>
+    {%- if card_tagline != blank -%}
+      <p class="idiom-collection-card__tagline">{{ card_tagline }}</p>
+    {%- endif -%}
+  </div>
+</a>

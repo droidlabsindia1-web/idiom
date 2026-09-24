@@ -1,0 +1,758 @@
+{%- comment -%} /sections/banner-image.liquid — idiom redesign {%- endcomment -%}
+
+{{ 'section-banner-image.css' | asset_url | stylesheet_tag }}
+{{ 'idiom-theme.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* === idiom Hero — section-banner-image === */
+  #SectionBannerImage--{{ section.id }} .idiom-hero {
+    position: relative;
+    width: 100%;
+    /* Fill the screen below the header, leaving ~64px so the green section's
+       top scroller line peeks above the fold. */
+    min-height: calc(
+      100vh - var(--header-height, 109px) - var(--announcement-height, 31px) - 64px
+    );
+    overflow: hidden;
+    background: #fffbf3;
+    padding: 0 16px;
+    border-radius: 43px;
+    overflow: hidden;
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero__bg--placeholder {
+    position: absolute;
+    inset: 0;
+    background: #fffbf3;
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: calc(100% - 32px);
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 16px;
+    border-radius: 43px;
+    overflow: hidden;
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero__overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, #202020 100%);
+    pointer-events: none;
+    width: calc(100% - 32px);
+    height: 100%;
+    margin: 0 16px;
+    border-radius: 43px;
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero__content {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 100%;
+    max-width: 780px;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero__heading {
+    font-size: 56px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero__subtext {
+    font-size: 15px;
+    color: #ffffff;
+    margin: 0 0 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  /* CTA wrapper spacing */
+  #SectionBannerImage--{{ section.id }} .idiom-hero__content .idiom-hero__cta-wrap {
+    display: block;
+  }
+
+  /* Watermark text */
+  #SectionBannerImage--{{ section.id }} .idiom-hero__watermark {
+    position: absolute;
+    right: -20px;
+    bottom: 20px;
+    z-index: 1;
+    font-size: 96px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.12);
+    line-height: 1;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+
+  /* === Mobile overrides ≤480px === */
+  @media (max-width: 480px) {
+    #SectionBannerImage--{{ section.id }} .idiom-hero__bg { 
+      border-radius: 12px;
+    }
+    #SectionBannerImage--{{ section.id }} .idiom-hero {
+      /* Fill the screen below the header, leaving ~52px so the green section's
+         top scroller line peeks above the fold. */
+      min-height: calc(
+        100vh - var(--header-height, 64px) - var(--announcement-height, 0px) - 52px
+      );
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+
+    #SectionBannerImage--{{ section.id }} .idiom-hero__content {
+      bottom: 12px;
+      max-width: 100%;
+    }
+
+    #SectionBannerImage--{{ section.id }} .idiom-hero__heading {
+      font-size: 28px;
+    }
+
+    #SectionBannerImage--{{ section.id }} .idiom-hero__subtext {
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    #SectionBannerImage--{{ section.id }} .idiom-hero__content .idiom-hero__cta-wrap {
+      width: 100%;
+    }
+
+    #SectionBannerImage--{{ section.id }} .idiom-hero__watermark {
+      display: none;
+    }
+  }
+</style>
+
+
+<section
+  id="SectionBannerImage--{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="banner-image"
+>
+
+  <div class="idiom-hero">
+    {%- if section.settings.image != blank -%}
+      <img class="idiom-hero__bg"
+        src="{{ section.settings.image | image_url: width: 2400 }}"
+        alt="{{ section.settings.heading | escape }}"
+        loading="eager" fetchpriority="high">
+    {%- elsif section.settings.hero_image != blank -%}
+      <img class="idiom-hero__bg"
+        src="{{ section.settings.hero_image | image_url: width: 2400 }}"
+        alt="{{ section.settings.heading | escape }}"
+        loading="eager" fetchpriority="high">
+    {%- else -%}
+      <div class="idiom-hero__bg idiom-hero__bg--placeholder"></div>
+    {%- endif -%}
+    <div class="idiom-hero__overlay"></div>
+    <div class="idiom-hero__content">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="idiom-hero__heading">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subtext != blank -%}
+        <p class="idiom-hero__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+      {%- if section.settings.cta_label != blank -%}
+        <div class="idiom-hero__cta-wrap">
+          {%- render 'idiom-cta-button', label: section.settings.cta_label, href: section.settings.cta_url -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+
+{%- comment -%}REMOVED OLD THEME BANNER HTML BELOW — DO NOT RESTORE{%- endcomment -%}
+{%- liquid
+  comment
+    Blocks kept in schema for backwards-compat but not rendered.
+  endcomment
+-%}
+              {%- comment -%}OLD BLOCK CASES REMOVED{%- endcomment -%}
+{% schema %}
+{
+  "name": "Banner image",
+  "class": "supports-transparent-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "default": "six-fifty-height",
+      "options": [
+        {"value": "full-height", "label": "Full screen"},
+        {"value": "three-quarters-height", "label": "Three quarters of screen"},
+        {"value": "two-thirds-height", "label": "Two thirds of screen"},
+        {"value": "one-half-height", "label": "One half of screen"},
+        {"value": "one-third-height", "label": "One third of screen"},
+        {"value": "one-fifth-height", "label": "One fifth of screen"},
+        {"value": "seven-fifty-height", "label": "750px"},
+        {"value": "six-fifty-height", "label": "650px"},
+        {"value": "five-fifty-height", "label": "550px"},
+        {"value": "four-fifty-height", "label": "450px"},
+        {"value": "original-height", "label": "Image height"}
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_height",
+      "label": "Enable mobile height",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "mobile_height",
+      "label": "Mobile height",
+      "default": "four-fifty-height-mobile",
+      "options": [
+        {"value": "full-height-mobile", "label": "Full screen"},
+        {"value": "three-quarters-height-mobile", "label": "Three quarters of screen"},
+        {"value": "two-thirds-height-mobile", "label": "Two thirds of screen"},
+        {"value": "one-half-height-mobile", "label": "One half of screen"},
+        {"value": "one-third-height-mobile", "label": "One third of screen"},
+        {"value": "one-fifth-height-mobile", "label": "One fifth of screen"},
+        {"value": "seven-fifty-height-mobile", "label": "750px"},
+        {"value": "six-fifty-height-mobile", "label": "650px"},
+        {"value": "five-fifty-height-mobile", "label": "550px"},
+        {"value": "four-fifty-height-mobile", "label": "450px"},
+        {"value": "original-height-mobile", "label": "Image height"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "2048px width recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image",
+      "info": "Optional. Recommended image size 900 x 1800px"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Text contrast",
+      "info": "Improves readability of text",
+      "min": 0,
+      "max": 95,
+      "step": 5,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Animations"
+    },
+    {
+      "type": "select",
+      "id": "transition",
+      "label": "Loading style",
+      "default": "zoom-out",
+      "options": [
+        {"label": "Slide", "value": "slide"},
+        {"label": "Fade", "value": "fade"},
+        {"label": "Zoom out", "value": "zoom-out"},
+        {"label": "Wipe", "value": "wipe"}
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom_animation",
+      "label": "Enable zoom animation on scroll",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_card_scrolling",
+      "label": "Enable card scrolling effect",
+      "info": "Section below will overlap and continue on scroll",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "increase_border_radius",
+      "label": "Increase border radius",
+      "default": true,
+      "info": "Applied to the next section's upper corners only when card scrolling effect is enabled"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "default": 80,
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "default": "left",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"},
+        {"value": "right", "label": "Right"},
+        {"value": "bottom-left", "label": "Bottom left"},
+        {"value": "bottom-right", "label": "Bottom right"},
+        {"value": "top-left", "label": "Top left"},
+        {"value": "top-right", "label": "Top right"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "text-left",
+      "options": [
+        {"label": "Left", "value": "text-left"},
+        {"label": "Center", "value": "text-center"},
+        {"label": "Right", "value": "text-right"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Color",
+      "default": "text-light",
+      "options": [
+        {"value": "text-light", "label": "Light"},
+        {"value": "text-dark", "label": "Dark"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--full",
+      "options": [
+        {"value": "wrapper--full", "label": "Full width"},
+        {"value": "wrapper--full-padded", "label": "Full width padded"}
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "idiom Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "127 unique fragrances, 1 kit."
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "discover your Flanker fragrance combinations with our 7-piece discovery kit."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "shop now | £17"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Welcome to</p>"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 50,
+          "max": 300,
+          "default": 100,
+          "step": 5,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Palo Alto</p>",
+          "info": "Highlight one or two key words in your heading by italicizing them, then choose the highlight option below"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 50,
+          "max": 300,
+          "default": 180,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "header",
+          "content": "Highlight"
+        },
+        {
+          "type": "select",
+          "id": "heading_highlight_type",
+          "label": "Type",
+          "default": "underline-hand-drawn",
+          "info": "The font choice for the \"Alternate font\" type can be configured in the theme typography settings.",
+          "options": [
+            {"value": "italics", "label": "Italics (no decoration)"},
+            {"value": "highlight", "label": "Highlight"},
+            {"value": "highlight-color", "label": "Text color"},
+            {"value": "underline", "label": "Underline (digital)"},
+            {"value": "underline-hand-drawn", "label": "Underline (hand-drawn)"},
+            {"value": "squiggle", "label": "Squiggle"},
+            {"value": "circle", "label": "Circle (digital)"},
+            {"value": "circle-hand-drawn", "label": "Circle (hand-drawn)"},
+            {"value": "stroke", "label": "Stroke (outlined text)"},
+            {"value": "alternate-font", "label": "Alternate font"}
+          ]
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Highlight color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "highlight_text_color",
+          "label": "Text color"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share information about your brand, describe a product, share announcements, or welcome customers to your store.</p>"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 50,
+          "max": 300,
+          "default": 100,
+          "step": 5,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "timer",
+      "name": "Timer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout_style",
+          "label": "Style",
+          "info": "Desktop only",
+          "default": "inline",
+          "options": [
+            {"label": "Inline", "value": "inline"},
+            {"label": "Stacked", "value": "stacked"}
+          ]
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "Countdown end date",
+          "placeholder": "2025-12-31",
+          "default": "2025-12-31",
+          "info": "Use format \"YYYY-MM-DD\". End date is based on the [store primary timezone](/admin/settings/general)."
+        },
+        {
+          "type": "text",
+          "id": "end_time",
+          "label": "End time",
+          "default": "11:59",
+          "placeholder": "11:59",
+          "info": "Use 12-hour time convention in format \"HH:MM\""
+        },
+        {
+          "type": "radio",
+          "id": "period",
+          "label": "AM/PM",
+          "options": [
+            {"value": "am", "label": "AM"},
+            {"value": "pm", "label": "PM"}
+          ],
+          "default": "am"
+        },
+        {
+          "type": "richtext",
+          "id": "end_message",
+          "label": "End of timer message",
+          "info": "Section will become hidden once end date has passed unless text is entered above."
+        },
+        {
+          "type": "range",
+          "id": "digit_size",
+          "label": "Digits size",
+          "min": 70,
+          "max": 200,
+          "default": 100,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "range",
+          "id": "unit_size",
+          "label": "Text size",
+          "min": 100,
+          "max": 200,
+          "default": 100,
+          "step": 5,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "stacked_button",
+          "label": "Stack buttons on larger screens",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "label": "Text",
+          "info": "Leave blank to link entire image",
+          "default": "Shop All"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Link",
+          "default": "/collections/all"
+        },
+        {
+          "type": "select",
+          "id": "button_1_color",
+          "label": "Button color",
+          "default": "btn--white",
+          "options": [
+            {"label": "Primary", "value": "btn--primary"},
+            {"label": "Secondary", "value": "btn--secondary"},
+            {"label": "White", "value": "btn--white"},
+            {"label": "Black", "value": "btn--black"}
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_1_style",
+          "label": "Button style",
+          "default": "btn--solid-border",
+          "options": [
+            {"label": "Solid", "value": "btn--solid"},
+            {"label": "Outline", "value": "btn--outline"},
+            {"label": "Solid with border", "value": "btn--solid-border"},
+            {"label": "Soft", "value": "btn--soft"},
+            {"label": "Text", "value": "btn--text"}
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_1_size",
+          "label": "Size",
+          "default": "btn--medium",
+          "options": [
+            {"label": "Small", "value": "btn--small"},
+            {"label": "Medium", "value": "btn--medium"},
+            {"label": "Large", "value": "btn--large"}
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "button_2_color",
+          "label": "Second button color",
+          "default": "btn--black",
+          "options": [
+            {"label": "Primary", "value": "btn--primary"},
+            {"label": "Secondary", "value": "btn--secondary"},
+            {"label": "White", "value": "btn--white"},
+            {"label": "Black", "value": "btn--black"}
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_2_style",
+          "label": "Second button style",
+          "default": "btn--solid",
+          "options": [
+            {"label": "Solid", "value": "btn--solid"},
+            {"label": "Outline", "value": "btn--outline"},
+            {"label": "Solid with border", "value": "btn--solid-border"},
+            {"label": "Soft", "value": "btn--soft"},
+            {"label": "Text", "value": "btn--text"}
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_2_size",
+          "label": "Second button size",
+          "default": "btn--medium",
+          "options": [
+            {"label": "Small", "value": "btn--small"},
+            {"label": "Medium", "value": "btn--medium"},
+            {"label": "Large", "value": "btn--large"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Video Button"
+        },
+        {
+          "type": "text",
+          "id": "video_text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "video_link",
+          "label": "Video popup link",
+          "info": "Video links from YouTube, Vimeo or MP4 video link from [files](/admin/settings/files?media_type=VIDEO)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner image",
+      "blocks": [
+        {
+          "type": "subheading"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside"]
+  }
+}
+{% endschema %}

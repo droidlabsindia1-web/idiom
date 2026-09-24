@@ -1,0 +1,64 @@
+<style>
+.idiom-marquee-strip {
+  background: #9a9a35;
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.idiom-marquee-strip .idiom-marquee-track {
+  font-family: "farro-bold (2)", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  gap: 0;
+}
+.idiom-marquee-strip .idiom-marquee-track span {
+  padding: 0 40px;
+}
+</style>
+
+<div class="idiom-marquee-strip">
+  <div class="idiom-marquee-track" aria-hidden="true">
+    {%- for i in (1..6) -%}
+      {%- for block in section.blocks -%}
+        {%- if block.settings.text != blank -%}
+          <span>{{ block.settings.text }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Strip",
+  "max_blocks": 12,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Phrase",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Phrase text",
+          "default": "smell like no one else™"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Strip",
+      "blocks": [
+        { "type": "phrase", "settings": { "text": "smell like no one else™" } },
+        { "type": "phrase", "settings": { "text": "find your fragrance freedom" } },
+        { "type": "phrase", "settings": { "text": "layer, or wear solo" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

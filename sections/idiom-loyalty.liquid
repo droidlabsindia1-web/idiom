@@ -1,0 +1,524 @@
+{{ 'idiom-theme.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    overflow: visible;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty-section {
+    position: relative;
+    padding: 60px 48px;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty {
+    position: relative;
+    background: {{ section.settings.card_bg }};
+    border-radius: 32px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: {{ section.settings.image_width }}fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  /* Girl image — left, framed, slightly overflowing top */
+  #shopify-section-{{ section.id }} .idiom-loyalty__figure {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    aspect-ratio: {{ section.settings.image_ratio }};
+  }
+
+  /* Text column */
+  #shopify-section-{{ section.id }} .idiom-loyalty__content {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty__eyebrow {
+    font-size: 15px;
+    color: {{ section.settings.text_color }};
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty__heading {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty__cta {
+    margin-top: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty__cta .idiom-cta-button {
+    background: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text_color }};
+  }
+
+  /* ── Decorative floating images ── */
+  #shopify-section-{{ section.id }} .idiom-loyalty__decor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  #shopify-section-{{ section.id }} .idiom-loyalty__decor img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Cloud */
+  #shopify-section-{{ section.id }} .idiom-loyalty__cloud {
+    width: {{ section.settings.cloud_size }}px;
+    top: {{ section.settings.cloud_top }}%;
+    left: {{ section.settings.cloud_left }}%;
+    z-index: 3;
+  }
+
+  /* Butterfly */
+  #shopify-section-{{ section.id }} .idiom-loyalty__butterfly {
+    width: {{ section.settings.butterfly_size }}px;
+    top: {{ section.settings.butterfly_top }}%;
+    left: {{ section.settings.butterfly_left }}%;
+    z-index: 6;
+  }
+
+  /* Moon */
+  #shopify-section-{{ section.id }} .idiom-loyalty__moon {
+    width: {{ section.settings.moon_size }}px;
+    top: {{ section.settings.moon_top }}%;
+    left: {{ section.settings.moon_left }}%;
+    z-index: 6;
+  }
+
+  /* Tablet */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .idiom-loyalty-section {
+      padding: 40px 20px;
+    }
+
+    #shopify-section-{{ section.id }} .idiom-loyalty {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .idiom-loyalty__content {
+      padding-right: 0;
+    }
+
+    #shopify-section-{{ section.id }} .idiom-loyalty__heading {
+      font-size: 28px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    #shopify-section-{{ section.id }} .idiom-loyalty-section {
+      padding: 40px 16px;
+    }
+
+    #shopify-section-{{ section.id }} .idiom-loyalty {
+      border-radius: 24px;
+      padding: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .idiom-loyalty__heading {
+      font-size: 22px;
+    }
+
+    /* Decorative images use dedicated mobile size + position */
+    #shopify-section-{{ section.id }} .idiom-loyalty__cloud {
+      width: {{ section.settings.cloud_size_mobile }}px;
+      top: {{ section.settings.cloud_top_mobile }}%;
+      left: {{ section.settings.cloud_left_mobile }}%;
+    }
+    #shopify-section-{{ section.id }} .idiom-loyalty__butterfly {
+      width: {{ section.settings.butterfly_size_mobile }}px;
+      top: {{ section.settings.butterfly_top_mobile }}%;
+      left: {{ section.settings.butterfly_left_mobile }}%;
+    }
+    #shopify-section-{{ section.id }} .idiom-loyalty__moon {
+      width: {{ section.settings.moon_size_mobile }}px;
+      top: {{ section.settings.moon_top_mobile }}%;
+      left: {{ section.settings.moon_left_mobile }}%;
+    }
+  }
+</style>
+
+<div class="idiom-loyalty-section">
+  <div class="idiom-loyalty">
+
+    {%- comment -%} Cloud — behind card {%- endcomment -%}
+    {%- if section.settings.cloud_image != blank -%}
+      <div class="idiom-loyalty__decor idiom-loyalty__cloud" aria-hidden="true">
+        <img src="{{ section.settings.cloud_image | image_url: width: 800 }}" alt="" loading="lazy" width="800" height="{{ 800 | divided_by: section.settings.cloud_image.aspect_ratio | round }}">
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Left: framed girl image {%- endcomment -%}
+    {%- if section.settings.girl_image != blank -%}
+      <figure class="idiom-loyalty__figure">
+        <img
+          src="{{ section.settings.girl_image | image_url: width: 900 }}"
+          alt="{{ section.settings.girl_image.alt | escape }}"
+          loading="lazy"
+          width="900"
+          height="900"
+        >
+      </figure>
+    {%- else -%}
+      <figure class="idiom-loyalty__figure">
+        <img src="{{ 'idiom-loyalty-girl.png' | asset_url }}" alt="" loading="lazy" width="900" height="900">
+      </figure>
+    {%- endif -%}
+
+    {%- comment -%} Right: text content {%- endcomment -%}
+    <div class="idiom-loyalty__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="idiom-loyalty__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="idiom-loyalty__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank -%}
+        <div class="idiom-loyalty__cta">
+          {%- render 'idiom-cta-button', label: section.settings.cta_label, href: section.settings.cta_url -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Butterfly — floating {%- endcomment -%}
+    {%- if section.settings.butterfly_image != blank -%}
+      <div class="idiom-loyalty__decor idiom-loyalty__butterfly" aria-hidden="true">
+        <img src="{{ section.settings.butterfly_image | image_url: width: 500 }}" alt="" loading="lazy" width="500" height="{{ 500 | divided_by: section.settings.butterfly_image.aspect_ratio | round }}">
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Moon — floating {%- endcomment -%}
+    {%- if section.settings.moon_image != blank -%}
+      <div class="idiom-loyalty__decor idiom-loyalty__moon" aria-hidden="true">
+        <img src="{{ section.settings.moon_image | image_url: width: 600 }}" alt="" loading="lazy" width="600" height="{{ 600 | divided_by: section.settings.moon_image.aspect_ratio | round }}">
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Loyalty / Society",
+  "tag": "section",
+  "class": "idiom-loyalty-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#8a9a3f"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#fffbf3"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Left image column width",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.2
+    },
+    {
+      "type": "text",
+      "id": "image_ratio",
+      "label": "Left image aspect ratio (e.g. 1/1, 4/3)",
+      "default": "1/1"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "girl_image",
+      "label": "Left main image (girl)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "welcome to the society."
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "earn points for purchases to redeem scents you love. get access to exclusive products, sales, and more."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "join the loyalty programme"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Cloud image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cloud_image",
+      "label": "Cloud image"
+    },
+    {
+      "type": "range",
+      "id": "cloud_size",
+      "label": "Cloud size (px)",
+      "min": 40,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "cloud_top",
+      "label": "Cloud vertical position",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": -8
+    },
+    {
+      "type": "range",
+      "id": "cloud_left",
+      "label": "Cloud horizontal position",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "cloud_size_mobile",
+      "label": "Cloud size — mobile (px)",
+      "min": 20,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "cloud_top_mobile",
+      "label": "Cloud vertical position — mobile",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": -6
+    },
+    {
+      "type": "range",
+      "id": "cloud_left_mobile",
+      "label": "Cloud horizontal position — mobile",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Butterfly image"
+    },
+    {
+      "type": "image_picker",
+      "id": "butterfly_image",
+      "label": "Butterfly image"
+    },
+    {
+      "type": "range",
+      "id": "butterfly_size",
+      "label": "Butterfly size (px)",
+      "min": 30,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "butterfly_top",
+      "label": "Butterfly vertical position",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "butterfly_left",
+      "label": "Butterfly horizontal position",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "butterfly_size_mobile",
+      "label": "Butterfly size — mobile (px)",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "butterfly_top_mobile",
+      "label": "Butterfly vertical position — mobile",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": -4
+    },
+    {
+      "type": "range",
+      "id": "butterfly_left_mobile",
+      "label": "Butterfly horizontal position — mobile",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Moon image"
+    },
+    {
+      "type": "image_picker",
+      "id": "moon_image",
+      "label": "Moon image"
+    },
+    {
+      "type": "range",
+      "id": "moon_size",
+      "label": "Moon size (px)",
+      "min": 40,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "moon_top",
+      "label": "Moon vertical position",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "moon_left",
+      "label": "Moon horizontal position",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 82
+    },
+    {
+      "type": "range",
+      "id": "moon_size_mobile",
+      "label": "Moon size — mobile (px)",
+      "min": 20,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "moon_top_mobile",
+      "label": "Moon vertical position — mobile",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "moon_left_mobile",
+      "label": "Moon horizontal position — mobile",
+      "min": -30,
+      "max": 120,
+      "step": 2,
+      "unit": "%",
+      "default": 66
+    }
+  ],
+  "presets": [
+    {
+      "name": "Loyalty / Society"
+    }
+  ]
+}
+{% endschema %}

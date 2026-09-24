@@ -1,0 +1,144 @@
+<style>
+  .idiom-trust-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--idiom-cream, #faf6f0);
+    position: relative;
+  }
+
+  .idiom-trust-bar::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: rgba(26,26,26,0.2);
+  }
+
+  .idiom-trust-bar::before {
+    top: 0;
+  }
+
+  .idiom-trust-bar::after {
+    bottom: 0;
+  }
+
+  .idiom-trust-bar__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    font-family: "farro-bold (2)", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--idiom-black, #1a1a1a);
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+  }
+
+  .idiom-trust-bar__item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 1px;
+    background: rgba(26,26,26,0.25);
+  }
+
+  /* Mobile marquee */
+  .idiom-trust-bar--marquee {
+    display: none;
+  }
+  
+  @media (max-width: 480px) {
+    .idiom-trust-bar--marquee {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      background: var(--idiom-cream, #faf6f0);
+      position: relative;
+    }
+
+    .idiom-trust-bar--marquee::before,
+    .idiom-trust-bar--marquee::after {
+      content: '';
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: rgba(26,26,26,0.2);
+      z-index: 1;
+    }
+
+    .idiom-trust-bar--marquee::before {
+      top: 0;
+    }
+
+    .idiom-trust-bar--marquee::after {
+      bottom: 0;
+    }
+
+    .idiom-trust-bar--marquee__track {
+      display: inline-flex;
+      animation: trust-bar-marquee 18s linear infinite;
+    }
+
+    .idiom-trust-bar--marquee__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 24px;
+      font-family: "farro-bold (2)", sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--idiom-black, #1a1a1a);
+      white-space: nowrap;
+    }
+
+    .idiom-trust-bar--marquee__item::after {
+      content: '·';
+      opacity: 0.4;
+    }
+
+    @keyframes trust-bar-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+  }
+</style>
+
+<div class="idiom-trust-bar">
+  {%- for block in section.blocks -%}
+    <div class="idiom-trust-bar__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+  {%- endfor -%}
+</div>
+
+<div class="idiom-trust-bar--marquee" aria-hidden="true">
+  <div class="idiom-trust-bar--marquee__track">
+    {%- for block in section.blocks -%}
+      <span class="idiom-trust-bar--marquee__item">{{ block.settings.text }}</span>
+    {%- endfor -%}
+    {%- for block in section.blocks -%}
+      <span class="idiom-trust-bar--marquee__item">{{ block.settings.text }}</span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "free samples in every order" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Trust Bar" }]
+}
+{% endschema %}

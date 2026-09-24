@@ -1,0 +1,78 @@
+<style>
+.idiom-video-grid { position: relative; width: 100%; min-height: 480px; overflow: hidden; }
+.idiom-video-grid__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.idiom-video-grid::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.38); z-index: 1; }
+.idiom-video-grid__inner { position: relative; z-index: 2; padding: 48px 32px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+.idiom-video-grid__descriptor { font-size: 22px; font-style: italic; color: #fff; text-align: center; max-width: 800px; line-height: 1.3; }
+.idiom-video-grid__descriptor p { margin: 0; }
+.idiom-video-grid__row { display: flex; gap: 12px; width: 100%; }
+.idiom-video-grid__card { flex: 1 1 0; background: rgba(255,255,255,0.82); border-radius: 12px; aspect-ratio: 9/16; overflow: hidden; position: relative; }
+.idiom-video-grid__card video,
+.idiom-video-grid__card iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
+.idiom-video-grid__placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: rgba(0,0,0,0.4); font-size: 13px; }
+@media (max-width: 768px) {
+  .idiom-video-grid__descriptor { font-size: 16px; }
+  .idiom-video-grid__row { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .idiom-video-grid__row::-webkit-scrollbar { display: none; }
+  .idiom-video-grid__card { flex: 0 0 160px; }
+}
+</style>
+
+<section class="idiom-video-grid">
+  {%- if section.settings.bg_image != blank -%}
+    <img src="{{ section.settings.bg_image | image_url: width: 1600 }}" alt="" class="idiom-video-grid__bg" loading="lazy">
+  {%- endif -%}
+
+  <div class="idiom-video-grid__inner">
+    {%- if section.settings.descriptor_line1 != blank or section.settings.descriptor_line2 != blank -%}
+      <div class="idiom-video-grid__descriptor">
+        {%- if section.settings.descriptor_line1 != blank -%}<p>{{ section.settings.descriptor_line1 }}</p>{%- endif -%}
+        {%- if section.settings.descriptor_line2 != blank -%}<p>{{ section.settings.descriptor_line2 }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="idiom-video-grid__row">
+        {%- for block in section.blocks -%}
+          <div class="idiom-video-grid__card" {{ block.shopify_attributes }}>
+            {%- if block.settings.shopify_video != blank -%}
+              {{- block.settings.shopify_video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, poster: block.settings.poster_image | image_url: width: 400 -}}
+            {%- elsif block.settings.external_url != blank -%}
+              <iframe src="{{ block.settings.external_url }}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+            {%- else -%}
+              {%- if block.settings.poster_image != blank -%}
+                <img src="{{ block.settings.poster_image | image_url: width: 400 }}" alt="video thumbnail" style="width:100%;height:100%;object-fit:cover;">
+              {%- else -%}
+                <div class="idiom-video-grid__placeholder">video {{ forloop.index }}</div>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video Grid",
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "video", "id": "shopify_video", "label": "Shopify-hosted video" },
+        { "type": "text", "id": "external_url", "label": "External video URL (Vimeo etc.)" },
+        { "type": "image_picker", "id": "poster_image", "label": "Poster / thumbnail image" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "text", "id": "descriptor_line1", "label": "Descriptor line 1", "default": "cool. meditative. lingering aromatic wood." },
+    { "type": "text", "id": "descriptor_line2", "label": "Descriptor line 2", "default": "subtle gourmand notes on warm skin. quietly radiant." }
+  ],
+  "presets": [{ "name": "Video Grid" }]
+}
+{% endschema %}

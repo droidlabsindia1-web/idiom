@@ -1,0 +1,374 @@
+{%- comment -%} /sections/collection.liquid {%- endcomment -%}
+
+<style>
+  .idiom-collection { background: var(--idiom-cream); padding-top: 48px; }
+  .idiom-collection__header { text-align: center; padding: 48px 24px 32px; }
+  .idiom-collection__title { font-size: 40px; font-weight: 700; color: var(--idiom-black); margin: 0 0 8px; }
+  .idiom-collection__subtext { font-size: 14px; opacity: 0.6; margin: 0; }
+  .idiom-collection__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 0 24px 60px; }
+  .idiom-collection__pagination { text-align: center; padding: 24px; }
+  @media (max-width: 768px) { .idiom-collection__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .idiom-collection__grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="idiom-collection">
+  <div class="idiom-collection__header">
+    <h1 class="idiom-collection__title">{{ collection.title }}</h1>
+    {%- if section.settings.subtext != blank -%}
+      <p class="idiom-collection__subtext">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    <div class="idiom-collection__grid">
+      {%- for product in collection.products -%}
+        {% render 'idiom-collection-card', product: product %}
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <div class="idiom-collection__pagination">
+        {{ paginate | default_pagination }}
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+  {
+    "name": "Collection pages",
+    "class": "collection-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subtext",
+        "label": "Subtext below collection title",
+        "default": "get to know our crowd-pleasers..."
+      },
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "label": "Products per page",
+        "min": 6,
+        "max": 24,
+        "step": 3,
+        "default": 12
+      },
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_breadcrumbs",
+        "label": "Show breadcrumbs",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Filters and sorting"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sorting",
+        "label": "Enable sorting",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_filters",
+        "label": "Enable filters",
+        "default": true
+      },
+      {
+        "type": "select",
+        "label": "Default filter layout",
+        "id": "filters_layout",
+        "info": "Desktop only",
+        "default": "open",
+        "options": [
+          { "label": "All filters open", "value": "open" },
+          { "label": "All filters closed", "value": "closed" },
+          { "label": "First filter open", "value": "first-open" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show_more",
+        "label": "Show a subset of filters from each group",
+        "info": "Check this setting if you have a large number of filters, and want them to take up less space",
+        "default": true
+      },
+      {
+        "type": "select",
+        "label": "Filter mode",
+        "id": "filter_mode",
+        "info": "Filters by group requires specific tag formatting. [Learn more](https://presidiocreative.com/link/palo-alto/docs/collection-filtering)",
+        "default": "default",
+        "options": [
+          { "label": "Default (Faceted)", "value": "default" },
+          { "label": "By tag", "value": "tag" },
+          { "label": "By group", "value": "group" }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background"
+      },
+      {
+        "type": "header",
+        "content": "Section spacing"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 60
+      }
+    ],
+    "blocks": [
+      {
+        "type": "promo",
+        "name": "Promo",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Show on specific collection only"
+          },
+          {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+          },
+          {
+            "type": "header",
+            "content": "Layout"
+          },
+          {
+            "type": "range",
+            "id": "position",
+            "label": "Show in position",
+            "min": 1,
+            "max": 48,
+            "step": 1,
+            "default": 1
+          },
+          {
+            "type": "select",
+            "id": "width",
+            "label": "Width",
+            "default": "auto",
+            "options": [
+              { "value": "full", "label": "Full width" },
+              { "value": "half", "label": "2 grid items" },
+              { "value": "auto", "label": "Grid item" }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Heading",
+            "default": "<p>Promotion title</p>",
+            "info": "Highlight one or two key words in your heading by italicizing them, then choose the highlight option below"
+          },
+          {
+            "type": "range",
+            "id": "heading_size",
+            "label": "Heading size",
+            "default": 100,
+            "min": 100,
+            "max": 200,
+            "step": 10,
+            "unit": "%"
+          },
+          {
+            "type": "header",
+            "content": "Highlight"
+          },
+          {
+            "type": "select",
+            "id": "heading_highlight_type",
+            "label": "Type",
+            "default": "underline-hand-drawn",
+            "info": "The font choice for the \"Alternate font\" type can be configured in the theme typography settings.",
+            "options": [
+              { "value": "italics", "label": "Italics (no decoration)" },
+              { "value": "highlight", "label": "Highlight" },
+              { "value": "highlight-color", "label": "Text color" },
+              { "value": "underline", "label": "Underline (digital)" },
+              { "value": "underline-hand-drawn", "label": "Underline (hand-drawn)" },
+              { "value": "squiggle", "label": "Squiggle" },
+              { "value": "circle", "label": "Circle (digital)" },
+              { "value": "circle-hand-drawn", "label": "Circle (hand-drawn)" },
+              { "value": "stroke", "label": "Stroke (outlined text)" },
+              { "value": "alternate-font", "label": "Alternate font" }
+            ]
+          },
+          {
+            "type": "color",
+            "id": "highlight_color",
+            "label": "Highlight color",
+            "default": "#000"
+          },
+          {
+            "type": "color",
+            "id": "highlight_text_color",
+            "label": "Text color"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Text",
+            "default": "Advertise a promotion or a sale"
+          },
+          {
+            "type": "range",
+            "id": "text_size",
+            "label": "Text size",
+            "default": 100,
+            "min": 100,
+            "max": 200,
+            "step": 5,
+            "unit": "%"
+          },
+          {
+            "type": "select",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "text-light",
+            "options": [
+              {
+                "value": "text-light",
+                "label": "Light"
+              },
+              {
+                "value": "text-dark",
+                "label": "Dark"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "text_position",
+            "label": "Content position",
+            "default": "bottom-left",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" },
+              { "value": "bottom-left", "label": "Bottom left" },
+              { "value": "bottom-right", "label": "Bottom right" },
+              { "value": "top-left", "label": "Top left" },
+              { "value": "top-right", "label": "Top right" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Content layout",
+            "default": "stacked",
+            "options": [
+              { "label": "Inline", "value": "inline" },
+              { "label": "Stacked", "value": "stacked" }
+            ],
+            "info": "The 'Inline' option only applies on desktop when the promo width is 'Full width'"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Text contrast",
+            "info": "Improves readability of text",
+            "min": 0,
+            "max": 95,
+            "step": 5,
+            "unit": "%",
+            "default": 10
+          },
+          {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background color",
+            "default": "#D3D3D3",
+            "info": "Applies if no image is chosen"
+          },
+          {
+            "type": "header",
+            "content": "Button"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text",
+            "info": "Leave blank to link entire image"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button URL"
+          },
+          {
+            "type": "select",
+            "id": "button_color",
+            "label": "Button color",
+            "default": "btn--white",
+            "options": [
+              { "label": "Primary", "value": "btn--primary" },
+              { "label": "Secondary", "value": "btn--secondary" },
+              { "label": "White", "value": "btn--white" },
+              { "label": "Black", "value": "btn--black" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "button_style",
+            "label": "Button style",
+            "default": "btn--solid-border",
+            "options": [
+              { "label": "Solid", "value": "btn--solid" },
+              { "label": "Outline", "value": "btn--outline" },
+              { "label": "Solid with border", "value": "btn--solid-border" },
+              { "label": "Soft", "value": "btn--soft" },
+              { "label": "Text", "value": "btn--text" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "button_size",
+            "label": "Size",
+            "default": "btn--medium",
+            "options": [
+              { "label": "Small", "value": "btn--small" },
+              { "label": "Medium", "value": "btn--medium" },
+              { "label": "Large", "value": "btn--large" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

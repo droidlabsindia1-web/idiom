@@ -1,0 +1,109 @@
+{%- unless idiom_product_card_styles_rendered -%}
+  {%- assign idiom_product_card_styles_rendered = true -%}
+<style>
+.idiom-product-card-link { text-decoration: none; color: inherit; display: block; width: 100%; }
+.idiom-product-card-wrap { display: flex; flex-direction: column; width: 100%; }
+
+/* Outer card: overflow visible so bottle can spill out the top */
+.idiom-product-card {
+  position: relative;
+  overflow: visible;
+  border-radius: 16px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+/* Inner clipping layer: clips background image to rounded card shape */
+.idiom-product-card__inner {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.idiom-product-card__bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.idiom-product-card__bg--hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.idiom-product-card-link:hover .idiom-product-card__bg--hover {
+  opacity: 1;
+}
+
+/* Bottle overflows above card top */
+.idiom-product-card__bottle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 90%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.idiom-product-card__info { padding: 12px 4px 8px; text-align: center; }
+.idiom-product-card__title { font-size: 18px; font-weight: 800; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.1; color: var(--idiom-black); }
+.template-product .idiom-product-card__title,
+.template-product .idiom-product-card__meta
+ { color: white }
+
+.idiom-product-card__meta { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--idiom-black); opacity: 0.65; margin: 0; }
+
+@media (max-width: 480px) {
+  .idiom-product-card__title { font-size: 14px; }
+  .idiom-product-card__meta { font-size: 11px; }
+
+  .idiom-product-card__bg {
+    border-radius: 12px;
+  }
+}
+</style>
+{%- endunless -%}
+
+<a href="{{ product.url }}" class="idiom-product-card-link">
+  <div class="idiom-product-card-wrap">
+    <div class="idiom-product-card">
+      <div class="idiom-product-card__inner">
+        {%- comment -%} The card image is a single all-in-one image. Use the
+          custom.card_background_image metafield if set, otherwise the product's
+          first image. (override_image lets a section pin a specific image.)
+          On hover, custom.card_hover_image (if set) crossfades over the base image. {%- endcomment -%}
+        {%- assign card_image = override_image | default: product.metafields.custom.card_background_image | default: product.featured_image -%}
+        {%- assign card_hover_image = product.metafields.custom.card_hover_image -%}
+        {%- if card_image != blank -%}
+          <img src="{{ card_image | image_url: width: 800 }}"
+               alt="{{ product.title }}" class="idiom-product-card__bg" loading="lazy">
+        {%- endif -%}
+        {%- if card_hover_image != blank -%}
+          <img src="{{ card_hover_image | image_url: width: 800 }}"
+               alt="{{ product.title }}" class="idiom-product-card__bg idiom-product-card__bg--hover" loading="lazy">
+        {%- endif -%}
+      </div>
+
+      {%- if product.metafields.custom.personality_tag != blank -%}
+        <span class="idiom-tag">{{ product.metafields.custom.personality_tag }}</span>
+      {%- endif -%}
+    </div>
+
+    <div class="idiom-product-card__info">
+      <p class="idiom-product-card__title">{{ product.title }}</p>
+      <p class="idiom-product-card__meta">
+        {%- if product.metafields.custom.scent_descriptor != blank -%}
+          {{ product.metafields.custom.scent_descriptor }} &nbsp;|&nbsp;
+        {%- endif -%}
+        {{ product.price | money }}
+      </p>
+    </div>
+  </div>
+</a>

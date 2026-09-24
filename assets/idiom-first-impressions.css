@@ -1,0 +1,197 @@
+/* idiom — First Impressions video thumbnails (PDP) */
+
+.idiom-fi {
+  padding-top: 4px;
+}
+.idiom-fi__label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.idiom-fi__thumbs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.idiom-fi__thumbs::-webkit-scrollbar {
+  display: none;
+}
+.idiom-fi__thumb {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  background: #111;
+  border: none;
+  padding: 0;
+}
+@media (max-width: 480px) {
+  .idiom-fi__thumb {
+    width: 76px;
+    height: 76px;
+  }
+}
+.idiom-fi__thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fullscreen modal — mirrors the reel-video-section design */
+.idiom-fi-modal {
+  position: fixed;
+  display: none;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.idiom-fi-modal-open,
+.idiom-fi-modal-open body {
+  overscroll-behavior: none;
+}
+.idiom-fi-modal__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.idiom-fi-fullscreen {
+  scroll-snap-align: start;
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.idiom-fi-box {
+  position: relative;
+  width: auto;
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  touch-action: pan-y;
+}
+.idiom-fi-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  background: #111;
+}
+.idiom-fi-box .idiom-fi-buy-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--idiom-cream);
+  color: var(--idiom-black);
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 26px;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 10;
+  text-align: center;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.idiom-fi-box .idiom-fi-mute-btn {
+  position: absolute;
+  bottom: 50px;
+  right: 5%;
+  z-index: 11;
+  background: transparent;
+  border: none;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  padding: 0;
+}
+.idiom-fi-box .idiom-fi-mute-btn img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.idiom-fi-box .idiom-fi-playpause-btn {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+  padding: 0;
+}
+.idiom-fi-box .idiom-fi-playpause-btn img {
+  width: auto;
+  height: auto;
+}
+.idiom-fi-playpause-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+.idiom-fi-close-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  height: 36px;
+  width: 36px;
+  font-size: 26px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--idiom-cream);
+  border: none;
+  border-radius: 50%;
+  z-index: 99999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .idiom-fi-box .idiom-fi-buy-btn {
+    bottom: 10%;
+  }
+  .idiom-fi-box .idiom-fi-mute-btn {
+    bottom: 10%;
+  }
+  .idiom-fi-box video {
+    padding-top: 15%;
+    padding-bottom: 15%;
+  }
+}

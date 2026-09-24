@@ -1,0 +1,218 @@
+<style>
+.idiom-layering-wrap {
+  background: #9a9a35;
+  border-radius: 43px;
+  overflow: hidden;
+  margin: 24px 0 0 0;
+}
+
+.idiom-layering hr{
+  width: 100%;
+}
+
+/* Marquee strip */
+.idiom-layering__marquee-slot {
+  position: relative;
+}
+.idiom-layering__marquee {
+  background: #9a9a35;
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.idiom-layering__marquee .idiom-marquee-track {
+  font-size: 12px;
+  font-weight: 400;
+  color: #fffbf3;
+  text-transform: lowercase;
+  gap: 0;
+}
+.idiom-layering__marquee .idiom-marquee-track span {
+  padding: 0 28px;
+  color: #fffbf3;
+  font-size: 14px;
+}
+
+/* Floating state — sticks to the bottom of the viewport until the
+   layering section scrolls up and the marquee docks into its home slot. */
+.idiom-layering__marquee.is-floating {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  border-top-left-radius: 43px;
+  border-top-right-radius: 43px;
+  box-shadow: 0 -6px 24px rgba(0,0,0,0.12);
+}
+/* Placeholder reserves the marquee's height in flow while it is floating,
+   so the section content below does not jump. */
+.idiom-layering__marquee-placeholder { display: none; }
+.idiom-layering__marquee-slot.is-reserved .idiom-layering__marquee-placeholder { display: block; }
+
+/* Main row */
+.idiom-layering { display: flex; align-items: center; padding: 40px 48px; gap: 48px; }
+.idiom-layering__text { flex: 0 0 28%; min-width: 220px; margin-bottom: 12%; }
+.idiom-layering__heading { color: #fff; font-size: 34px; font-weight: 600; line-height: 1.1; margin: 0; }
+.idiom-layering__divider { border: none; border-top: 1px solid rgba(255,255,255,0.4); margin: 14px 0 12px; }
+.idiom-layering__subtext { color: #fffbf3; font-size: 12px; margin: 0 0 24px; }
+.idiom-layering__fine { color: #fffbf3; font-size: 12px; margin: 0; }
+/* Bleed the slider past the section's right padding so cards scroll off the
+   edge seamlessly (no right gutter). */
+.idiom-layering__products { flex: 1 1 0; overflow: visible; margin-right: -48px; }
+.idiom-layering__scroll { display: flex; gap: 20px; overflow-x: auto; overflow-y: visible; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.idiom-layering__scroll::-webkit-scrollbar { display: none; }
+/* Show 2.5 cards in the scroll area (2 full + a peek of the 3rd). The 20px gap
+   appears 2× across 2.5 visible cards, so subtract 2 gaps then divide by 2.5. */
+.idiom-layering__scroll .idiom-collection-card { flex: 0 0 calc((100% - 40px) / 2.5); width: calc((100% - 40px) / 2.5); }
+
+/* White card text — scoped to this section (olive background) */
+.idiom-layering__scroll .idiom-collection-card__title,
+.idiom-layering__scroll .idiom-collection-card__price,
+.idiom-layering__scroll .idiom-collection-card__tagline { color: #fff; }
+
+@media (max-width: 768px) {
+  .idiom-layering-wrap { margin: 12px 0 0 0; border-radius: 16px; }
+  .idiom-layering__marquee.is-floating {
+    left: 0;
+    right: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  .idiom-layering { flex-direction: column; padding: 32px 0; gap: 24px; }
+  .idiom-layering__text { flex: none; width: 100%; padding: 0 20px; }
+  .idiom-layering__products { width: 100%; margin-right: 0; }
+  .idiom-layering__scroll { padding: 0 20px; }
+  /* Show ~1.2 cards per screen (1 full + a peek of the next) */
+  .idiom-layering__scroll .idiom-collection-card { flex: 0 0 78%; width: 78%; }
+  .idiom-layering__text br {
+    display: none;
+  }
+}
+</style>
+
+<div class="idiom-layering-wrap" id="idiom-layering-wrap-{{ section.id }}">
+  <div class="idiom-layering__marquee-slot" data-marquee-slot>
+    <div class="idiom-layering__marquee" data-marquee>
+      <div class="idiom-marquee-track" aria-hidden="true">
+        {%- for i in (1..6) -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <span>{{ block.settings.text }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="idiom-layering__marquee-placeholder" data-marquee-placeholder aria-hidden="true"></div>
+  </div>
+
+  <section class="idiom-layering">
+    <div class="idiom-layering__text">
+      <p class="idiom-layering__heading">{{ section.settings.heading_solo }}</p>
+      <p class="idiom-layering__heading">{{ section.settings.heading_layer }}</p>
+      <hr class="idiom-layering__divider">
+      <p class="idiom-layering__subtext">{{ section.settings.subtext }}</p>
+      <p class="idiom-layering__fine">{{ section.settings.fine_print }}</p>
+    </div>
+
+    <div class="idiom-layering__products">
+      <div class="idiom-layering__scroll">
+        {%- assign layer_collection = product.metafields.custom.pdp_layer_with_collection.value -%}
+        {%- if layer_collection != blank -%}
+          {%- for lp in layer_collection.products limit: 6 -%}
+            {% render 'idiom-collection-card', product: lp %}
+          {%- endfor -%}
+        {%- elsif section.settings.layering_collection != blank -%}
+          {%- assign layer_col = collections[section.settings.layering_collection] -%}
+          {%- for lp in layer_col.products limit: 6 -%}
+            {% render 'idiom-collection-card', product: lp %}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('idiom-layering-wrap-{{ section.id }}');
+  if (!root) return;
+  var slot = root.querySelector('[data-marquee-slot]');
+  var marquee = root.querySelector('[data-marquee]');
+  var placeholder = root.querySelector('[data-marquee-placeholder]');
+  if (!slot || !marquee || !placeholder) return;
+
+  var floating = false;
+  var ticking = false;
+
+  function setFloating(on) {
+    if (on === floating) return;
+    floating = on;
+    if (on) {
+      // reserve the marquee's height so the section below doesn't jump
+      placeholder.style.height = marquee.offsetHeight + 'px';
+      slot.classList.add('is-reserved');
+      marquee.classList.add('is-floating');
+    } else {
+      marquee.classList.remove('is-floating');
+      slot.classList.remove('is-reserved');
+      placeholder.style.height = '';
+    }
+  }
+
+  function update() {
+    ticking = false;
+    var slotTop = slot.getBoundingClientRect().top;
+    var marqueeH = (floating ? placeholder.offsetHeight : marquee.offsetHeight);
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    // Dock once the marquee's home slot has scrolled up enough that the bar
+    // would naturally rest at (or above) the bottom of the viewport.
+    setFloating(slotTop + marqueeH > vh);
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Layering Row",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "heading_solo", "label": "Line 1", "default": "wear solo," },
+    { "type": "text", "id": "heading_layer", "label": "Line 2", "default": "or layer me with:" },
+    { "type": "text", "id": "subtext", "label": "Subtext", "default": "these scents were made to mix." },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "* that's your part." },
+    { "type": "collection", "id": "layering_collection", "label": "Fallback collection" }
+  ],
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Marquee phrase",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Phrase text", "default": "smell like no one else™" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Layering Row",
+      "blocks": [
+        { "type": "phrase", "settings": { "text": "smell like no one else™" } },
+        { "type": "phrase", "settings": { "text": "find your fragrance freedom" } },
+        { "type": "phrase", "settings": { "text": "layer, or wear solo" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,357 @@
+<style>
+.idiom-product-trio {
+  background: var(--idiom-cream, #fffbf3);
+  padding: 60px 48px;
+}
+
+.idiom-product-trio__heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.idiom-product-trio__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.idiom-product-trio__item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Media zone: bottle centred, reveal image hidden behind until hover */
+.idiom-product-trio__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.idiom-product-trio__reveal {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.idiom-product-trio__reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.idiom-product-trio__bottle {
+  position: relative;
+  z-index: 2;
+  height: var(--bottle-height, 82%);
+  width: auto;
+  max-width: 88%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.idiom-product-trio__item:hover .idiom-product-trio__reveal,
+.idiom-product-trio__item:focus-visible .idiom-product-trio__reveal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.idiom-product-trio__item:hover .idiom-product-trio__bottle,
+.idiom-product-trio__item:focus-visible .idiom-product-trio__bottle {
+  transform: scale(1.06);
+}
+
+/* Touch devices have no hover: hide the reveal image, show only the bottle */
+@media (hover: none) {
+  .idiom-product-trio__reveal {
+    opacity: 0;
+  }
+}
+
+.idiom-product-trio__info {
+  margin-top: 24px;
+}
+
+.idiom-product-trio__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.idiom-product-trio__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--idiom-black, #1a1a1a);
+}
+
+.idiom-product-trio__price {
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #202020;
+}
+
+.idiom-product-trio__tagline {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--idiom-black, #1a1a1a);
+}
+
+@media (max-width: 768px) {
+  .idiom-product-trio {
+    padding: 48px 24px;
+  }
+
+  /* Mobile: horizontal scroll slider instead of stacked grid */
+  .idiom-product-trio__grid {
+    display: flex;
+    grid-template-columns: none;
+    max-width: none;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* bleed to the section edges so cards can peek */
+    margin: 0 -24px;
+    padding: 0 24px;
+  }
+
+  .idiom-product-trio__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .idiom-product-trio__item {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .idiom-product-trio {
+    padding: 40px 16px;
+  }
+
+  .idiom-product-trio__heading {
+    margin-bottom: 32px;
+  }
+
+  .idiom-product-trio__heading.idiom-section-heading h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .idiom-product-trio__heading.idiom-section-heading p {
+    font-size: 12px;
+  }
+
+  .idiom-product-trio__grid {
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+
+  /* Enlarge the bottle image on mobile only */
+  .idiom-product-trio__bottle {
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .idiom-product-trio__title {
+    font-size: 18px;
+  }
+
+  .idiom-product-trio__price {
+    font-size: 15px;
+  }
+
+  .idiom-product-trio__tagline {
+    font-size: 11px;
+  }
+}
+</style>
+
+<section class="idiom-product-trio">
+  {%- if section.settings.heading != blank or section.settings.subtext != blank -%}
+    <div class="idiom-product-trio__heading idiom-section-heading">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtext != blank -%}
+        <p>{{ section.settings.subtext }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="idiom-product-trio__grid">
+    {%- for block in section.blocks -%}
+      {%- assign product = all_products[block.settings.product] -%}
+
+      {%- assign bottle_image = block.settings.bottle_image | default: product.featured_image -%}
+      {%- assign hover_image = block.settings.hover_image | default: product.metafields.custom.pdp_main_banner_image.value | default: product.metafields.custom.card_hover_image -%}
+
+      {%- assign card_title = block.settings.title_override | default: product.title -%}
+      {%- assign card_tagline = block.settings.tagline | default: product.metafields.custom.product_trio_description.value -%}
+
+      {%- assign price_label = block.settings.price_label -%}
+      {%- if price_label == blank and product != blank -%}
+        {%- if product.price_varies -%}
+          {%- capture price_label -%}from {{ product.price_min | money }}{%- endcapture -%}
+        {%- else -%}
+          {%- assign price_label = product.price | money -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- assign card_url = block.settings.link | default: product.url -%}
+
+      <a
+        class="idiom-product-trio__item"
+        {% if card_url != blank %}href="{{ card_url }}"{% endif %}
+        {{ block.shopify_attributes }}
+      >
+        <div class="idiom-product-trio__media">
+          {%- if hover_image != blank -%}
+            <div class="idiom-product-trio__reveal">
+              <img
+                src="{{ hover_image | image_url: width: 1200 }}"
+                alt=""
+                loading="lazy"
+              >
+            </div>
+          {%- endif -%}
+
+          {%- if bottle_image != blank -%}
+            <img
+              class="idiom-product-trio__bottle"
+              style="--bottle-height: {{ block.settings.bottle_height }}%;"
+              src="{{ bottle_image | image_url: width: 900 }}"
+              alt="{{ card_title | escape }}"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </div>
+
+        <div class="idiom-product-trio__info">
+          <div class="idiom-product-trio__row">
+            {%- if card_title != blank -%}
+              <h3 class="idiom-product-trio__title">{{ card_title }}</h3>
+            {%- endif -%}
+            {%- if price_label != blank -%}
+              <span class="idiom-product-trio__price">{{ price_label }}</span>
+            {%- endif -%}
+          </div>
+          {%- if card_tagline != blank -%}
+            <p class="idiom-product-trio__tagline">{{ card_tagline }}</p>
+          {%- endif -%}
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "idiom Product Trio",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading (optional)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "bottle_image",
+          "label": "Bottle / product image",
+          "info": "Transparent PNG recommended. Falls back to the product's featured image."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover reveal image",
+          "info": "Fades in behind the bottle on hover. Falls back to the product's pdp_main_banner_image metafield."
+        },
+        {
+          "type": "range",
+          "id": "bottle_height",
+          "label": "Bottle height (% of card)",
+          "min": 50,
+          "max": 100,
+          "step": 2,
+          "default": 82
+        },
+        {
+          "type": "text",
+          "id": "title_override",
+          "label": "Title override",
+          "info": "Falls back to the product title."
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "info": "e.g. woody. fresh. creamy. Falls back to the scent_descriptor metafield."
+        },
+        {
+          "type": "text",
+          "id": "price_label",
+          "label": "Price label",
+          "info": "e.g. from £6. Falls back to the product price."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link override",
+          "info": "Falls back to the product URL."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "idiom Product Trio",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

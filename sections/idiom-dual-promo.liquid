@@ -1,0 +1,111 @@
+<style>
+  .idiom-dual-promo {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    padding: 0 24px 24px;
+    box-sizing: border-box;
+  }
+  .idiom-dual-promo__panel {
+    flex: 1 1 50%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 43px;
+  }
+  .idiom-dual-promo__bg {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+  .idiom-dual-promo__overlay {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(0deg, #20202091 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    width: 100%;
+    height: 50%;
+  }
+  .idiom-dual-promo__content {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 90%;
+  }
+  .idiom-dual-promo__heading {
+    color: #fff;
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .idiom-dual-promo__subtext {
+    color: #fff;
+    font-size: 13px;
+    margin: 0 0 14px;
+    opacity: 0.9;
+  }
+  @media (max-width: 600px) {
+    .idiom-dual-promo { flex-direction: column; padding: 8px 16px 16px; }
+    .idiom-dual-promo__heading { white-space: normal; font-size: 16px; }
+    .idiom-dual-promo__subtext { font-size: 12px; }
+    .idiom-dual-promo__content { bottom: 16px; }
+    .idiom-dual-promo__panel {
+      border-radius: 12px;
+    }
+    /* Square crop on mobile */
+    .idiom-dual-promo__bg {
+      aspect-ratio: 1 / 1;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+</style>
+
+<section class="idiom-dual-promo">
+  {%- for block in section.blocks -%}
+    <div class="idiom-dual-promo__panel" {{ block.shopify_attributes }}>
+      {%- if block.settings.bg_image != blank -%}
+        <img src="{{ block.settings.bg_image | image_url: width: 1000 }}"
+             alt="{{ block.settings.heading }}" class="idiom-dual-promo__bg" loading="lazy">
+      {%- endif -%}
+      <div class="idiom-dual-promo__overlay"></div>
+      <div class="idiom-dual-promo__content">
+        {%- if block.settings.heading != blank -%}
+          <h3 class="idiom-dual-promo__heading">{{ block.settings.heading }}</h3>
+        {%- endif -%}
+        {%- if block.settings.subtext != blank -%}
+          <p class="idiom-dual-promo__subtext">{{ block.settings.subtext }}</p>
+        {%- endif -%}
+        {%- if block.settings.cta_label != blank -%}
+          {%- render 'idiom-cta-button', label: block.settings.cta_label, href: block.settings.cta_url -%}
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Dual Promo Banners",
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Promo panel",
+      "settings": [
+        { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "text", "id": "subtext", "label": "Subtext" },
+        { "type": "text", "id": "cta_label", "label": "CTA label", "default": "shop now | £17" },
+        { "type": "url", "id": "cta_url", "label": "CTA link" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "settings": [],
+  "presets": [{ "name": "Dual Promo Banners" }]
+}
+{% endschema %}

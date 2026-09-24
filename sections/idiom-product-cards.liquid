@@ -1,0 +1,227 @@
+<style>
+.idiom-product-cards-section {
+  background: var(--idiom-cream);
+  padding: 0 0 60px;
+  overflow: visible;
+}
+
+/* Clip horizontally only so bottle tops don't get cut, but horizontal scroll is contained */
+.idiom-product-cards-section-clip {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* Flickity overrides */
+.idiom-product-cards-slider {
+  outline: none;
+}
+
+.idiom-product-cards-slider .flickity-viewport {
+  overflow: visible;
+}
+
+.idiom-product-cards-slider .flickity-slider {
+  display: flex;
+  align-items: flex-start;
+}
+
+.idiom-product-cards-slider .idiom-slide {
+  width: calc(33.333% - 16px);
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+/* Nav arrows */
+.idiom-product-cards-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 24px 20px;
+  display: none;
+}
+
+.idiom-product-cards-nav__btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--idiom-black);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.idiom-product-cards-nav__btn:hover {
+  background: var(--idiom-black);
+  color: #fff;
+}
+
+.idiom-product-cards-nav__btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.idiom-brand-story__grid-transition {
+  background: var(--idiom-cream);
+  text-align: center;
+  padding: 96px 24px 0;
+}
+
+.idiom-brand-story__grid-heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--idiom-black);
+  margin: 0 0 10px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.idiom-brand-story__grid-subtext {
+  font-size: 14px;
+  color: var(--idiom-black);
+  opacity: 0.55;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .idiom-product-cards-slider .idiom-slide {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .idiom-product-cards-slider .idiom-slide {
+    width: 62%;
+  }
+
+  .idiom-product-cards-section {
+    padding: 0 0 32px;
+  }
+
+  .idiom-product-cards-slider {
+    padding-top: 0 !important;
+  }
+
+  .idiom-brand-story__grid-transition {
+    padding: 48px 16px 0;
+  }
+
+  .idiom-brand-story__grid-heading {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .idiom-brand-story__grid-subtext {
+    font-size: 12px;
+  }
+}
+</style>
+
+{%- if section.settings.heading != blank or section.settings.subtext != blank -%}
+  <div class="idiom-brand-story__grid-transition">
+    {%- if section.settings.heading != blank -%}
+      <h3 class="idiom-brand-story__grid-heading">{{ section.settings.heading }}</h3>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p class="idiom-brand-story__grid-subtext">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+<div class="idiom-product-cards-section idiom-product-cards-section-clip">
+  <div class="idiom-product-cards-nav">
+    <button class="idiom-product-cards-nav__btn" data-prev="{{ section.id }}" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="idiom-product-cards-nav__btn" data-next="{{ section.id }}" aria-label="Next">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </div>
+
+  <div class="idiom-product-cards-slider" id="idiom-slider-{{ section.id }}" style="padding-left: 24px; padding-right: 24px; padding-top: 16px;"
+    data-flickity='{"cellAlign":"left","contain":true,"pageDots":false,"prevNextButtons":false,"draggable":true,"wrapAround":false,"adaptiveHeight":false}'>
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- assign product = all_products[block.settings.product] -%}
+        {%- if product != blank -%}
+          {%- assign override_image = block.settings.card_image -%}
+          <div class="idiom-slide">
+            {% render 'idiom-product-card', product: product, override_image: override_image %}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- elsif section.settings.collection != blank -%}
+      {%- assign products_collection = collections[section.settings.collection] -%}
+      {%- for product in products_collection.products limit: section.settings.max_products -%}
+        <div class="idiom-slide">
+          {% render 'idiom-product-card', product: product %}
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  function wireButtons() {
+    var slider = document.getElementById('idiom-slider-' + sectionId);
+    if (!slider || !slider.flickity) return;
+    var prevBtn = document.querySelector('[data-prev="' + sectionId + '"]');
+    var nextBtn = document.querySelector('[data-next="' + sectionId + '"]');
+    if (prevBtn) prevBtn.addEventListener('click', function() { slider.flickity.previous(); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { slider.flickity.next(); });
+  }
+  window.addEventListener('load', function() {
+    setTimeout(wireButtons, 300);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product Cards Grid",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image override",
+          "info": "Optional. Replaces the product image on this card."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Fallback (used when no blocks are added)"
+    },
+    { "type": "collection", "id": "collection", "label": "Product collection" },
+    { "type": "range", "id": "max_products", "label": "Max products", "min": 3, "max": 12, "step": 3, "default": 6 },
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    { "type": "text", "id": "heading", "label": "Section heading" },
+    { "type": "text", "id": "subtext", "label": "Section subtext" }
+  ],
+  "presets": [{ "name": "Product Cards Grid" }]
+}
+{% endschema %}

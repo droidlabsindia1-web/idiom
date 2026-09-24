@@ -1,0 +1,14 @@
+<!-- /snippets/pdp-scent-tagline.liquid -->
+{%- comment -%}
+  Renders the three-word scent descriptor under the PDP title.
+
+  Accepts:
+  - product: {Object} Current product (required)
+
+  Usage:
+  {%- render 'pdp-scent-tagline', product: product -%}
+{%- endcomment -%}
+
+{%- if product.metafields.custom.product_trio_description != blank -%}
+  <p class="idiom-pdp-tagline">{{ product.metafields.custom.product_trio_description.value }}</p>
+{%- endif -%}
