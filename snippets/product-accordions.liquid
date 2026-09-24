@@ -16,6 +16,12 @@
     assign content = page.content | default: text
   endif
 
+  # Treat empty metafield output (e.g. "<p></p>") as no content
+  assign content_text = content | strip_html | strip
+  if content_text == blank
+    assign content = ''
+  endif
+
   assign border_opacity = 0
   if show_accordion_divider
     assign border_opacity = 1

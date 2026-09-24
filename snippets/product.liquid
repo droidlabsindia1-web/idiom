@@ -1298,7 +1298,14 @@
               endif
             endcapture
 
-            assign animation_order_variable = 'animation_order_' | append: forloop.index0
+            case forloop.index0
+              when 0
+                assign animation_order_value = animation_order_0
+              when 1
+                assign animation_order_value = animation_order_1
+              else
+                assign animation_order_value = animation_order_2
+            endcase
           -%}
 
           <div class="{{ selector_wrapper_class }}"
@@ -1307,7 +1314,7 @@
             {% if animations_enabled %}
               data-aos="hero"
               data-aos-anchor="{{ animation_anchor }}"
-              data-aos-order="{{ self[animation_order_variable] }}"
+              data-aos-order="{{ animation_order_value }}"
             {% endif %}>
             {%- if enable_variant_boxes or is_swatch_option or is_native_swatch_option -%}
               {%- liquid
@@ -2048,7 +2055,18 @@
                 {%- continue -%}
               {%- endif -%}
 
-              {%- comment -%} Accordions {%- endcomment -%}
+              {%- comment -%} Accordions — skip the block entirely when it has no content {%- endcomment -%}
+              {%- capture accordion_markup -%}
+                {%- render 'product-accordions',
+                  product: product,
+                  block_settings: block.settings,
+                  block_id: block.id
+                -%}
+              {%- endcapture -%}
+              {%- if accordion_markup == blank -%}
+                {%- continue -%}
+              {%- endif -%}
+
               <div
                 class="product__block product__accordions"
                 id="Block--{{ block.id }}"
@@ -2061,11 +2079,7 @@
                 {{ block_style }}
                 {{ block.shopify_attributes }}
               >
-                {%- render 'product-accordions',
-                  product: product,
-                  block_settings: block.settings,
-                  block_id: block.id
-                -%}
+                {{- accordion_markup -}}
               </div>
 
             {%- when 'upsell' -%}
@@ -4024,13 +4038,3 @@
     </div>
   {%- endunless -%}
 {%- endunless -%}
-{% comment %}
-
-This file has been rewritten to preserve the original behavior.
-
----
-Changes:
-- from: "{{ [animation_order_variable] }}"
-  to: "{{ self[animation_order_variable] }}"
-  position: 52316..52352
-{% endcomment %}

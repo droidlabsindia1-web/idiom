@@ -17,21 +17,47 @@
 
   <div class="idiom-reel-slider-wrapper">
     <div class="idiom-reel-slider">
-      {% for block in section.blocks %}
-        <div
-          class="idiom-reel-card"
-          data-video-src="{{ block.settings.video_url }}"
-          data-buy-now-text="{{ block.settings.buy_now_text }}"
-          data-buy-now-url="{{ block.settings.buy_now_url }}"
-          {{ block.shopify_attributes }}>
-          <video
-            data-src="{{ block.settings.video_url }}"
-            loop
-            muted
-            playsinline
-            preload="none"></video>
-        </div>
-      {% endfor %}
+      {%- comment -%}
+        SKU-specific videos: product.metafields.custom.social_proof_videos
+        (list of video files or URLs). Falls back to the section's video blocks.
+      {%- endcomment -%}
+      {%- assign reel_videos = product.metafields.custom.social_proof_videos.value -%}
+      {%- if reel_videos != blank -%}
+        {%- for reel_video in reel_videos -%}
+          {%- assign reel_src = reel_video -%}
+          {%- if reel_video.sources -%}
+            {%- assign reel_src = reel_video.sources.last.url -%}
+          {%- endif -%}
+          <div
+            class="idiom-reel-card"
+            data-video-src="{{ reel_src }}"
+            data-buy-now-text="{{ section.settings.metafield_cta_text }}"
+            data-buy-now-url="{{ product.url }}">
+            <video
+              data-src="{{ reel_src }}"
+              loop
+              muted
+              playsinline
+              preload="none"></video>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {% for block in section.blocks %}
+          <div
+            class="idiom-reel-card"
+            data-video-src="{{ block.settings.video_url }}"
+            data-buy-now-text="{{ block.settings.buy_now_text }}"
+            data-buy-now-url="{{ block.settings.buy_now_url }}"
+            {{ block.shopify_attributes }}>
+            <video
+              data-src="{{ block.settings.video_url }}"
+              loop
+              muted
+              playsinline
+              preload="none"></video>
+          </div>
+        {% endfor %}
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -68,6 +94,16 @@
       "type": "image_picker",
       "id": "bg_image_mobile",
       "label": "Background Image (Mobile)"
+    },
+    {
+      "type": "paragraph",
+      "content": "On product pages, videos from the product metafield custom.social_proof_videos replace the video blocks below."
+    },
+    {
+      "type": "text",
+      "id": "metafield_cta_text",
+      "label": "CTA text for metafield videos",
+      "default": "Shop Now"
     }
   ],
   "blocks": [

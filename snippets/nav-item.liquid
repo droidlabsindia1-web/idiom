@@ -108,7 +108,7 @@
                 {%- if link.levels == 2 -%}
                   {%- for link in link.links -%}
                     {%- capture link_image_markup -%}
-                      {%- render 'header-link-image' with enable, enable: section.settings.show_images, link: link, aspect_ratio: section.settings.image_aspect_ratio -%}
+                      {%- render 'header-link-image', enable: section.settings.show_images, link: link, aspect_ratio: section.settings.image_aspect_ratio -%}
                     {%- endcapture -%}
 
                     <div class="dropdown__family">
@@ -182,15 +182,3 @@
     </div>
   {%- endif -%}
 </div>
-{% comment %}
-
-This file has been rewritten to preserve the original behavior.
-
----
-Changes:
-- from: "{%- render 'header-link-image' with enable: section.settings.show_images,
-    link: link, aspect_ratio: section.settings.image_aspect_ratio -%}"
-  to: "{%- render 'header-link-image' with enable, enable: section.settings.show_images,
-    link: link, aspect_ratio: section.settings.image_aspect_ratio -%}"
-  position: 3342..3489
-{% endcomment %}
