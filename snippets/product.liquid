@@ -18,6 +18,15 @@
   assign image_layout = section.settings.image_layout
   assign image_width = section.settings.image_width
   assign hide_product_thumbnails = section.settings.hide_product_thumbnails | default: false
+  comment
+    idiom PDP — single-image mode: render only the featured media (no thumbnails,
+    no swipeable slides). Toggle via the "Show only one image" section setting.
+  endcomment
+  assign idiom_single_image = false
+  if section.settings.idiom_single_image == true
+    assign idiom_single_image = true
+    assign hide_product_thumbnails = true
+  endif
   assign color_swatches_type = settings.color_swatches_type
   assign enable_zoom = section.settings.enable_zoom
   assign enable_video_looping = section.settings.enable_video_looping
@@ -287,7 +296,7 @@
         </div>
       {%- endif -%}
 
-      <div class="product-gallery__media-slider{% if product.media.size == 1 %} product-gallery__media-slider--single{% endif %}" data-product-single-media-slider>
+      <div class="product-gallery__media-slider{% if product.media.size == 1 or idiom_single_image %} product-gallery__media-slider--single{% endif %}" data-product-single-media-slider>
         {%- if product.media.size > 0 -%}
           {%- comment -%} Featured media first; the slides are transparent so the
               single static scene above shows through behind each. {%- endcomment -%}
@@ -295,7 +304,7 @@
 
           {%- comment -%} Loop product media skipping the featured {%- endcomment -%}
           {%- for media in product.media -%}
-            {%- if media.id != featured_media_id -%}
+            {%- if media.id != featured_media_id and idiom_single_image == false -%}
               {%- render 'media', unique: unique, current_variant: current_variant, media: media, featured_media: featured_media, image_width: image_size_desktop, enable_video_looping: enable_video_looping, enable_zoom: enable_zoom, section_type: section_type -%}
             {%- endif -%}
           {%- endfor -%}

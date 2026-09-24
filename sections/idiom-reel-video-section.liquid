@@ -10,9 +10,15 @@
       --reel-bg-mobile: url('{{ section.settings.bg_image_mobile | image_url: width: 800 }}');
     {%- endif -%}
   ">
-  <h2 class="idiom-reel-section__title">{{ section.settings.section_title }}</h2>
-  {% if section.settings.section_subtitle != blank %}
-    <p class="idiom-reel-section__subtitle">{{ section.settings.section_subtitle }}</p>
+  {%- comment -%}
+    SKU-specific copy: product.metafields.custom.video_section_heading and
+    custom.video_section_text (single/multi-line text). Falls back to section settings.
+  {%- endcomment -%}
+  {%- assign reel_title = product.metafields.custom.video_section_heading.value | default: section.settings.section_title -%}
+  {%- assign reel_subtitle = product.metafields.custom.video_section_text.value | default: section.settings.section_subtitle -%}
+  <h2 class="idiom-reel-section__title">{{ reel_title }}</h2>
+  {% if reel_subtitle != blank %}
+    <p class="idiom-reel-section__subtitle">{{ reel_subtitle | newline_to_br }}</p>
   {% endif %}
 
   <div class="idiom-reel-slider-wrapper">
@@ -97,7 +103,7 @@
     },
     {
       "type": "paragraph",
-      "content": "On product pages, videos from the product metafield custom.social_proof_videos replace the video blocks below."
+      "content": "On product pages, product metafields custom.video_section_heading and custom.video_section_text replace the title/subtitle above, and custom.social_proof_videos replaces the video blocks below."
     },
     {
       "type": "text",

@@ -1,0 +1,230 @@
+{%- comment -%}
+  Spotify embed for the PDP, driven by product metafields.
+
+  Product metafields (namespace "custom"), each falls back to the section setting:
+  - spotify_url      (URL or single line text) — open.spotify.com link, embed link, or spotify: URI
+  - spotify_heading  (single line text)
+  - spotify_subtext  (multi-line text)
+
+  The section renders nothing when no Spotify link resolves.
+{%- endcomment -%}
+
+{%- liquid
+  assign mf = product.metafields.custom
+
+  assign raw_url = mf.spotify_url.value | default: section.settings.fallback_url | strip
+  assign heading = mf.spotify_heading.value | default: section.settings.heading
+  assign subtext = mf.spotify_subtext.value | default: section.settings.subtext
+
+  assign embed_type = ''
+  assign embed_id = ''
+  assign allowed_types = 'playlist,album,track,episode,show,artist' | split: ','
+
+  if raw_url contains 'spotify:'
+    assign uri_parts = raw_url | split: ':'
+    assign embed_type = uri_parts[1]
+    assign embed_id = uri_parts[2]
+  elsif raw_url contains 'open.spotify.com'
+    assign url_segments = raw_url | split: '?' | first | split: '#' | first | split: '/'
+    for segment in url_segments
+      if allowed_types contains segment
+        assign next_index = forloop.index
+        assign embed_type = segment
+        assign embed_id = url_segments[next_index]
+        break
+      endif
+    endfor
+  endif
+
+  unless allowed_types contains embed_type
+    assign embed_id = ''
+  endunless
+
+  if embed_type == 'track' or embed_type == 'episode' or section.settings.compact
+    assign embed_height = 152
+  else
+    assign embed_height = 352
+  endif
+
+  assign spotify_theme = ''
+  if section.settings.dark_player
+    assign spotify_theme = '&theme=0'
+  endif
+-%}
+
+{%- if embed_id != blank -%}
+  <style>
+    #shopify-section-{{ section.id }} .idiom-spotify {
+      background: {{ section.settings.bg_color | default: 'var(--idiom-cream, #fffbf3)' }};
+      padding: {{ section.settings.padding_top }}px 48px {{ section.settings.padding_bottom }}px;
+    }
+
+    .idiom-spotify__inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .idiom-spotify__header {
+      margin-bottom: 24px;
+      text-align: {{ section.settings.text_align }};
+    }
+
+    .idiom-spotify__heading {
+      margin: 0;
+      font-family: "farro-bold (2)", sans-serif;
+      font-size: 28px;
+      line-height: 1.15;
+      color: var(--idiom-black, #1a1a1a);
+    }
+
+    .idiom-spotify__subtext {
+      margin: 8px 0 0;
+      font-family: "farro-regular (1)", sans-serif;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--idiom-black, #1a1a1a);
+      opacity: 0.8;
+    }
+
+    .idiom-spotify__player {
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      #shopify-section-{{ section.id }} .idiom-spotify {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #shopify-section-{{ section.id }} .idiom-spotify {
+        padding: 40px 16px;
+      }
+
+      .idiom-spotify__heading {
+        font-size: 22px;
+      }
+    }
+  </style>
+
+  <div class="idiom-spotify">
+    <div class="idiom-spotify__inner">
+      {%- if heading != blank or subtext != blank -%}
+        <div class="idiom-spotify__header">
+          {%- if heading != blank -%}
+            <h2 class="idiom-spotify__heading">{{ heading | escape }}</h2>
+          {%- endif -%}
+          {%- if subtext != blank -%}
+            <p class="idiom-spotify__subtext">{{ subtext | escape | newline_to_br }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <iframe
+        class="idiom-spotify__player"
+        src="https://open.spotify.com/embed/{{ embed_type }}/{{ embed_id | url_encode }}?utm_source=generator{{ spotify_theme }}"
+        title="{{ heading | default: 'Spotify player' | escape }}"
+        width="100%"
+        height="{{ embed_height }}"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="idiom-spotify" style="padding: 40px 16px; text-align: center; opacity: 0.6;">
+    Spotify section: add a Spotify link to this product's <code>custom.spotify_url</code> metafield, or set a fallback link in the section settings.
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Spotify player",
+  "class": "idiom-spotify-section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Reads product metafields custom.spotify_url, custom.spotify_heading and custom.spotify_subtext. The settings below are used when a product has no value."
+    },
+    {
+      "type": "text",
+      "id": "fallback_url",
+      "label": "Fallback Spotify link",
+      "info": "Playlist, album, track, episode, show or artist link from open.spotify.com"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Fallback heading",
+      "default": "the soundtrack"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Fallback subtext"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact",
+      "label": "Compact player",
+      "info": "Tracks and episodes are always compact",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "dark_player",
+      "label": "Use Spotify's dark player",
+      "info": "Off uses a player tinted to the artwork",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spotify player"
+    }
+  ]
+}
+{% endschema %}

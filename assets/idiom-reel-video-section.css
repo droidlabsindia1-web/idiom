@@ -132,6 +132,7 @@
 }
 
 .idiom-reel-box .idiom-reel-buy-btn {
+  display: none;
   position: absolute;
   bottom: 40px;
   left: 50%;

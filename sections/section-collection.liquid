@@ -258,6 +258,17 @@
     --adjust-body: calc(var(--FONT-ADJUST-BODY) * {{ text_size }});
   }
 
+  {%- if section.settings.heading_spacing != blank %}
+    {{ selector_id }} .featured-collection__content {
+      margin-bottom: {{ section.settings.heading_spacing }}px;
+    }
+    {{ selector_id }} .featured-collection__content .section__header,
+    {{ selector_id }} .featured-collection__content .section__heading,
+    {{ selector_id }} .featured-collection__content .section__heading > p:last-child {
+      margin-bottom: 0;
+    }
+  {%- endif %}
+
   @media screen and (min-width: 1024px) {
     {{ selector_id }} {
       --grid: repeat({{ columns }}, minmax(0, 1fr));
@@ -1497,6 +1508,12 @@
       "max": 250,
       "step": 5,
       "unit": "%"
+    },
+    {
+      "type": "number",
+      "id": "heading_spacing",
+      "label": "Space below heading (px)",
+      "info": "Leave blank to use the theme default spacing."
     },
     {
       "type": "header",
