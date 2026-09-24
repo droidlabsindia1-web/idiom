@@ -14754,7 +14754,7 @@ body:not(.no-outline) .product-grid-item__image:focus-within {
   font-size: calc(0.9rem * var(--adjust-body));
 }
 .product__description.rte p {
-  line-height: inherit;
+  line-height: 140%;
   margin-block-start: 0;
 }
 @media only screen and (max-width: 1023px) {
