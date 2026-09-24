@@ -431,7 +431,7 @@ body.template-product .product-single__details h2 {
   color: var(--text);
   margin: 0 0 12px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 /* idiom PDP — mobile: remove the bottom margin under the "WOODY. FRESH.
@@ -549,7 +549,7 @@ body.template-product .product__submit__add .product__price--regular::before {
 }
 .idiom-pdp-stars__icons {
   color: #f5a623;
-  font-size: 16px;
+  font-size: 13px;
   letter-spacing: 2px;
 }
 .idiom-pdp-stars__count {
@@ -760,7 +760,7 @@ body.template-product
    of the background scene (desktop only). On mobile they stay a bottom row. */
 @media only screen and (min-width: 768px) {
   .idiom-pdp-stars {
-    padding-bottom: 8px;
+    padding-bottom: 0;
   }
   body.template-product .product-gallery {
     /* the scene bleeds to the viewport's left edge; offset thumbs from it */
