@@ -2,7 +2,7 @@
   Spotify embed for the PDP, driven by product metafields.
 
   Product metafields (namespace "custom"), each falls back to the section setting:
-  - spotify_url      (URL or single line text) — open.spotify.com link, embed link, or spotify: URI
+  - spotify_url      (URL or single line text) — open.spotify.com link, embed link, <iframe> embed code, or spotify: URI
   - spotify_heading  (single line text)
   - spotify_subtext  (multi-line text)
 
@@ -12,9 +12,26 @@
 {%- liquid
   assign mf = product.metafields.custom
 
-  assign raw_url = mf.spotify_url.value | default: section.settings.fallback_url | strip
+  assign raw_url = mf.spotify_url.value | append: '' | strip
   assign heading = mf.spotify_heading.value | default: section.settings.heading
   assign subtext = mf.spotify_subtext.value | default: section.settings.subtext
+
+  # Spotify embed code pasted into the subtext field is used as the link, never printed.
+  if subtext contains 'open.spotify.com'
+    if raw_url == blank
+      assign raw_url = subtext | strip
+    endif
+    assign subtext = section.settings.subtext
+  endif
+
+  if raw_url == blank
+    assign raw_url = section.settings.fallback_url | append: '' | strip
+  endif
+
+  # Accept a full <iframe> embed snippet by pulling out its src.
+  if raw_url contains 'src='
+    assign raw_url = raw_url | replace: "src='", 'src="' | split: 'src="' | last | split: '"' | first | strip
+  endif
 
   assign embed_type = ''
   assign embed_id = ''
