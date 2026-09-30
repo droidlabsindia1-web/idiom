@@ -9,9 +9,8 @@
   Accepts:
   - product: {Object} Current product (required)
 
-  Video sources: reads product.metafields.custom.first_impression_videos
-  (a list of video/URL values) when present; otherwise falls back to a
-  single default video repeated 4 times.
+  Video sources: product.metafields.custom.first_impression_videos
+  (a list of video files, or comma-separated URL text). Nothing renders when empty.
 
   Usage:
   {%- render 'pdp-first-impressions', product: product -%}
@@ -19,53 +18,53 @@
 
 {{ 'idiom-first-impressions.css' | asset_url | stylesheet_tag }}
 
-{%- assign fi_default_video = 'https://cdn.shopify.com/videos/c/o/v/f8f0402a0f234aa187b9341e4e1efa89.mp4' -%}
-{%- assign fi_videos = product.metafields.custom.first_impression_videos.value -%}
+{%- assign fi_metafield = product.metafields.custom.first_impression_videos.value -%}
 {%- assign fi_buy_url = product.url -%}
 {%- assign fi_buy_text = 'Shop Now' -%}
 
+{%- if fi_metafield.first != nil -%}
+  {%- assign fi_videos = fi_metafield -%}
+{%- elsif fi_metafield != blank and fi_metafield.sources == nil -%}
+  {%- assign fi_videos = fi_metafield | split: ',' -%}
+{%- endif -%}
+
+{%- capture fi_thumbs -%}
+  {%- for fi_video in fi_videos -%}
+    {%- assign fi_src = blank -%}
+    {%- if fi_video.sources -%}
+      {%- for fi_source in fi_video.sources -%}
+        {%- if fi_source.format == 'mp4' and fi_src == blank -%}
+          {%- assign fi_src = fi_source.url -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if fi_src == blank -%}{%- assign fi_src = fi_video.sources.first.url -%}{%- endif -%}
+    {%- elsif fi_video.external_id == nil -%}
+      {%- assign fi_src = fi_video | strip -%}
+    {%- endif -%}
+    {%- if fi_src != blank -%}
+      <button
+        type="button"
+        class="idiom-fi__thumb"
+        data-video-src="{{ fi_src }}"
+        data-buy-now-text="{{ fi_buy_text }}"
+        data-buy-now-url="{{ fi_buy_url }}"
+        aria-label="Play first impression video">
+        <video
+          data-src="{{ fi_src }}"
+          loop
+          muted
+          playsinline
+          preload="none"></video>
+      </button>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if fi_thumbs contains 'idiom-fi__thumb' -%}
 <div class="idiom-fi">
   <p class="idiom-fi__label">FIRST IMPRESSIONS:</p>
   <div class="idiom-fi__thumbs">
-    {%- if fi_videos != blank -%}
-      {%- for fi_video in fi_videos -%}
-        {%- assign fi_src = fi_video -%}
-        {%- if fi_video.sources -%}
-          {%- assign fi_src = fi_video.sources.last.url -%}
-        {%- endif -%}
-        <button
-          type="button"
-          class="idiom-fi__thumb"
-          data-video-src="{{ fi_src }}"
-          data-buy-now-text="{{ fi_buy_text }}"
-          data-buy-now-url="{{ fi_buy_url }}"
-          aria-label="Play first impression video">
-          <video
-            data-src="{{ fi_src }}"
-            loop
-            muted
-            playsinline
-            preload="none"></video>
-        </button>
-      {%- endfor -%}
-    {%- else -%}
-      {%- for i in (1..4) -%}
-        <button
-          type="button"
-          class="idiom-fi__thumb"
-          data-video-src="{{ fi_default_video }}"
-          data-buy-now-text="{{ fi_buy_text }}"
-          data-buy-now-url="{{ fi_buy_url }}"
-          aria-label="Play first impression video">
-          <video
-            data-src="{{ fi_default_video }}"
-            loop
-            muted
-            playsinline
-            preload="none"></video>
-        </button>
-      {%- endfor -%}
-    {%- endif -%}
+    {{ fi_thumbs }}
   </div>
 </div>
 
@@ -76,3 +75,4 @@
 </div>
 
 <script src="{{ 'idiom-first-impressions.js' | asset_url }}" defer></script>
+{%- endif -%}
