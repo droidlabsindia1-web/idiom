@@ -22,14 +22,20 @@
 {%- assign fi_buy_url = product.url -%}
 {%- assign fi_buy_text = 'Shop Now' -%}
 
+{%- assign fi_single = false -%}
 {%- if fi_metafield.first != nil -%}
   {%- assign fi_videos = fi_metafield -%}
-{%- elsif fi_metafield != blank and fi_metafield.sources == nil -%}
-  {%- assign fi_videos = fi_metafield | split: ',' -%}
+{%- elsif fi_metafield.sources != nil -%}
+  {%- assign fi_single = true -%}
+  {%- assign fi_videos = '1' | split: ',' -%}
+{%- elsif fi_metafield != blank -%}
+  {%- assign fi_videos = fi_metafield | replace: ',', ' ' | split: ' ' -%}
 {%- endif -%}
 
 {%- capture fi_thumbs -%}
-  {%- for fi_video in fi_videos -%}
+  {%- for fi_item in fi_videos -%}
+    {%- assign fi_video = fi_item -%}
+    {%- if fi_single -%}{%- assign fi_video = fi_metafield -%}{%- endif -%}
     {%- assign fi_src = blank -%}
     {%- if fi_video.sources -%}
       {%- for fi_source in fi_video.sources -%}
