@@ -87,7 +87,7 @@
             "line_thickness": "normal",
             "accordion_heading": "in support",
             "heading_style": "font-body",
-            "accordion_text": "<p>{{ product.metafields.custom.fragrance_nerd_notes | metafield_tag }}</p>",
+            "accordion_text": "<p>{{ product.metafields.custom.in_support_accordian | metafield_tag }}</p>",
             "accordion_page": "",
             "padding_bottom": 0
           }
@@ -270,8 +270,6 @@
       "settings": {
         "section_title": "cool. meditative. lingering aromatic wood.",
         "section_subtitle": "subtle gourmand notes on warm skin. quietly radiant.",
-        "bg_image_desktop": "shopify://shop_images/I.png",
-        "bg_image_mobile": "shopify://shop_images/I.png",
         "metafield_cta_text": "Shop Now"
       }
     },
