@@ -270,6 +270,8 @@
       "settings": {
         "section_title": "cool. meditative. lingering aromatic wood.",
         "section_subtitle": "subtle gourmand notes on warm skin. quietly radiant.",
+        "bg_image_desktop": "{{ product.metafields.custom.ugc_section_background.value }}",
+        "bg_image_mobile": "{{ product.metafields.custom.ugc_section_background.value }}",
         "metafield_cta_text": "Shop Now"
       }
     },
