@@ -278,7 +278,7 @@
     "idiom_spotify": {
       "type": "idiom-spotify",
       "settings": {
-        "fallback_url": "https://open.spotify.com/playlist/4PXRU4WQtDyQ7k1P6bFDKJ",
+        "fallback_url": "",
         "heading": "",
         "subtext": "",
         "text_align": "left",
