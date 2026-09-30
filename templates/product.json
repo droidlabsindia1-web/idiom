@@ -289,36 +289,6 @@
         "padding_bottom": 60
       }
     },
-    "section_collection_NJqKFP": {
-      "type": "section-collection",
-      "name": "Featured collection",
-      "settings": {
-        "collection": "shop-everything",
-        "products_layout": "carousel",
-        "number_of_products": 5,
-        "products_per_row_on_desktop": 3,
-        "columns_mobile": "1",
-        "text_alignment": "text-left",
-        "title": "<p>you might also like:</p>",
-        "heading_size": 100,
-        "heading_highlight_type": "underline-hand-drawn",
-        "highlight_color": "#000",
-        "highlight_text_color": "",
-        "text": "",
-        "text_size": 100,
-        "heading_spacing": 24,
-        "button_position": "top",
-        "button_text": "",
-        "button_color": "btn--black",
-        "button_style": "btn--text",
-        "button_size": "btn--medium",
-        "bg_color": "",
-        "enable_slider_mobile": true,
-        "width": "wrapper--full-padded",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "section_accordions_hEzbnz": {
       "type": "section-accordions",
       "blocks": {
@@ -377,6 +347,36 @@
         "padding_bottom": 60
       }
     },
+    "section_collection_NJqKFP": {
+      "type": "section-collection",
+      "name": "Featured collection",
+      "settings": {
+        "collection": "shop-everything",
+        "products_layout": "carousel",
+        "number_of_products": 5,
+        "products_per_row_on_desktop": 3,
+        "columns_mobile": "1",
+        "text_alignment": "text-left",
+        "title": "<p>you might also like:</p>",
+        "heading_size": 100,
+        "heading_highlight_type": "underline-hand-drawn",
+        "highlight_color": "#000",
+        "highlight_text_color": "",
+        "text": "",
+        "text_size": 100,
+        "heading_spacing": 24,
+        "button_position": "top",
+        "button_text": "",
+        "button_color": "btn--black",
+        "button_style": "btn--text",
+        "button_size": "btn--medium",
+        "bg_color": "",
+        "enable_slider_mobile": true,
+        "width": "wrapper--full-padded",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "17809446994adad41a": {
       "type": "apps",
       "blocks": {
@@ -407,8 +407,8 @@
     "idiom_ingredient_notes",
     "idiom-reel-video-section",
     "idiom_spotify",
-    "section_collection_NJqKFP",
     "section_accordions_hEzbnz",
+    "section_collection_NJqKFP",
     "17809446994adad41a"
   ]
 }
