@@ -1,0 +1,29 @@
+{%- comment -%}
+  One point on the scent profile scale (sections/idiom-scent-profile.liquid).
+  Accepts:
+    - title: {String} optional label, e.g. "YOU"
+    - description: {String} optional caption, e.g. "stays close"
+    - active: {Boolean} whether this is the product's profile
+{%- endcomment -%}
+
+<li
+  class="idiom-scent-profile__point{% if active %} is-active{% endif %}"
+  {% if active %}
+    aria-current="true"
+  {% endif %}
+>
+  <span class="idiom-scent-profile__dot" aria-hidden="true"></span>
+  {%- if title != blank or description != blank -%}
+    <span class="idiom-scent-profile__label">
+      {%- if title != blank -%}
+        <span class="idiom-scent-profile__point-title">{{ title }}</span>
+      {%- endif -%}
+      {%- if description != blank -%}
+        <span class="idiom-scent-profile__point-desc">{{ description }}</span>
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+  {%- if active -%}
+    <span class="visually-hidden">(this fragrance)</span>
+  {%- endif -%}
+</li>

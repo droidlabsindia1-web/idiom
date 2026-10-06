@@ -1,0 +1,163 @@
+/* ============================================
+   Scent profile scale (sections/idiom-scent-profile.liquid)
+   ============================================ */
+
+.idiom-scent-profile {
+  --sp-dot-size: 20px;
+  --sp-line-width: 2px;
+  background: var(--sp-bg, var(--idiom-cream, #fffbf3));
+  color: var(--sp-text, var(--idiom-black, #1a1a1a));
+  padding: var(--sp-pt, 60px) 48px var(--sp-pb, 60px);
+}
+
+.idiom-scent-profile__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.idiom-scent-profile__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.idiom-scent-profile__title {
+  margin: 0;
+  font-family: "farro-bold (2)", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.idiom-scent-profile__byline {
+  margin: 10px 0 0;
+  font-family: "farro-regular (1)", sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: inherit;
+}
+
+/* --- Scale --- */
+.idiom-scent-profile__scale {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--sp-count, 5), minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Line runs from the centre of the first dot to the centre of the last */
+.idiom-scent-profile__scale::before {
+  content: "";
+  position: absolute;
+  top: calc((var(--sp-dot-size) - var(--sp-line-width)) / 2);
+  left: calc(100% / var(--sp-count, 5) / 2);
+  right: calc(100% / var(--sp-count, 5) / 2);
+  height: var(--sp-line-width);
+  background: var(--sp-line, currentColor);
+}
+
+.idiom-scent-profile__point {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+}
+
+.idiom-scent-profile__dot {
+  position: relative;
+  z-index: 1;
+  width: var(--sp-dot-size);
+  height: var(--sp-dot-size);
+  border: var(--sp-line-width) solid var(--sp-line, currentColor);
+  border-radius: 50%;
+  background: var(--sp-dot, #ffffff);
+}
+
+.idiom-scent-profile__point.is-active .idiom-scent-profile__dot {
+  background: var(--sp-active, #9c9a3c);
+}
+
+.idiom-scent-profile__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 28px;
+  white-space: nowrap;
+}
+
+.idiom-scent-profile__point-title {
+  font-family: "farro-bold (2)", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.idiom-scent-profile__point-desc {
+  margin-top: 6px;
+  font-family: "farro-regular (1)", sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.idiom-scent-profile__notice {
+  margin: 32px 0 0;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+/* --- Tablet --- */
+@media (max-width: 768px) {
+  .idiom-scent-profile {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .idiom-scent-profile__title {
+    font-size: 28px;
+  }
+
+  .idiom-scent-profile__point-title {
+    font-size: 18px;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 480px) {
+  .idiom-scent-profile {
+    --sp-dot-size: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .idiom-scent-profile__header {
+    margin-bottom: 32px;
+  }
+
+  .idiom-scent-profile__title {
+    font-size: 24px;
+  }
+
+  .idiom-scent-profile__byline {
+    font-size: 13px;
+  }
+
+  .idiom-scent-profile__label {
+    margin-top: 18px;
+  }
+
+  .idiom-scent-profile__point-title {
+    font-size: 14px;
+  }
+
+  .idiom-scent-profile__point-desc {
+    margin-top: 4px;
+    font-size: 10px;
+  }
+}

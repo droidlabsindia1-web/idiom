@@ -189,6 +189,23 @@
         "layering_collection": "3d-wear-with"
       }
     },
+    "idiom_scent_profile": {
+      "type": "idiom-scent-profile",
+      "settings": {
+        "title": "Scent profile",
+        "byline": "how loud is your fragrance",
+        "metafield_namespace": "custom",
+        "list_metafield_key": "scent_profiles",
+        "product": "",
+        "bg_color": "#fffbf3",
+        "text_color": "#1a1a1a",
+        "line_color": "#1a1a1a",
+        "dot_color": "#ffffff",
+        "active_color": "#9c9a3c",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "idiom_ingredient_notes": {
       "type": "idiom-ingredient-notes",
       "settings": {
@@ -403,6 +420,7 @@
   },
   "order": [
     "main",
+    "idiom_scent_profile",
     "idiom-layering-row",
     "idiom_ingredient_notes",
     "idiom-reel-video-section",

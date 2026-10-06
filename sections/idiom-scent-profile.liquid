@@ -1,0 +1,216 @@
+{%- comment -%}
+  Scent profile scale — a row of dots on a line, one per profile, with the product's profile highlighted.
+
+  Data model:
+    Metaobject definition  `scent_profile`
+      - title        (single line text, optional)  e.g. "YOU"
+      - description  (single line text, optional)  e.g. "stays close"
+      - active       (true or false)               true = the filled dot for this product
+      Points with neither title nor description render as an unlabelled dot (the in-between steps).
+
+    Product metafield ({namespace}.{key}, configurable below)
+      - scent_profiles  list.metaobject_reference → scent_profile   all points on the scale, in order
+
+  Metaobject entries are shared: if two products reference the same entry, its `active` flag applies to both.
+
+  The section hides itself when the product has no scale.
+{%- endcomment -%}
+
+{%- liquid
+  assign namespace = section.settings.metafield_namespace | default: 'custom' | strip
+  assign list_key = section.settings.list_metafield_key | default: 'scent_profiles' | strip
+
+  assign source_product = product
+  if source_product == blank and section.settings.product != blank
+    assign source_product = section.settings.product
+  endif
+
+  assign profiles = blank
+  if source_product != blank
+    assign profiles = source_product.metafields[namespace][list_key].value
+  endif
+
+  assign show_demo = false
+  if profiles == blank and request.design_mode
+    assign show_demo = true
+  endif
+-%}
+
+{%- if profiles != blank or show_demo -%}
+  {{ 'idiom-scent-profile.css' | asset_url | stylesheet_tag }}
+
+  {%- capture demo_points -%}YOU|stays close,|,THEM|noticed nearby,|,EVERYBODY|leaves a trail{%- endcapture -%}
+  {%- if show_demo -%}
+    {%- assign points_count = 5 -%}
+  {%- else -%}
+    {%- assign points_count = profiles.size -%}
+  {%- endif -%}
+
+  <section
+    id="ScentProfile--{{ section.id }}"
+    class="idiom-scent-profile"
+    style="
+      --sp-count: {{ points_count }};
+      --sp-bg: {{ section.settings.bg_color }};
+      --sp-text: {{ section.settings.text_color }};
+      --sp-line: {{ section.settings.line_color }};
+      --sp-dot: {{ section.settings.dot_color }};
+      --sp-active: {{ section.settings.active_color }};
+      --sp-pt: {{ section.settings.padding_top }}px;
+      --sp-pb: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    <div class="idiom-scent-profile__inner">
+      {%- if section.settings.title != blank or section.settings.byline != blank -%}
+        <div class="idiom-scent-profile__header">
+          {%- if section.settings.title != blank -%}
+            <h2 class="idiom-scent-profile__title">{{ section.settings.title }}</h2>
+          {%- endif -%}
+          {%- if section.settings.byline != blank -%}
+            <p class="idiom-scent-profile__byline">{{ section.settings.byline }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <ol class="idiom-scent-profile__scale">
+        {%- if show_demo -%}
+          {%- assign demo = demo_points | split: ',' -%}
+          {%- for point in demo -%}
+            {%- assign parts = point | split: '|' -%}
+            {%- render 'idiom-scent-profile-point',
+              title: parts[0],
+              description: parts[1],
+              active: forloop.first
+            -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for profile in profiles -%}
+            {%- render 'idiom-scent-profile-point',
+              title: profile.title.value,
+              description: profile.description.value,
+              active: profile.active.value
+            -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </ol>
+
+      {%- if show_demo -%}
+        <p class="idiom-scent-profile__notice">
+          Preview only — add a <code>{{ namespace }}.{{ list_key }}</code> metaobject list to this product to show its scale.
+        </p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Scent profile",
+  "tag": "div",
+  "class": "idiom-scent-profile-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Scent profile"
+    },
+    {
+      "type": "text",
+      "id": "byline",
+      "label": "Byline",
+      "default": "how loud is your fragrance"
+    },
+    {
+      "type": "header",
+      "content": "Data source"
+    },
+    {
+      "type": "paragraph",
+      "content": "Points come from a product metafield of type list of metaobjects (scent_profile, fields: title, description, active). The entry with active set to true is shown as the filled dot."
+    },
+    {
+      "type": "text",
+      "id": "metafield_namespace",
+      "label": "Metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "list_metafield_key",
+      "label": "All profiles metafield key",
+      "info": "List of scent_profile metaobjects, in scale order",
+      "default": "scent_profiles"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Only used outside product pages"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#fffbf3"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Line and dot outline",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot fill",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Selected dot fill",
+      "default": "#9c9a3c"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scent profile"
+    }
+  ]
+}
+{% endschema %}
