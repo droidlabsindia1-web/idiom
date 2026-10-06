@@ -4,11 +4,14 @@
     - title: {String} optional label, e.g. "YOU"
     - description: {String} optional caption, e.g. "stays close"
     - active: {Boolean} whether this is the product's profile
+    - spacer: {Boolean} decorative empty dot between two entries
 {%- endcomment -%}
 
 <li
-  class="idiom-scent-profile__point{% if active %} is-active{% endif %}"
-  {% if active %}
+  class="idiom-scent-profile__point{% if active %} is-active{% endif %}{% if spacer %} is-spacer{% endif %}"
+  {% if spacer %}
+    aria-hidden="true"
+  {% elsif active %}
     aria-current="true"
   {% endif %}
 >

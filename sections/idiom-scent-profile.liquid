@@ -6,7 +6,7 @@
       - title        (single line text, optional)  e.g. "YOU"
       - description  (single line text, optional)  e.g. "stays close"
       - active       (true or false)               true = the filled dot for this product
-      Points with neither title nor description render as an unlabelled dot (the in-between steps).
+      An empty, unlabelled dot is drawn automatically between each pair of entries (not after the last).
 
     Product metafield ({namespace}.{key}, configurable below)
       - scent_profiles  list.metaobject_reference → scent_profile   all points on the scale, in order
@@ -39,12 +39,14 @@
 {%- if profiles != blank or show_demo -%}
   {{ 'idiom-scent-profile.css' | asset_url | stylesheet_tag }}
 
-  {%- capture demo_points -%}YOU|stays close,|,THEM|noticed nearby,|,EVERYBODY|leaves a trail{%- endcapture -%}
+  {%- capture demo_points -%}YOU|stays close,THEM|noticed nearby,EVERYBODY|leaves a trail{%- endcapture -%}
   {%- if show_demo -%}
-    {%- assign points_count = 5 -%}
+    {%- assign entries_count = 3 -%}
   {%- else -%}
-    {%- assign points_count = profiles.size -%}
+    {%- assign entries_count = profiles.size -%}
   {%- endif -%}
+  {%- comment -%} Each entry plus one spacer dot between every pair {%- endcomment -%}
+  {%- assign points_count = entries_count | times: 2 | minus: 1 -%}
 
   <section
     id="ScentProfile--{{ section.id }}"
@@ -82,6 +84,9 @@
               description: parts[1],
               active: forloop.first
             -%}
+            {%- unless forloop.last -%}
+              {%- render 'idiom-scent-profile-point', spacer: true -%}
+            {%- endunless -%}
           {%- endfor -%}
         {%- else -%}
           {%- for profile in profiles -%}
@@ -90,6 +95,9 @@
               description: profile.description.value,
               active: profile.active.value
             -%}
+            {%- unless forloop.last -%}
+              {%- render 'idiom-scent-profile-point', spacer: true -%}
+            {%- endunless -%}
           {%- endfor -%}
         {%- endif -%}
       </ol>
