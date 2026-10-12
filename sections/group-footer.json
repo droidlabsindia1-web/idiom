@@ -34,8 +34,8 @@
           "type": "link",
           "settings": {
             "alignment": "text-left",
-            "menu": "follow-up",
-            "title": "@idiomfragrances",
+            "menu": "information",
+            "title": "the boring stuff",
             "column_width": "25"
           }
         },
@@ -43,8 +43,8 @@
           "type": "link",
           "settings": {
             "alignment": "text-left",
-            "menu": "information",
-            "title": "Information",
+            "menu": "shop-by-size",
+            "title": "shop by type",
             "column_width": "25"
           }
         },
