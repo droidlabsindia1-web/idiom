@@ -90,13 +90,13 @@
           "settings": {
             "position": "2",
             "image_second_menu": false,
-            "image": "shopify://shop_images/HYDE.png",
-            "aspect_ratio": 0.6,
+            "image": "shopify://shop_images/3987903010c9854d0d9233932b3dc728.jpg",
+            "aspect_ratio": 0.5,
             "wide_image": true,
-            "title": "new: hyde.",
+            "title": "STEP INSIDE THE WORLD OF IDIOM",
             "heading_size": 100,
-            "link_text": "berries. leather. smoke.",
-            "link": "shopify://products/hyde"
+            "link_text": "visit our new soho store in london",
+            "link": "shopify://pages/store"
           }
         },
         "image-1": {
