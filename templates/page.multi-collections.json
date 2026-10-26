@@ -25,7 +25,8 @@
         "collection_h3dW9P": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "fresh",
+            "custom_collection_image": "shopify://shop_images/3D_-_CASHMERAN.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -35,7 +36,8 @@
         "collection_J3AFG9": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "floral",
+            "custom_collection_image": "shopify://shop_images/r_-_Safranal.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -45,7 +47,8 @@
         "collection_H7KCj7": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "amber",
+            "custom_collection_image": "shopify://shop_images/PS_Benzoin.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -55,7 +58,8 @@
         "collection_fkNzX3": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "green",
+            "custom_collection_image": "shopify://shop_images/P_-_turmeric_leaf.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -65,7 +69,8 @@
         "collection_hntQgh": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "woody",
+            "custom_collection_image": "shopify://shop_images/P_cedarwood.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -75,7 +80,30 @@
         "collection_Np3fQH": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "juicy",
+            "custom_collection_image": "shopify://shop_images/h_-_pomegranate.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Cja8PU": {
+          "type": "collection",
+          "settings": {
+            "collection": "spicy",
+            "custom_collection_image": "shopify://shop_images/h_-_saffron.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_6PeyNC": {
+          "type": "collection",
+          "settings": {
+            "collection": "gourmand",
+            "custom_collection_image": "shopify://shop_images/h_-_tonka.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -89,7 +117,9 @@
         "collection_H7KCj7",
         "collection_fkNzX3",
         "collection_hntQgh",
-        "collection_Np3fQH"
+        "collection_Np3fQH",
+        "collection_Cja8PU",
+        "collection_6PeyNC"
       ],
       "name": "Collection list",
       "settings": {
