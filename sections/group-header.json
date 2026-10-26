@@ -124,7 +124,7 @@
             "title": "FLORAL",
             "heading_size": 100,
             "link_text": "",
-            "link": "shopify://collections/fresh"
+            "link": "shopify://collections/floral"
           }
         },
         "image_fzpGMA": {
@@ -138,7 +138,7 @@
             "title": "AMBER",
             "heading_size": 100,
             "link_text": "",
-            "link": "shopify://collections/fresh"
+            "link": "shopify://collections/amber"
           }
         },
         "image_wQKCxY": {
@@ -152,7 +152,7 @@
             "title": "DISCOVER ALL",
             "heading_size": 100,
             "link_text": "",
-            "link": "shopify://collections/fresh"
+            "link": "shopify://pages/scent-type"
           }
         }
       },
