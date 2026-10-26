@@ -127,7 +127,7 @@
         "product_chXbhx": {
           "type": "product",
           "settings": {
-            "product": "3d-amp-100ml-copy",
+            "product": "3d",
             "card_image": "shopify://shop_images/2_319298e9-9121-4ae5-87f9-9756b3fefad4.png"
           }
         },
@@ -141,7 +141,7 @@
         "product_6V7DQn": {
           "type": "product",
           "settings": {
-            "product": "3d-amp-100ml-copy",
+            "product": "3d",
             "card_image": "shopify://shop_images/Group_6.png"
           }
         }
@@ -257,7 +257,7 @@
         "trio_1": {
           "type": "product",
           "settings": {
-            "product": "3d-amp-100ml-copy",
+            "product": "3d",
             "bottle_height": 82,
             "title_override": "",
             "tagline": "",
@@ -268,7 +268,7 @@
         "trio_2": {
           "type": "product",
           "settings": {
-            "product": "3d-amp-100ml-copy",
+            "product": "3d",
             "bottle_height": 82,
             "title_override": "",
             "tagline": "",
@@ -279,7 +279,7 @@
         "trio_3": {
           "type": "product",
           "settings": {
-            "product": "3d-amp-100ml-copy",
+            "product": "3d",
             "bottle_height": 82,
             "title_override": "",
             "tagline": "",
