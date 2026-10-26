@@ -120,7 +120,7 @@
         "product_Yx43ei": {
           "type": "product",
           "settings": {
-            "product": "palo-santal-30ml",
+            "product": "palo-santal",
             "card_image": "shopify://shop_images/3_3990af97-481f-4f5f-a4b5-cc88a0f98b86.png"
           }
         },
@@ -169,7 +169,7 @@
             "heading": "the perfect saffron",
             "subtext": "golden, grounded saffron radiating dry amber, soft leather and sun-warmed earth.",
             "cta_label": "shop now | from £6",
-            "cta_url": "shopify://products/saffran-haze-30ml"
+            "cta_url": "shopify://products/saffran-haze"
           }
         },
         "panel_2": {
