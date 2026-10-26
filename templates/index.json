@@ -72,7 +72,7 @@
         "heading": "ROSE IN BLOOMING GLORY",
         "subtext": "warm, juicy, skin-close rose, centre stage. a timeless, modern, universal rose. ",
         "cta_label": "shop now | from £7",
-        "cta_url": "shopify://products/acoustic-rose-30ml"
+        "cta_url": "shopify://products/acoustic-rose"
       }
     },
     "idiom-brand-story": {
@@ -134,7 +134,7 @@
         "product_YGg3a7": {
           "type": "product",
           "settings": {
-            "product": "acoustic-rose-30ml",
+            "product": "acoustic-rose",
             "card_image": "shopify://shop_images/1_dc76036a-12a4-42f8-a5b3-78d6796cc270.png"
           }
         },
@@ -212,7 +212,7 @@
         "heading": "NEW: LIME BOSSA",
         "subtext": "warm, juicy, skin-close rose, centre stage. a timeless, modern, universal rose. ",
         "cta_label": "shop now | from £7",
-        "cta_url": "shopify://products/acoustic-rose-30ml"
+        "cta_url": "shopify://products/acoustic-rose"
       }
     },
     "idiom-loyalty": {
