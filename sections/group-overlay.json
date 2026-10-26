@@ -1,1 +1,49 @@
-{"type":"aside","name":"Overlay","sections":{"popup":{"type":"popup","blocks":{"popup-0":{"type":"popup-with-image","settings":{"position":"bottom-right","image":"shopify:\/\/shop_images\/32.png","height":"three-fifty-height","title":"layer your way with 10% off your first order","text":"","show_newsletter_form":true,"extra_fields":"","button_text":"join the society","trigger":"delayed_10","target_url_enabled":false,"target_url":"","target_referrer_enabled":false,"target_referrer":"","target_device_enabled":false,"target_device":"mobile","bg_color":"#fffbf3","text_color":"text-dark"}}},"block_order":["popup-0"],"disabled":true,"settings":{}}},"order":["popup"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "aside",
+  "name": "Overlay",
+  "sections": {
+    "popup": {
+      "type": "popup",
+      "blocks": {
+        "popup-0": {
+          "type": "popup-with-image",
+          "settings": {
+            "position": "bottom-right",
+            "image": "shopify://shop_images/32.png",
+            "height": "three-fifty-height",
+            "title": "layer your way with 10% off your first order",
+            "text": "",
+            "show_newsletter_form": true,
+            "extra_fields": "",
+            "button_text": "subscribe",
+            "trigger": "delayed_10",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile",
+            "bg_color": "#fffbf3",
+            "text_color": "text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "popup-0"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "popup"
+  ]
+}
