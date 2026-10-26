@@ -101,68 +101,67 @@
         },
         "image-1": {
           "type": "image",
-          "disabled": true,
           "settings": {
-            "position": "2",
+            "position": "3",
             "image_second_menu": false,
-            "image": "shopify://shop_images/3D_-_CETALOX.png",
-            "aspect_ratio": 0.6,
+            "image": "shopify://shop_images/3D_-_CASHMERAN.png",
+            "aspect_ratio": 1,
             "wide_image": true,
-            "title": "shop 3D",
-            "heading_size": 100,
-            "link_text": "Wear it alone as a skin-close aura",
-            "link": "shopify://products/3d"
-          }
-        },
-        "image_K9EDWf": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "position": "1",
-            "image_second_menu": false,
-            "aspect_ratio": 1,
-            "wide_image": false,
-            "title": "",
+            "title": "FRESH",
             "heading_size": 100,
             "link_text": "",
-            "link": ""
+            "link": "shopify://collections/fresh"
           }
         },
-        "image-2": {
+        "image_jaBX6w": {
           "type": "image",
-          "disabled": true,
           "settings": {
-            "position": "1",
+            "position": "3",
             "image_second_menu": false,
+            "image": "shopify://shop_images/r_-_Safranal.png",
             "aspect_ratio": 1,
-            "wide_image": false,
-            "title": "",
+            "wide_image": true,
+            "title": "FLORAL",
             "heading_size": 100,
             "link_text": "",
-            "link": ""
+            "link": "shopify://collections/fresh"
           }
         },
-        "image-3": {
+        "image_fzpGMA": {
           "type": "image",
-          "disabled": true,
           "settings": {
-            "position": "1",
+            "position": "3",
             "image_second_menu": false,
+            "image": "shopify://shop_images/R_-_Elemi_Oil.png",
             "aspect_ratio": 1,
-            "wide_image": false,
-            "title": "",
+            "wide_image": true,
+            "title": "AMBER",
             "heading_size": 100,
             "link_text": "",
-            "link": ""
+            "link": "shopify://collections/fresh"
+          }
+        },
+        "image_wQKCxY": {
+          "type": "image",
+          "settings": {
+            "position": "3",
+            "image_second_menu": false,
+            "image": "shopify://shop_images/h_-_pomegranate.png",
+            "aspect_ratio": 1,
+            "wide_image": true,
+            "title": "DISCOVER ALL",
+            "heading_size": 100,
+            "link_text": "",
+            "link": "shopify://collections/fresh"
           }
         }
       },
       "block_order": [
         "image-0",
         "image-1",
-        "image_K9EDWf",
-        "image-2",
-        "image-3"
+        "image_jaBX6w",
+        "image_fzpGMA",
+        "image_wQKCxY"
       ],
       "settings": {
         "sticky_header": true,
