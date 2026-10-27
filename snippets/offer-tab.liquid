@@ -137,6 +137,30 @@
         return true;
       }
 
+      // The theme only binds the popup's close handlers when its
+      // "user_has_closed" cookie is absent, so once a visitor has closed the
+      // popup, reopening it from the tab leaves the X dead. Bind our own
+      // closers; they're idempotent with the theme's when both are present.
+      function closePromo(promo) {
+        if (!promo.classList.contains('popup--visible')) return;
+        promo.classList.remove('popup--visible');
+        document.dispatchEvent(new CustomEvent('theme:scroll:unlock', { bubbles: true, detail: 300 }));
+        try { tab.querySelector('[data-offer-open]').focus(); } catch (e) {}
+      }
+
+      var promo = document.querySelector('[data-large-promo-inner]');
+      if (promo) {
+        promo.querySelectorAll('[data-popup-close], [data-popup-underlay]').forEach(function (el) {
+          el.addEventListener('click', function (e) {
+            e.preventDefault();
+            closePromo(promo);
+          });
+        });
+        document.addEventListener('keyup', function (e) {
+          if (e.key === 'Escape') closePromo(promo);
+        });
+      }
+
       function dismiss() {
         tab.classList.add('is-dismissed');
         try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
