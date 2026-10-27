@@ -147,7 +147,7 @@
     top: var(--sticky-top, 0);
   }
   .shopify-section.shopify-section--product {
-    padding-bottom: 24px;
+    padding-bottom: 8px;
     /* idiom PDP — no gap above the gallery; image is flush to the page top */
     padding-top: 0;
   }
