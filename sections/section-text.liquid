@@ -48,7 +48,7 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign block_id = block.id
-            assign text = block.settings.text
+            assign text = block.settings.text | replace: '&lt;br /&gt;', '&lt;br&gt;' | replace: '&lt;br/&gt;', '&lt;br&gt;' | replace: '&lt;br&gt;</p>', '</p><p><br></p>' | replace: '&lt;br&gt;', '<br>'
             assign text_size = block.settings.size | times: 0.01
             assign text_size_mobile = text_size
 

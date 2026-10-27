@@ -581,7 +581,8 @@
               {%- endif -%}
 
             {%- when 'text' -%}
-              {%- assign text = block.settings.text -%}
+              {%- comment -%} Rich text escapes a typed <br>; turn it back into a real line break (a blank line when it ends a paragraph) {%- endcomment -%}
+              {%- assign text = block.settings.text | replace: '&lt;br /&gt;', '&lt;br&gt;' | replace: '&lt;br/&gt;', '&lt;br&gt;' | replace: '&lt;br&gt;</p>', '</p><p><br></p>' | replace: '&lt;br&gt;', '<br>' -%}
 
               {%- if text != blank -%}
                 {%- style -%}
