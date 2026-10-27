@@ -60,6 +60,13 @@
 {{ 'section-header-navigation.css' | asset_url | stylesheet_tag }}
 
 <style>
+  /* The trust bar comes after the nav in the DOM and is positioned, so it
+     painted over the top of any dropdown that opens beneath the nav
+     (e.g. "Learn"). Lift the nav row and its dropdowns above it. */
+  .site-header > .wrapper {
+    z-index: 2;
+  }
+
   .idiom-trust-bar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
