@@ -599,6 +599,14 @@
   z-index: 13;
   pointer-events: auto;
 }
+/* The mega menu and its bridge span the full header width, so at z-index 13
+   they also cover the other top-level links (z-index 10) and the icons
+   (z-index 12) — the cursor lands on the open menu's bridge and nothing else
+   can be hovered or clicked. Keep the header's own links above it. */
+.megamenu-opened .navlink--toplevel,
+.megamenu-opened .menu__item--icons {
+  z-index: 14;
+}
 .site-header--has-border .grandparent .header__dropdown::before {
   content: "";
   position: absolute;
