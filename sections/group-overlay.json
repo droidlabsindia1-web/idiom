@@ -33,7 +33,9 @@
             "target_device_enabled": false,
             "target_device": "mobile",
             "bg_color": "#fffbf3",
-            "text_color": "text-dark"
+            "text_color": "text-dark",
+            "show_offer_tab": true,
+            "offer_tab_text": "grab 10% off"
           }
         }
       },

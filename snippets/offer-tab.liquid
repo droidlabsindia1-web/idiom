@@ -2,14 +2,17 @@
   idiom — site-wide "grab 10% off" offer tab.
 
   A fixed, rotated cream tab pinned to the bottom-left of the viewport on every
-  page. Clicking it opens the theme's existing "Popup with image" promo
-  (the "start layering…" popup configured in the Theme Editor under
-  Overlay → Popups). The tab text is editable via Theme settings → "Offer tab".
+  page. Clicking it opens the theme's existing "Popup with image" promo.
 
-  Rendered once from layout/theme.liquid.
+  Rendered from the "Popup with image" block in sections/popup.liquid, so the
+  tab text and on/off toggle live on that block in the Theme Editor
+  (Overlay → Popups → Popup with image → Offer tab).
+
+  Accepts:
+  - text: {String} Tab copy
 {%- endcomment -%}
 
-{%- if settings.offer_tab_enable and settings.offer_tab_text != blank -%}
+{%- if text != blank -%}
   {%- style -%}
     /* Wrapper pinned to the bottom-left edge of the viewport. */
     .idiom-offer-tab {
@@ -99,7 +102,7 @@
 
   <div class="idiom-offer-tab" data-offer-tab>
     <button type="button" class="idiom-offer-tab__open" data-offer-open aria-haspopup="dialog">
-      <span class="idiom-offer-tab__text">{{ settings.offer_tab_text }}</span>
+      <span class="idiom-offer-tab__text">{{ text | escape }}</span>
     </button>
     <button type="button" class="idiom-offer-tab__close" data-offer-dismiss aria-label="Dismiss offer">&times;</button>
   </div>

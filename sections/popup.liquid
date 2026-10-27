@@ -139,6 +139,10 @@
                 </div>
               </div>
 
+              {%- if block.settings.show_offer_tab -%}
+                {%- render 'offer-tab', text: block.settings.offer_tab_text -%}
+              {%- endif -%}
+
             {%- when 'bar' -%}
               <div data-popup-bar {{ block_attributes }}>
                 <div class="popup popup--bar popup--bar--{% if image %}has-image{% else %}no-image{% endif %} {{ text_color }}" id="popup--{{ block.id }}" data-popup-bar-holder data-prevent-scroll-lock>
@@ -299,6 +303,23 @@
           "id": "text",
           "label": "Description",
           "default": "<p>Let’s keep in touch. We promise we won’t bug you too much - just promotions and new releases.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Offer tab",
+          "info": "Fixed tab on the left edge of every page that opens this popup."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_offer_tab",
+          "label": "Show offer tab",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "offer_tab_text",
+          "label": "Tab text",
+          "default": "grab 10% off"
         },
         {
           "type": "header",

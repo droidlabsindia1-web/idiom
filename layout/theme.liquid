@@ -289,9 +289,6 @@ template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}
     </button>
   {%- endif -%}
 
-  {%- comment -%} idiom — site-wide "grab 10% off" offer tab + popup {%- endcomment -%}
-  {%- render 'offer-tab' -%}
-
   <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
 
   <!-- Paste marketing code or third party scripts below this comment line ============== -->
