@@ -1,0 +1,151 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_page_title": true,
+        "bg_color": "",
+        "gradient": "",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "section_list_collection_aKQNyz": {
+      "type": "section-list-collection",
+      "blocks": {
+        "collection_h3dW9P": {
+          "type": "collection",
+          "settings": {
+            "collection": "fresh",
+            "custom_collection_image": "shopify://shop_images/3D_-_CASHMERAN.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_J3AFG9": {
+          "type": "collection",
+          "settings": {
+            "collection": "floral",
+            "custom_collection_image": "shopify://shop_images/r_-_Safranal.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_H7KCj7": {
+          "type": "collection",
+          "settings": {
+            "collection": "amber",
+            "custom_collection_image": "shopify://shop_images/PS_Benzoin.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_fkNzX3": {
+          "type": "collection",
+          "settings": {
+            "collection": "green",
+            "custom_collection_image": "shopify://shop_images/P_-_turmeric_leaf.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_hntQgh": {
+          "type": "collection",
+          "settings": {
+            "collection": "woody",
+            "custom_collection_image": "shopify://shop_images/P_cedarwood.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Np3fQH": {
+          "type": "collection",
+          "settings": {
+            "collection": "juicy",
+            "custom_collection_image": "shopify://shop_images/h_-_pomegranate.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Cja8PU": {
+          "type": "collection",
+          "settings": {
+            "collection": "spicy",
+            "custom_collection_image": "shopify://shop_images/h_-_saffron.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_6PeyNC": {
+          "type": "collection",
+          "settings": {
+            "collection": "gourmand",
+            "custom_collection_image": "shopify://shop_images/h_-_tonka.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "collection_h3dW9P",
+        "collection_J3AFG9",
+        "collection_H7KCj7",
+        "collection_fkNzX3",
+        "collection_hntQgh",
+        "collection_Np3fQH",
+        "collection_Cja8PU",
+        "collection_6PeyNC"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "title": "",
+        "heading_size": 100,
+        "layout": "grid",
+        "alignment": "center",
+        "collections_per_row": 3,
+        "columns_mobile": "1",
+        "image_shape": "square",
+        "image_aspect_ratio": 1.2,
+        "enable_product_count": false,
+        "text_size": 115,
+        "overlay_text": false,
+        "enable_slider_mobile": false,
+        "section_bg_color": "",
+        "gradient": "",
+        "section_text_color": "",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_list_collection_aKQNyz"
+  ]
+}
