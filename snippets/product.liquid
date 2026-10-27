@@ -412,13 +412,74 @@
     {%- endcomment -%}
     <script>
       (function () {
-        var group = document.querySelector('[data-section-id="{{ unique }}"]');
+        var group = document.querySelector('[data-section-id="{{ unique }}"][data-product]');
         if (!group) return;
         var thumbsEl = group.querySelector('[data-idiom-vertical-thumbs]');
         var imgEl = group.querySelector('[data-pdp-desktop-img]');
-        if (!thumbsEl || !imgEl) return;
+        var singleImage = {{ idiom_single_image | json }};
 
         var DESKTOP = '(min-width: 768px)';
+
+        function sizedUrl(src, width) {
+          var url = new URL(src, window.location.origin);
+          url.searchParams.set('width', width);
+          return url.toString();
+        }
+
+        // Swap the gallery to the selected variant's image. The theme's own
+        // handler only switches between rendered slides, which misses the
+        // desktop centred image and the single-slide mode.
+        document.addEventListener('theme:variant:change', function (e) {
+          if (!(e.target.contains(group) || group.contains(e.target))) return;
+          var variant = e.detail && e.detail.variant;
+          var media = variant && variant.featured_media;
+          if (!media || !media.preview_image || !media.preview_image.src) return;
+          var preview = media.preview_image;
+
+          if (imgEl) imgEl.setAttribute('src', sizedUrl(preview.src, 1600));
+
+          if (thumbsEl) {
+            thumbsEl.querySelectorAll('.product-single__thumbnail').forEach(function (t) {
+              t.classList.toggle('is-nav-selected', t.getAttribute('data-id') == media.id);
+            });
+          }
+
+          // Single-image mode renders only one slide (mobile), so rewrite it in place.
+          if (!singleImage) return;
+          var slide = group.querySelector('[data-product-single-media-wrapper]');
+          var slideImg = slide && slide.querySelector('.product-gallery__media--image img');
+          if (!slideImg || slide.getAttribute('data-id') == media.id) return;
+
+          var srcset = (slideImg.getAttribute('srcset') || '')
+            .split(',')
+            .map(function (entry) { return parseInt(entry.trim().split(' ')[1], 10); })
+            .filter(function (w) { return w && (!preview.width || w <= preview.width); })
+            .map(function (w) { return sizedUrl(preview.src, w) + ' ' + w + 'w'; })
+            .join(', ');
+          if (srcset) slideImg.setAttribute('srcset', srcset);
+          slideImg.setAttribute('src', sizedUrl(preview.src, 1024));
+          slideImg.setAttribute('alt', media.alt || slideImg.getAttribute('alt') || '');
+          slideImg.setAttribute('data-image-id', media.id);
+          if (preview.width) slideImg.setAttribute('width', preview.width);
+          if (preview.height) slideImg.setAttribute('height', preview.height);
+
+          slide.setAttribute('data-id', media.id);
+          slide.setAttribute('data-media-id', '{{ unique }}-' + media.id);
+          if (preview.aspect_ratio) {
+            slide.setAttribute('data-aspectratio', preview.aspect_ratio);
+            var space = slide.querySelector('.product-gallery__media-space');
+            if (space) space.style.setProperty('--media-padding-top', (100 / preview.aspect_ratio).toFixed(1) + '%');
+          }
+
+          var zoom = slide.querySelector('[data-zoom-wrapper]');
+          if (zoom) {
+            zoom.setAttribute('href', sizedUrl(preview.src, 2048));
+            if (preview.width) zoom.setAttribute('data-image-width', preview.width);
+            if (preview.height) zoom.setAttribute('data-image-height', preview.height);
+          }
+        });
+
+        if (!thumbsEl || !imgEl) return;
 
         thumbsEl.addEventListener('click', function (e) {
           // only intercept on desktop, where the single image is shown
