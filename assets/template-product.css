@@ -147,7 +147,7 @@
     top: var(--sticky-top, 0);
   }
   .shopify-section.shopify-section--product {
-    padding-bottom: 34px;
+    padding-bottom: 8px;
     /* idiom PDP — no gap above the gallery; image is flush to the page top */
     padding-top: 0;
   }
@@ -653,6 +653,8 @@ body.template-product
   }
 
   body.template-product .product-gallery {
+    /* breathing room above/below the bottle inside the scene */
+    --pdp-image-pad-y: 56px;
     height: calc(
       100vh - var(--header-height, 109px) - var(--announcement-height, 31px)
     ) !important;
@@ -671,10 +673,10 @@ body.template-product
   body.template-product .product-gallery__desktop-image {
     display: block;
     position: absolute;
-    top: 0;
+    top: var(--pdp-image-pad-y);
     left: 50vw;
     transform: translateX(-50%);
-    height: 100%;
+    height: calc(100% - (2 * var(--pdp-image-pad-y)));
     width: auto;
     max-width: none;
     z-index: 3;
@@ -702,7 +704,7 @@ body.template-product
     top: 50%;
     transform: translate(-50%, -50%);
     height: auto;
-    max-height: 100%;
+    max-height: calc(100% - (2 * var(--pdp-image-pad-y)));
     width: 100%;
     max-width: 100%;
   }
@@ -718,6 +720,12 @@ body.template-product
   body.template-product .product-gallery__media--image img {
     width: 100%;
     max-width: 100%;
+  }
+  /* breathing room above/below the bottle — padding shrinks the contained
+     image's content box, so it scales down inside the same frame. */
+  body.template-product .product-gallery__media--image img {
+    box-sizing: border-box;
+    padding: 32px 0;
   }
   /* idiom PDP mobile — show the background scene (the collage) behind the bottle,
      matching desktop. Uses the mobile banner metafield when set. The base rule

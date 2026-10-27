@@ -60,6 +60,13 @@
 {{ 'section-header-navigation.css' | asset_url | stylesheet_tag }}
 
 <style>
+  /* The trust bar comes after the nav in the DOM and is positioned, so it
+     painted over the top of any dropdown that opens beneath the nav
+     (e.g. "Learn"). Lift the nav row and its dropdowns above it. */
+  .site-header > .wrapper {
+    z-index: 2;
+  }
+
   .idiom-trust-bar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -99,6 +106,15 @@
     text-align: center;
     line-height: 1.1;
     position: relative;
+  }
+
+  .idiom-trust-bar__link {
+    text-decoration: none;
+  }
+
+  .idiom-trust-bar__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .idiom-trust-bar__item:not(:last-child)::after {
@@ -550,19 +566,31 @@
   <div class="drawer__overlay"></div>
 
   <div class="idiom-trust-bar">
-    <div class="idiom-trust-bar__item">{{ section.settings.trust_bar_text_1 }}</div>
-    <div class="idiom-trust-bar__item">{{ section.settings.trust_bar_text_2 }}</div>
-    <div class="idiom-trust-bar__item">{{ section.settings.trust_bar_text_3 }}</div>
+    {%- for i in (1..3) -%}
+      {%- assign trust_text_key = 'trust_bar_text_' | append: i -%}
+      {%- assign trust_link_key = 'trust_bar_link_' | append: i -%}
+      {%- if section.settings[trust_link_key] != blank -%}
+        <a href="{{ section.settings[trust_link_key] }}" class="idiom-trust-bar__item idiom-trust-bar__link">{{ section.settings[trust_text_key] }}</a>
+      {%- else -%}
+        <div class="idiom-trust-bar__item">{{ section.settings[trust_text_key] }}</div>
+      {%- endif -%}
+    {%- endfor -%}
   </div>
 
+  {%- comment -%} Marquee is a visual duplicate of the bar above, so its links are kept out of the tab order {%- endcomment -%}
   <div class="idiom-trust-bar--marquee" aria-hidden="true">
     <div class="idiom-trust-bar--marquee__track">
-      <span class="idiom-trust-bar--marquee__item">{{ section.settings.trust_bar_text_1 }}</span>
-      <span class="idiom-trust-bar--marquee__item">{{ section.settings.trust_bar_text_2 }}</span>
-      <span class="idiom-trust-bar--marquee__item">{{ section.settings.trust_bar_text_3 }}</span>
-      <span class="idiom-trust-bar--marquee__item">{{ section.settings.trust_bar_text_1 }}</span>
-      <span class="idiom-trust-bar--marquee__item">{{ section.settings.trust_bar_text_2 }}</span>
-      <span class="idiom-trust-bar--marquee__item">{{ section.settings.trust_bar_text_3 }}</span>
+      {%- for n in (1..2) -%}
+        {%- for i in (1..3) -%}
+          {%- assign trust_text_key = 'trust_bar_text_' | append: i -%}
+          {%- assign trust_link_key = 'trust_bar_link_' | append: i -%}
+          {%- if section.settings[trust_link_key] != blank -%}
+            <a href="{{ section.settings[trust_link_key] }}" class="idiom-trust-bar--marquee__item idiom-trust-bar__link" tabindex="-1">{{ section.settings[trust_text_key] }}</a>
+          {%- else -%}
+            <span class="idiom-trust-bar--marquee__item">{{ section.settings[trust_text_key] }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
     </div>
   </div>
 </header>
@@ -842,16 +870,31 @@
       "default": "free samples in every order"
     },
     {
+      "type": "url",
+      "id": "trust_bar_link_1",
+      "label": "Item 1 link"
+    },
+    {
       "type": "text",
       "id": "trust_bar_text_2",
       "label": "Item 2",
       "default": "5 star reviewed layering fragrances"
     },
     {
+      "type": "url",
+      "id": "trust_bar_link_2",
+      "label": "Item 2 link"
+    },
+    {
       "type": "text",
       "id": "trust_bar_text_3",
       "label": "Item 3",
       "default": "high-quality, british made eau du parfum"
+    },
+    {
+      "type": "url",
+      "id": "trust_bar_link_3",
+      "label": "Item 3 link"
     }
   ],
   "blocks": [

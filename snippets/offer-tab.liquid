@@ -2,14 +2,17 @@
   idiom — site-wide "grab 10% off" offer tab.
 
   A fixed, rotated cream tab pinned to the bottom-left of the viewport on every
-  page. Clicking it opens the theme's existing "Popup with image" promo
-  (the "start layering…" popup configured in the Theme Editor under
-  Overlay → Popups). The tab text is editable via Theme settings → "Offer tab".
+  page. Clicking it opens the theme's existing "Popup with image" promo.
 
-  Rendered once from layout/theme.liquid.
+  Rendered from the "Popup with image" block in sections/popup.liquid, so the
+  tab text and on/off toggle live on that block in the Theme Editor
+  (Overlay → Popups → Popup with image → Offer tab).
+
+  Accepts:
+  - text: {String} Tab copy
 {%- endcomment -%}
 
-{%- if settings.offer_tab_enable and settings.offer_tab_text != blank -%}
+{%- if text != blank -%}
   {%- style -%}
     /* Wrapper pinned to the bottom-left edge of the viewport. */
     .idiom-offer-tab {
@@ -99,7 +102,7 @@
 
   <div class="idiom-offer-tab" data-offer-tab>
     <button type="button" class="idiom-offer-tab__open" data-offer-open aria-haspopup="dialog">
-      <span class="idiom-offer-tab__text">{{ settings.offer_tab_text }}</span>
+      <span class="idiom-offer-tab__text">{{ text | escape }}</span>
     </button>
     <button type="button" class="idiom-offer-tab__close" data-offer-dismiss aria-label="Dismiss offer">&times;</button>
   </div>
@@ -132,6 +135,30 @@
           if (input) { try { input.focus(); } catch (e) {} }
         }
         return true;
+      }
+
+      // The theme only binds the popup's close handlers when its
+      // "user_has_closed" cookie is absent, so once a visitor has closed the
+      // popup, reopening it from the tab leaves the X dead. Bind our own
+      // closers; they're idempotent with the theme's when both are present.
+      function closePromo(promo) {
+        if (!promo.classList.contains('popup--visible')) return;
+        promo.classList.remove('popup--visible');
+        document.dispatchEvent(new CustomEvent('theme:scroll:unlock', { bubbles: true, detail: 300 }));
+        try { tab.querySelector('[data-offer-open]').focus(); } catch (e) {}
+      }
+
+      var promo = document.querySelector('[data-large-promo-inner]');
+      if (promo) {
+        promo.querySelectorAll('[data-popup-close], [data-popup-underlay]').forEach(function (el) {
+          el.addEventListener('click', function (e) {
+            e.preventDefault();
+            closePromo(promo);
+          });
+        });
+        document.addEventListener('keyup', function (e) {
+          if (e.key === 'Escape') closePromo(promo);
+        });
       }
 
       function dismiss() {
