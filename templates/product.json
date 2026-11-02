@@ -154,41 +154,6 @@
         "padding_bottom": 0
       }
     },
-    "idiom-layering-row": {
-      "type": "idiom-layering-row",
-      "blocks": {
-        "phrase_1": {
-          "type": "phrase",
-          "settings": {
-            "text": "smell like no one else™"
-          }
-        },
-        "phrase_2": {
-          "type": "phrase",
-          "settings": {
-            "text": "find your fragrance freedom"
-          }
-        },
-        "phrase_3": {
-          "type": "phrase",
-          "settings": {
-            "text": "layer, or wear solo"
-          }
-        }
-      },
-      "block_order": [
-        "phrase_1",
-        "phrase_2",
-        "phrase_3"
-      ],
-      "settings": {
-        "heading_solo": "wear solo,",
-        "heading_layer": "or layer with:",
-        "subtext": "these scents were made to mix.",
-        "fine_print": "* that's your part.",
-        "layering_collection": "3d-wear-with"
-      }
-    },
     "idiom_scent_profile": {
       "type": "idiom-scent-profile",
       "settings": {
@@ -204,6 +169,41 @@
         "active_color": "#9c9a3c",
         "padding_top": 60,
         "padding_bottom": 60
+      }
+    },
+    "idiom-layering-row": {
+      "type": "idiom-layering-row",
+      "blocks": {
+        "phrase_1": {
+          "type": "phrase",
+          "settings": {
+            "text": "smell like no one else™"
+          }
+        },
+        "phrase_2": {
+          "type": "phrase",
+          "settings": {
+            "text": "go your own way…"
+          }
+        },
+        "phrase_3": {
+          "type": "phrase",
+          "settings": {
+            "text": "layer or wear solo"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_1",
+        "phrase_2",
+        "phrase_3"
+      ],
+      "settings": {
+        "heading_solo": "wear solo,",
+        "heading_layer": "or layer with:",
+        "subtext": "these scents were made to mix.",
+        "fine_print": "* that's your part.",
+        "layering_collection": "3d-wear-with"
       }
     },
     "idiom_ingredient_notes": {
