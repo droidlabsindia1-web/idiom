@@ -68,7 +68,7 @@
         "text_zcmNqg": {
           "type": "text",
           "settings": {
-            "text": "<p>12 Ingestre Place, Soho, London W1F 0JF</p><p>&lt;br&gt;</p><p>Monday - Friday | 12.00 - 19.00</p><p>Saturday | 11.00 - 19.00</p><p>Sunday | 12.00 - 17.00</p>",
+            "text": "<p>12 Ingestre Place, Soho, London W1F 0JF</p><p>&lt;br&gt;</p><p>Monday - Friday | 12.00 - 19.00</p><p>Saturday | 11.00 - 19.00</p><p>Sunday | 12.00 - 17.00</p><p>&lt;br&gt;</p><p>+44 20 4618 4425</p>",
             "size": 120,
             "text_position": "left",
             "spacing_bottom": 12
