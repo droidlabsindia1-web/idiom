@@ -269,6 +269,42 @@
         "padding_bottom": 60
       }
     },
+    "section_text_KyLm4n": {
+      "type": "section-text",
+      "blocks": {
+        "heading_gJJAWY": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>not sure which idioms to choose?</p>",
+            "size": 100,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        },
+        "text_jXFKXP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>find your favourite idioms and get personal layering advice.</p><p>Bring a fragrance you already wear and discover how to make it more your own</p><p>Call or message us to book.<br/>&lt;br&gt;<strong>info@idiomfragrances.com | +44 20 4618 4425</strong></p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_gJJAWY",
+        "text_jXFKXP"
+      ],
+      "name": "Text",
+      "settings": {
+        "text_position": "center",
+        "bg_color": "",
+        "gradient": "",
+        "text_color": "text-dark",
+        "width": "wrapper--narrow",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "section_image_with_text_rmgVdA": {
       "type": "section-image-with-text",
       "blocks": {
@@ -296,7 +332,7 @@
         "text_zpTwpU": {
           "type": "text",
           "settings": {
-            "text": "<p>on the final thursday of every month, we have a little music and a bit of irresponsible fragrance layering.</p><p>try fragrances you wouldn’t normally pick, meet some people you wouldn’t normally meet and leave smelling significantly better than when you arrived.&nbsp;</p><p>different theme. different combinations. same address.</p>",
+            "text": "<p>We host a little something on the final Thursday of every month.&lt;br&gt;</p><p>sometimes music, sometimes candle-lit layering.&lt;br&gt;</p><p>Come. bring friends. see who’s here. see where the evening goes.&lt;br&gt;</p><p>Follow us to find out more</p>",
             "size": 100,
             "text_position": "left",
             "spacing_bottom": 12
@@ -306,7 +342,7 @@
           "type": "button",
           "settings": {
             "button_text": "find us in soho",
-            "button_link": "",
+            "button_link": "https://maps.app.goo.gl/EWfGCUCvBDB3sz7t6",
             "button_color": "btn--black",
             "button_style": "btn--solid",
             "button_size": "btn--small",
@@ -350,6 +386,7 @@
     "idiom_brand_story_Jg34xV",
     "section_text_KGyYkf",
     "section_list_collection_N4P6qh",
+    "section_text_KyLm4n",
     "section_image_with_text_rmgVdA"
   ]
 }
