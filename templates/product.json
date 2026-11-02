@@ -222,7 +222,7 @@
         "show_images": true,
         "show_borders": false,
         "equalize_height": true,
-        "desktop_aspect_ratio": 1.2,
+        "desktop_aspect_ratio": 1.1,
         "mobile_aspect_ratio": 0.9,
         "bg_color": "",
         "gradient": "",
