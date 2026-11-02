@@ -206,33 +206,6 @@
         "layering_collection": "3d-wear-with"
       }
     },
-    "idiom_ingredient_notes": {
-      "type": "idiom-ingredient-notes",
-      "settings": {
-        "metafield_namespace": "custom",
-        "max_items": 5,
-        "product": "",
-        "title": "ingredient notes:",
-        "heading_size": 90,
-        "item_heading_size": 120,
-        "item_text_size": 100,
-        "align_text": "text-left",
-        "columns": 3,
-        "columns_mobile": "1",
-        "show_images": true,
-        "show_borders": false,
-        "equalize_height": true,
-        "desktop_aspect_ratio": 1.1,
-        "mobile_aspect_ratio": 0.9,
-        "bg_color": "",
-        "gradient": "",
-        "color_borders": "#000",
-        "layout_mobile": "carousel",
-        "width": "wrapper",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "idiom-reel-video-section": {
       "type": "idiom-reel-video-section",
       "blocks": {
@@ -302,6 +275,33 @@
         "compact": false,
         "dark_player": false,
         "bg_color": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "idiom_ingredient_notes": {
+      "type": "idiom-ingredient-notes",
+      "settings": {
+        "metafield_namespace": "custom",
+        "max_items": 5,
+        "product": "",
+        "title": "ingredient notes:",
+        "heading_size": 90,
+        "item_heading_size": 120,
+        "item_text_size": 100,
+        "align_text": "text-left",
+        "columns": 3,
+        "columns_mobile": "1",
+        "show_images": true,
+        "show_borders": false,
+        "equalize_height": true,
+        "desktop_aspect_ratio": 1.1,
+        "mobile_aspect_ratio": 0.9,
+        "bg_color": "",
+        "gradient": "",
+        "color_borders": "#000",
+        "layout_mobile": "carousel",
+        "width": "wrapper",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -422,9 +422,9 @@
     "main",
     "idiom_scent_profile",
     "idiom-layering-row",
-    "idiom_ingredient_notes",
     "idiom-reel-video-section",
     "idiom_spotify",
+    "idiom_ingredient_notes",
     "section_accordions_hEzbnz",
     "section_collection_NJqKFP",
     "17809446994adad41a"
