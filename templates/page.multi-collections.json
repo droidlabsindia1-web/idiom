@@ -44,22 +44,22 @@
             "overlay_opacity": 30
           }
         },
-        "collection_hntQgh": {
+        "collection_Cja8PU": {
           "type": "collection",
           "settings": {
-            "collection": "woody",
-            "custom_collection_image": "shopify://shop_images/idiom-woody.png",
+            "collection": "spicy",
+            "custom_collection_image": "shopify://shop_images/idiom-spicy.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
             "overlay_opacity": 30
           }
         },
-        "collection_Cja8PU": {
+        "collection_hntQgh": {
           "type": "collection",
           "settings": {
-            "collection": "spicy",
-            "custom_collection_image": "shopify://shop_images/idiom-spicy.png",
+            "collection": "woody",
+            "custom_collection_image": "shopify://shop_images/idiom-woody.png",
             "heading": "",
             "block_text_color": "",
             "bg_color": "",
@@ -77,17 +77,6 @@
             "overlay_opacity": 30
           }
         },
-        "collection_H7KCj7": {
-          "type": "collection",
-          "settings": {
-            "collection": "amber",
-            "custom_collection_image": "shopify://shop_images/idiom-amber.png",
-            "heading": "",
-            "block_text_color": "",
-            "bg_color": "",
-            "overlay_opacity": 30
-          }
-        },
         "collection_fkNzX3": {
           "type": "collection",
           "settings": {
@@ -98,16 +87,27 @@
             "bg_color": "",
             "overlay_opacity": 30
           }
+        },
+        "collection_H7KCj7": {
+          "type": "collection",
+          "settings": {
+            "collection": "amber",
+            "custom_collection_image": "shopify://shop_images/idiom-amber.png",
+            "heading": "",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
         }
       },
       "block_order": [
         "collection_h3dW9P",
         "collection_J3AFG9",
-        "collection_hntQgh",
         "collection_Cja8PU",
+        "collection_hntQgh",
         "collection_Np3fQH",
-        "collection_H7KCj7",
-        "collection_fkNzX3"
+        "collection_fkNzX3",
+        "collection_H7KCj7"
       ],
       "name": "Collection list",
       "settings": {
