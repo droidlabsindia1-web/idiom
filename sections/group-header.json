@@ -104,7 +104,7 @@
           "settings": {
             "position": "3",
             "image_second_menu": false,
-            "image": "shopify://shop_images/3D_-_CASHMERAN.png",
+            "image": "shopify://shop_images/idiom-fresh.png",
             "aspect_ratio": 0.6,
             "wide_image": true,
             "title": "FRESH",
@@ -118,7 +118,7 @@
           "settings": {
             "position": "3",
             "image_second_menu": false,
-            "image": "shopify://shop_images/r_-_Safranal.png",
+            "image": "shopify://shop_images/idiom-floral-original-screenshot.png",
             "aspect_ratio": 0.6,
             "wide_image": true,
             "title": "FLORAL",
@@ -132,7 +132,7 @@
           "settings": {
             "position": "3",
             "image_second_menu": false,
-            "image": "shopify://shop_images/R_-_Elemi_Oil.png",
+            "image": "shopify://shop_images/idiom-amber.png",
             "aspect_ratio": 0.6,
             "wide_image": true,
             "title": "AMBER",
@@ -146,7 +146,7 @@
           "settings": {
             "position": "3",
             "image_second_menu": false,
-            "image": "shopify://shop_images/h_-_pomegranate.png",
+            "image": "shopify://shop_images/idiom-gourmand.png",
             "aspect_ratio": 0.6,
             "wide_image": true,
             "title": "DISCOVER ALL",
