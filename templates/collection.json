@@ -12,10 +12,21 @@
     "main": {
       "type": "collection",
       "settings": {
-        "subtext": "get to know our crowd-pleasers...",
-        "products_per_page": 12
+        "subtext": "",
+        "products_per_page": 12,
+        "show_breadcrumbs": true,
+        "enable_sorting": true,
+        "enable_filters": true,
+        "filters_layout": "open",
+        "show_more": true,
+        "filter_mode": "default",
+        "bg_color": "",
+        "padding_top": 30,
+        "padding_bottom": 60
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
