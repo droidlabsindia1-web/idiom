@@ -156,7 +156,8 @@
         "collection": "",
         "max_products": 3,
         "heading": "meet some current favourites…",
-        "subtext": ""
+        "subtext": "",
+        "show_price": false
       }
     },
     "idiom-dual-promo": {
