@@ -156,7 +156,8 @@
         "collection": "",
         "max_products": 3,
         "heading": "get to know our crowd-pleasers...",
-        "subtext": "explore most popular layering fragrances"
+        "subtext": "explore most popular layering fragrances",
+        "show_price": false
       }
     },
     "idiom-dual-promo": {
