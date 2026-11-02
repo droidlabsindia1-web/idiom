@@ -107,7 +107,7 @@
         "moon_image": "shopify://shop_images/group6.png",
         "heading": "smell like no one else™",
         "subline": "",
-        "body": "Single-minded fragrances, the joy of layering & that uplifting feeling of going your own way.",
+        "body": "Single-minded fragrances made for layering. Wear what smells good, what feels right.",
         "cta_label": "learn more",
         "cta_url": "shopify://pages/story",
         "grid_heading": "holy s#*%, what are you wearing?",
@@ -155,8 +155,8 @@
       "settings": {
         "collection": "",
         "max_products": 3,
-        "heading": "get to know our crowd-pleasers...",
-        "subtext": "explore most popular layering fragrances"
+        "heading": "meet some current favourites…",
+        "subtext": ""
       }
     },
     "idiom-dual-promo": {
