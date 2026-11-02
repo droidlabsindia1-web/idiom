@@ -187,12 +187,12 @@
         "header_transparent": false,
         "header_text_color": "white",
         "header_gradient": true,
-        "trust_bar_text_1": "free samples in every order",
-        "trust_bar_link_1": "",
-        "trust_bar_text_2": "visit our new soho store",
+        "trust_bar_text_1": "free sample in every order",
+        "trust_bar_link_1": "shopify://collections/shop-everything",
+        "trust_bar_text_2": "visit our soho store",
         "trust_bar_link_2": "shopify://pages/store",
-        "trust_bar_text_3": "high-quality, british made eau du parfum",
-        "trust_bar_link_3": ""
+        "trust_bar_text_3": "eau de parfum | made for layering",
+        "trust_bar_link_3": "shopify://pages/story"
       }
     }
   },
