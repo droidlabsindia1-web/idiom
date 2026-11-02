@@ -98,12 +98,21 @@
 
     <div class="idiom-product-card__info">
       <p class="idiom-product-card__title">{{ product.title }}</p>
-      <p class="idiom-product-card__meta">
-        {%- if product.metafields.custom.scent_descriptor != blank -%}
-          {{ product.metafields.custom.scent_descriptor }} &nbsp;|&nbsp;
-        {%- endif -%}
-        {{ product.price | money }}
-      </p>
+      {%- comment -%} show_price defaults to true when not passed in. {%- endcomment -%}
+      {%- assign card_show_price = true -%}
+      {%- if show_price == false -%}{%- assign card_show_price = false -%}{%- endif -%}
+      {%- assign card_descriptor = product.metafields.custom.scent_descriptor -%}
+      {%- if card_descriptor != blank or card_show_price -%}
+        <p class="idiom-product-card__meta">
+          {%- if card_descriptor != blank -%}
+            {{ card_descriptor }}
+            {%- if card_show_price %} &nbsp;|&nbsp; {% endif -%}
+          {%- endif -%}
+          {%- if card_show_price -%}
+            {{ product.price | money }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
     </div>
   </div>
 </a>

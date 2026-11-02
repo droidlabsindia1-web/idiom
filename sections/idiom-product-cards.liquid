@@ -154,7 +154,7 @@
         {%- if product != blank -%}
           {%- assign override_image = block.settings.card_image -%}
           <div class="idiom-slide">
-            {% render 'idiom-product-card', product: product, override_image: override_image %}
+            {% render 'idiom-product-card', product: product, override_image: override_image, show_price: section.settings.show_price %}
           </div>
         {%- endif -%}
       {%- endfor -%}
@@ -162,7 +162,7 @@
       {%- assign products_collection = collections[section.settings.collection] -%}
       {%- for product in products_collection.products limit: section.settings.max_products -%}
         <div class="idiom-slide">
-          {% render 'idiom-product-card', product: product %}
+          {% render 'idiom-product-card', product: product, show_price: section.settings.show_price %}
         </div>
       {%- endfor -%}
     {%- endif -%}
@@ -220,7 +220,12 @@
       "content": "Section heading"
     },
     { "type": "text", "id": "heading", "label": "Section heading" },
-    { "type": "text", "id": "subtext", "label": "Section subtext" }
+    { "type": "text", "id": "subtext", "label": "Section subtext" },
+    {
+      "type": "header",
+      "content": "Product cards"
+    },
+    { "type": "checkbox", "id": "show_price", "label": "Show price", "default": true }
   ],
   "presets": [{ "name": "Product Cards Grid" }]
 }
