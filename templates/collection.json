@@ -12,7 +12,7 @@
     "main": {
       "type": "collection",
       "settings": {
-        "subtext": "",
+        "subtext": "{{ collection.metafields.custom.collection_description.value }}",
         "products_per_page": 12,
         "show_breadcrumbs": true,
         "enable_sorting": true,
