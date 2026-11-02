@@ -70,8 +70,8 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "heading": "ROSE IN BLOOMING GLORY",
-        "subtext": "warm, juicy, skin-close rose, centre stage. a timeless, modern, universal rose. ",
-        "cta_label": "shop now | from £7",
+        "subtext": "warm, juicy, skin-close. rose centre stage. a timeless, modern, universal rose. ",
+        "cta_label": "shop now",
         "cta_url": "shopify://products/acoustic-rose"
       }
     },
@@ -87,13 +87,13 @@
         "phrase_2": {
           "type": "phrase",
           "settings": {
-            "text": "single-minded fragrances"
+            "text": "go your own way…"
           }
         },
         "phrase_3": {
           "type": "phrase",
           "settings": {
-            "text": "made for layering"
+            "text": "layer or wear solo"
           }
         }
       },
@@ -107,7 +107,7 @@
         "moon_image": "shopify://shop_images/group6.png",
         "heading": "smell like no one else™",
         "subline": "",
-        "body": "Single-minded fragrances, the joy of layering & that uplifting feeling of going your own way.",
+        "body": "Single-minded fragrances made for layering. Wear what smells good, what feels right.",
         "cta_label": "learn more",
         "cta_url": "shopify://pages/story",
         "grid_heading": "holy s#*%, what are you wearing?",
@@ -155,8 +155,8 @@
       "settings": {
         "collection": "",
         "max_products": 3,
-        "heading": "get to know our crowd-pleasers...",
-        "subtext": "explore most popular layering fragrances",
+        "heading": "meet some current favourites…",
+        "subtext": "",
         "show_price": false
       }
     },
@@ -188,6 +188,7 @@
         "panel_1",
         "panel_2"
       ],
+      "disabled": true,
       "settings": {}
     },
     "section_banner_image_9GBbAU": {

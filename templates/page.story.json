@@ -78,7 +78,7 @@
       "settings": {
         "butterfly_image": "shopify://shop_images/Group_5.png",
         "moon_image": "shopify://shop_images/group6.png",
-        "heading": "fragrance made for layering",
+        "heading": "fragrances made for layering",
         "subline": "",
         "body": "wear what smells good, what\nfeels right in the moment. why stick to one signature scent when you can create a\nfragrance wardrobe of your own?\n<br><br>\nlayer. wear solo. you decide.",
         "cta_label": "smell like no one else™",
@@ -157,7 +157,7 @@
         "heading_K7pthw": {
           "type": "heading",
           "settings": {
-            "title": "<p>we create single-minded fragrances</p>",
+            "title": "<p>single-minded fragrances</p>",
             "size": 120,
             "text_position": "left",
             "heading_highlight_type": "underline-hand-drawn",
@@ -169,7 +169,7 @@
         "text_Fwn8Kf": {
           "type": "text",
           "settings": {
-            "text": "<p>each idiom is built around one compelling ingredient. We highlight its richness and character using other notes to complement and enhance it — like backing singers. &lt;br&gt;</p><p>This elusive combination of clarity and soul is what makes our fragrances layer beautifully and smell distinctive and expressive when worn alone.</p>",
+            "text": "<p>each idiom is built around one compelling ingredient. supporting notes bring out its full beauty and character - like backing singers.&lt;br&gt;</p><p>This clarity and soul is what makes idiom fragrances different.&lt;br&gt;</p><p>It’s why they layer beautifully and smell so distinctive and expressive when worn solo.</p>",
             "size": 100,
             "text_position": "left",
             "spacing_bottom": 12
@@ -270,7 +270,7 @@
         "text_cxDKep": {
           "type": "text",
           "settings": {
-            "text": "<p>Perfume can be a serious business. But we try not to take ourselves too seriously. Most people don’t.</p><p>We obviously love perfume. The craft, the ingredients, the strange alchemy of it all.</p><p>A scent comes alive when you wear it. Where it takes you and what happens next are personal. That’s not for us to tell you. We just want to help you create a fragrance wardrobe full of your own associations and memories.</p><p>We have huge respect for perfume history and other brands. It’s just that we're notterribly interested in the rules, conventions and traditions that surround making and selling fragrance.</p><p>Our fragrances are for people who want to go their own way. Not out of rebellion or because of a manifesto, but simply because that's the way they feel like going. Our shop is more lounge than shop. Somewhere to sit, smell, experiment and discover without being sold to.</p><p>London has a lot to do with how we see things. New and ancient, grand and grubby, beautiful and strange all rub along together, and nobody finds it particularly remarkable. Things get mixed up. They always have, for thousands of years.</p><p>And London is where idiom started</p>",
+            "text": "<p>Perfume can be a serious business. But we try not to take ourselves too seriously - most people don’t.&lt;br&gt;</p><p>We obviously love perfume. The craft, the ingredients, the strange alchemy of it all. But sometimes it can just feel a bit luxe, monochrome and conventional.&lt;br&gt;</p><p>That’s not really our style. We find colour, joy and emotion in it. And we’ve always preferred the freedom of layering to one signature scent. Which is why we started idiom - so we can all mix, match, play and create our own fragrance wardrobe.&lt;br&gt;</p><p>Fragrance comes alive when you wear it. Where it takes you and what happens next are personal, not for us to tell you. We make it, you make it yours.&lt;br&gt;</p><p>Which tends to suit people who go their own way. Not out of rebellion or because of a manifesto, but simply because that’s the way they feel like going.&lt;br&gt;</p><p>Which is very London, actually. New and ancient, grand and grubby, beautiful and strange all rub along together, and nobody finds it particularly remarkable. Things get mixed up. They always have, for thousands of years.&lt;br&gt;</p><p>London is home to idiom and where you’ll find our shop.</p>",
             "size": 100,
             "text_position": "left",
             "spacing_bottom": 12

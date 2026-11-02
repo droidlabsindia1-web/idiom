@@ -22,6 +22,8 @@
             "height": "three-fifty-height",
             "title": "layer your way with 10% off your first order",
             "text": "",
+            "show_offer_tab": true,
+            "offer_tab_text": "help yourself to 10% off",
             "show_newsletter_form": true,
             "extra_fields": "",
             "button_text": "subscribe",
@@ -33,9 +35,7 @@
             "target_device_enabled": false,
             "target_device": "mobile",
             "bg_color": "#fffbf3",
-            "text_color": "text-dark",
-            "show_offer_tab": true,
-            "offer_tab_text": "grab 10% off"
+            "text_color": "text-dark"
           }
         }
       },
