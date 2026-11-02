@@ -310,6 +310,7 @@
       "blocks": {
         "subheading_CHmUrW": {
           "type": "subheading",
+          "disabled": true,
           "settings": {
             "subheading": "A low-key motive",
             "size": 75,
@@ -368,7 +369,7 @@
         "layout": "inline",
         "image_location": "right",
         "image_width": "standard",
-        "image": "shopify://shop_images/064b9a937cb0533d42b8ae6112f1b619.jpg",
+        "image": "shopify://shop_images/Screenshot_2026-10-26_at_12.37.27.png",
         "block_bg_color": "",
         "text_color": "text-dark",
         "bg_color": "",
