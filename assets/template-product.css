@@ -204,6 +204,12 @@
     position: sticky;
     align-self: start;
     top: var(--header-height, 109px);
+    /* the centered bottle (.product-gallery__desktop-image, left: 50vw)
+       overlaps the details column — stack the gallery above
+       .product-single__details (z-index: 10) so the bottle sits on top of
+       the text. The image has pointer-events: none, so the details stay
+       clickable. */
+    z-index: 11;
   }
 }
 
