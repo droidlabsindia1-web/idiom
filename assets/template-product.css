@@ -246,7 +246,7 @@
 .product-single__details {
   width: 100%;
   position: relative;
-  z-index: 15;
+  z-index: -1;
 }
 @media only screen and (min-width: 768px) {
   .product-single__details .form__wrapper {
