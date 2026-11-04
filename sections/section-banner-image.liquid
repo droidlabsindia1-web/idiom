@@ -103,6 +103,48 @@
   }
 
 
+  {%- liquid
+    assign desktop_hero_height = ''
+    assign desktop_ar_image = section.settings.image | default: section.settings.hero_image
+    case section.settings.height
+      when 'three-quarters-height'
+        assign desktop_hero_height = '75svh'
+      when 'two-thirds-height'
+        assign desktop_hero_height = '66.67svh'
+      when 'one-half-height'
+        assign desktop_hero_height = '50svh'
+      when 'one-third-height'
+        assign desktop_hero_height = '33.33svh'
+      when 'one-fifth-height'
+        assign desktop_hero_height = '20svh'
+      when 'seven-fifty-height'
+        assign desktop_hero_height = '750px'
+      when 'six-fifty-height'
+        assign desktop_hero_height = '650px'
+      when 'five-fifty-height'
+        assign desktop_hero_height = '550px'
+      when 'four-fifty-height'
+        assign desktop_hero_height = '450px'
+      when 'original-height'
+        if desktop_ar_image != blank
+          assign desktop_hero_height = 'calc((100vw - 32px) / ' | append: desktop_ar_image.aspect_ratio | append: ')'
+        endif
+    endcase
+  -%}
+  {%- comment -%}
+    'full-height' keeps the default min-height above (screen below the header,
+    with the next section peeking in). Desktop height applies above 480px only;
+    mobile uses its own setting below.
+  {%- endcomment -%}
+  {%- if desktop_hero_height != blank -%}
+  @media (min-width: 481px) {
+    #SectionBannerImage--{{ section.id }} .idiom-hero {
+      min-height: 0;
+      height: {{ desktop_hero_height }};
+    }
+  }
+  {%- endif -%}
+
   /* === Mobile overrides ≤480px === */
   @media (max-width: 480px) {
     #SectionBannerImage--{{ section.id }} .idiom-hero__bg { 
