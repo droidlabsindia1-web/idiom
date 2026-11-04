@@ -52,9 +52,9 @@
         "button_idiom"
       ],
       "settings": {
-        "height": "six-fifty-height",
+        "height": "original-height",
         "enable_mobile_height": true,
-        "mobile_height": "five-fifty-height-mobile",
+        "mobile_height": "original-height-mobile",
         "image": "shopify://shop_images/1_2b21ffa8-a9d2-44d5-8a3c-1e5fc18385c8.png",
         "image_mobile": "shopify://shop_images/rose_banner_mob.png",
         "overlay_opacity": 20,
