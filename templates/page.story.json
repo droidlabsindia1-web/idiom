@@ -114,9 +114,9 @@
         "button_fX3dc4": {
           "type": "button",
           "settings": {
-            "button_text": "LEARN HOW THE COMMUNITY ARE LAYERING",
-            "button_link": "",
-            "button_color": "btn--secondary",
+            "button_text": "HOW THE COMMUNITY ARE LAYERING",
+            "button_link": "https://www.instagram.com/idiomfragrances/",
+            "button_color": "btn--primary",
             "button_style": "btn--solid",
             "button_size": "btn--small",
             "video_link": "",
