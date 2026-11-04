@@ -139,6 +139,50 @@
     #SectionBannerImage--{{ section.id }} .idiom-hero__watermark {
       display: none;
     }
+
+    {%- if section.settings.enable_mobile_height -%}
+      {%- liquid
+        assign mobile_hero_height = ''
+        assign mobile_ar_image = section.settings.image_mobile | default: section.settings.image | default: section.settings.hero_image
+        case section.settings.mobile_height
+          when 'full-height-mobile'
+            assign mobile_hero_height = '100svh'
+          when 'three-quarters-height-mobile'
+            assign mobile_hero_height = '75svh'
+          when 'two-thirds-height-mobile'
+            assign mobile_hero_height = '66.67svh'
+          when 'one-half-height-mobile'
+            assign mobile_hero_height = '50svh'
+          when 'one-third-height-mobile'
+            assign mobile_hero_height = '33.33svh'
+          when 'one-fifth-height-mobile'
+            assign mobile_hero_height = '20svh'
+          when 'seven-fifty-height-mobile'
+            assign mobile_hero_height = '750px'
+          when 'six-fifty-height-mobile'
+            assign mobile_hero_height = '650px'
+          when 'five-fifty-height-mobile'
+            assign mobile_hero_height = '550px'
+          when 'four-fifty-height-mobile'
+            assign mobile_hero_height = '450px'
+          when 'original-height-mobile'
+            if mobile_ar_image != blank
+              assign mobile_hero_height = 'calc((100vw - 32px) / ' | append: mobile_ar_image.aspect_ratio | append: ')'
+            endif
+        endcase
+      -%}
+      {%- if mobile_hero_height != blank -%}
+        /* Merchant-selected mobile height (overrides the viewport-based default) */
+        #SectionBannerImage--{{ section.id }} .idiom-hero {
+          min-height: 0;
+          height: {{ mobile_hero_height }};
+        }
+      {%- endif -%}
+    {%- endif -%}
+  }
+
+  #SectionBannerImage--{{ section.id }} .idiom-hero picture {
+    display: contents;
   }
 </style>
 
@@ -150,16 +194,19 @@
 >
 
   <div class="idiom-hero">
-    {%- if section.settings.image != blank -%}
-      <img class="idiom-hero__bg"
-        src="{{ section.settings.image | image_url: width: 2400 }}"
-        alt="{{ section.settings.heading | escape }}"
-        loading="eager" fetchpriority="high">
-    {%- elsif section.settings.hero_image != blank -%}
-      <img class="idiom-hero__bg"
-        src="{{ section.settings.hero_image | image_url: width: 2400 }}"
-        alt="{{ section.settings.heading | escape }}"
-        loading="eager" fetchpriority="high">
+    {%- assign hero_desktop_image = section.settings.image | default: section.settings.hero_image -%}
+    {%- if hero_desktop_image != blank -%}
+      <picture>
+        {%- if section.settings.image_mobile != blank -%}
+          <source
+            media="(max-width: 480px)"
+            srcset="{{ section.settings.image_mobile | image_url: width: 1200 }}">
+        {%- endif -%}
+        <img class="idiom-hero__bg"
+          src="{{ hero_desktop_image | image_url: width: 2400 }}"
+          alt="{{ section.settings.heading | escape }}"
+          loading="eager" fetchpriority="high">
+      </picture>
     {%- else -%}
       <div class="idiom-hero__bg idiom-hero__bg--placeholder"></div>
     {%- endif -%}
