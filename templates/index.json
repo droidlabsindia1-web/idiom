@@ -160,6 +160,32 @@
         "show_price": false
       }
     },
+    "section_banner_image_9GBbAU": {
+      "type": "section-banner-image",
+      "settings": {
+        "height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "five-fifty-height-mobile",
+        "image": "shopify://shop_images/2_a0b17689-efe8-41e5-ab68-e86c10d9aebd.png",
+        "image_mobile": "shopify://shop_images/MOBILE_BANNER_-_IDIOMlime.png",
+        "overlay_opacity": 20,
+        "transition": "zoom-out",
+        "enable_zoom_animation": false,
+        "enable_card_scrolling": false,
+        "increase_border_radius": false,
+        "content_width": 60,
+        "text_position": "bottom_left",
+        "text_alignment": "text-center",
+        "text_color": "text-light",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "heading": "NEW: LIME BOSSA",
+        "subtext": "raw green lime, sun-warmed woods and wide skies. upbeat, all day.",
+        "cta_label": "shop now",
+        "cta_url": "shopify://products/acoustic-rose"
+      }
+    },
     "idiom-dual-promo": {
       "type": "idiom-dual-promo",
       "blocks": {
@@ -191,30 +217,92 @@
       "disabled": true,
       "settings": {}
     },
-    "section_banner_image_9GBbAU": {
-      "type": "section-banner-image",
+    "idiom_layering_row_RHArqm": {
+      "type": "idiom-layering-row",
+      "blocks": {
+        "phrase_FmGPth": {
+          "type": "phrase",
+          "disabled": true,
+          "settings": {
+            "text": "smell like no one else™"
+          }
+        },
+        "phrase_6eceEK": {
+          "type": "phrase",
+          "disabled": true,
+          "settings": {
+            "text": "find your fragrance freedom"
+          }
+        },
+        "phrase_hJpaYH": {
+          "type": "phrase",
+          "disabled": true,
+          "settings": {
+            "text": "layer, or wear solo"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_FmGPth",
+        "phrase_6eceEK",
+        "phrase_hJpaYH"
+      ],
+      "disabled": true,
+      "name": "Layering Row",
       "settings": {
-        "height": "six-fifty-height",
-        "enable_mobile_height": true,
-        "mobile_height": "five-fifty-height-mobile",
-        "image": "shopify://shop_images/2_a0b17689-efe8-41e5-ab68-e86c10d9aebd.png",
-        "image_mobile": "shopify://shop_images/MOBILE_BANNER_-_IDIOMlime.png",
-        "overlay_opacity": 20,
-        "transition": "zoom-out",
-        "enable_zoom_animation": false,
-        "enable_card_scrolling": false,
-        "increase_border_radius": false,
-        "content_width": 60,
-        "text_position": "bottom_left",
-        "text_alignment": "text-center",
-        "text_color": "text-light",
-        "width": "wrapper--full",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "heading": "NEW: LIME BOSSA",
-        "subtext": "raw green lime, sun-warmed woods and wide skies. upbeat, all day.",
-        "cta_label": "shop now",
-        "cta_url": "shopify://products/acoustic-rose"
+        "heading_solo": "unsure how to",
+        "heading_layer": "layer? try the kits...",
+        "subtext": "these scents were made to mix, here's your starter for six...",
+        "fine_print": "disclaimer: these pairings are seriously addictive and will get you compliments.",
+        "layering_collection": "kits-gifts"
+      }
+    },
+    "idiom_product_trio_d3RXQq": {
+      "type": "idiom-product-trio",
+      "blocks": {
+        "product_kWbUWj": {
+          "type": "product",
+          "settings": {
+            "product": "acoustic-rose-x-3d-duo",
+            "bottle_height": 82,
+            "title_override": "",
+            "tagline": "",
+            "price_label": "",
+            "link": ""
+          }
+        },
+        "product_gN6Y3q": {
+          "type": "product",
+          "settings": {
+            "product": "wild-pepper-x-hyde-duo",
+            "bottle_height": 82,
+            "title_override": "",
+            "tagline": "",
+            "price_label": "",
+            "link": ""
+          }
+        },
+        "product_tciHaB": {
+          "type": "product",
+          "settings": {
+            "product": "lime-bossa-x-vetiver-ace-duo",
+            "bottle_height": 82,
+            "title_override": "",
+            "tagline": "",
+            "price_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_kWbUWj",
+        "product_gN6Y3q",
+        "product_tciHaB"
+      ],
+      "name": "idiom Product Trio",
+      "settings": {
+        "heading": "not sure how to layer?",
+        "subtext": "try our perfectly paired duos..."
       }
     },
     "idiom-loyalty": {
@@ -300,15 +388,43 @@
         "heading": "holy s#*%, what are you wearing?",
         "subtext": "get to know our crowd-pleasers..."
       }
+    },
+    "section_locations_6hNxFh": {
+      "type": "section-locations",
+      "blocks": {
+        "locations_ciRJ4e": {
+          "type": "locations",
+          "settings": {
+            "title": "12 Ingestre Place, Soho, London W1F 0JF",
+            "working_time": "<p>Monday - Friday | 12.00 - 19.00</p><p>Saturday | 11.00 - 19.00</p><p>Sunday | 12.00 - 17.00</p>",
+            "image": "shopify://shop_images/2_b4d68846-2ed2-45ae-a7cc-5cd4bbbced2a.png"
+          }
+        }
+      },
+      "block_order": [
+        "locations_ciRJ4e"
+      ],
+      "name": "Locations",
+      "settings": {
+        "subheading": "get your layer on, IRL...",
+        "title": "Idiom | Soho, London",
+        "bg_color": "",
+        "gradient": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "section-banner-image",
     "idiom-brand-story",
     "idiom-product-cards",
-    "idiom-dual-promo",
     "section_banner_image_9GBbAU",
+    "idiom-dual-promo",
+    "idiom_layering_row_RHArqm",
+    "idiom_product_trio_d3RXQq",
     "idiom-loyalty",
-    "idiom-product-trio"
+    "idiom-product-trio",
+    "section_locations_6hNxFh"
   ]
 }
