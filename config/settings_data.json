@@ -83,7 +83,7 @@
     "empty_cart_message": "Free shipping orders ||amount||",
     "empty_cart_buttons": "",
     "show_free_shipping_message": true,
-    "free_shipping_limit": "35",
+    "free_shipping_limit": "70",
     "cart_custom_message_text": "<p>Layer 2x full size fragrances for 15% off [<strong>CODE: LAYER2</strong>]</p>",
     "cart_custom_message_color": "text-light",
     "enable_accept_terms": false,
