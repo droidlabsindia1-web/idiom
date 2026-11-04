@@ -169,7 +169,7 @@
         "header_border": false,
         "header_border_color": "",
         "border_opacity": 50,
-        "logo_not_home": "shopify://shop_images/idiom_logo_transparent.png",
+        "logo_not_home": "shopify://shop_images/idiom_logo_no_rmark.png",
         "logo_max_width": 140,
         "main-menu": "main-menu",
         "main_menu_secondary": "",
