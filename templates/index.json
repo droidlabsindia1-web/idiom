@@ -121,36 +121,36 @@
           "type": "product",
           "settings": {
             "product": "palo-santal",
-            "card_image": "shopify://shop_images/3_3990af97-481f-4f5f-a4b5-cc88a0f98b86.png"
+            "card_image": "shopify://shop_images/3_a0728251-d563-49d8-b5f9-a46a6b092b5d.png"
+          }
+        },
+        "product_6V7DQn": {
+          "type": "product",
+          "settings": {
+            "product": "hyde",
+            "card_image": "shopify://shop_images/4_090507d2-de9a-498d-91a4-93ad12ebc2a8.png"
           }
         },
         "product_chXbhx": {
           "type": "product",
           "settings": {
             "product": "3d",
-            "card_image": "shopify://shop_images/2_319298e9-9121-4ae5-87f9-9756b3fefad4.png"
+            "card_image": "shopify://shop_images/2_e010f499-27d3-4e29-8068-8887f8341a4e.png"
           }
         },
         "product_YGg3a7": {
           "type": "product",
           "settings": {
             "product": "acoustic-rose",
-            "card_image": "shopify://shop_images/1_dc76036a-12a4-42f8-a5b3-78d6796cc270.png"
-          }
-        },
-        "product_6V7DQn": {
-          "type": "product",
-          "settings": {
-            "product": "3d",
-            "card_image": "shopify://shop_images/Group_6.png"
+            "card_image": "shopify://shop_images/1_33e2cd64-ebbf-4fa1-8180-02c5fbcb1a50.png"
           }
         }
       },
       "block_order": [
         "product_Yx43ei",
+        "product_6V7DQn",
         "product_chXbhx",
-        "product_YGg3a7",
-        "product_6V7DQn"
+        "product_YGg3a7"
       ],
       "settings": {
         "collection": "",
