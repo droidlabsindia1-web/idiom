@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "product-side-image",
+      "type": "product-combo",
       "blocks": {
         "text_BifrBT": {
           "type": "text",
