@@ -897,7 +897,7 @@ body.template-product .product__accordion__inner {
   padding-bottom: 0;
 }
 
-/* idiom PDP — side-image layout (sections/product-side-image.liquid, used by
+/* idiom PDP — side-image layout (sections/product-combo.liquid, used by
    templates/product.combo.json). No background scene: the main image is
    contained inside the left column instead of centered on the page (50vw), so
    wide images such as combo boxes never run over the details column. Everything

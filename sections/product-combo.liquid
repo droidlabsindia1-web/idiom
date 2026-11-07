@@ -1,4 +1,4 @@
-{%- comment -%} /sections/product-side-image — duplicate of /sections/product for products whose main image is wide (e.g. combo boxes). The main image sits in the left column with no background scene; the details column is unchanged. {%- endcomment -%}
+{%- comment -%} /sections/product-combo — duplicate of /sections/product for products whose main image is wide (e.g. combo boxes). The main image sits in the left column with no background scene; the details column is unchanged. {%- endcomment -%}
 {%- liquid
   assign bg_color = section.settings.bg_color
   assign gradient = section.settings.gradient | default: 'none'
@@ -235,7 +235,7 @@
 
 {% schema %}
 {
-  "name": "Product (side image)",
+  "name": "Product combo",
   "class": "shopify-section--product",
   "settings": [
     {
