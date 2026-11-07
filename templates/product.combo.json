@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "product",
+      "type": "product-combo",
       "blocks": {
         "text_BifrBT": {
           "type": "text",
@@ -430,3 +430,4 @@
     "17809446994adad41a"
   ]
 }
+
