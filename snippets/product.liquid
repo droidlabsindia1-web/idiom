@@ -129,13 +129,11 @@
 
   comment
     idiom PDP — side-image layout (sections/product-combo.liquid, used by
-    templates/product.combo.json). The main image sits inside the left column
-    with no background scene, so wide images (combo boxes) don't spill over
-    the details column.
+    templates/product.combo.json). Same background scene as the default PDP,
+    but the main image sits inside the left column instead of centred on the
+    page, so wide images (combo boxes) don't spill over the details column.
   endcomment
-  assign pdp_side_layout = false
   if pdp_layout == 'side'
-    assign pdp_side_layout = true
     assign product_gallery_modifiers = product_gallery_modifiers | append: ' product-gallery--side'
     if product.media.size > 1 and hide_product_thumbnails == false
       assign product_gallery_modifiers = product_gallery_modifiers | append: ' product-gallery--has-thumbs'
@@ -294,7 +292,6 @@
         {%- assign pdp_bg_url_mobile = pdp_bg_url -%}
       {%- endif -%}
       {%- if product.media.size > 0 and section_type != 'quickview' -%}
-        {%- unless pdp_side_layout -%}
         <div class="product-gallery__bg-scene" style="background-image: url('{{ pdp_bg_url_mobile }}');" aria-hidden="true">
           <style>
             @media (min-width: 769px) {
@@ -302,7 +299,6 @@
             }
           </style>
         </div>
-        {%- endunless -%}
 
         {%- comment -%} idiom PDP (desktop only) — a single image centered over the
             scene. Clicking a thumbnail swaps this image's src. The Flickity

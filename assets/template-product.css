@@ -898,20 +898,21 @@ body.template-product .product__accordion__inner {
 }
 
 /* idiom PDP — side-image layout (sections/product-combo.liquid, used by
-   templates/product.combo.json). No background scene: the main image is
-   contained inside the left column instead of centered on the page (50vw), so
-   wide images such as combo boxes never run over the details column. Everything
-   else (column split, sticky gallery, thumbnails, details) matches the default
-   PDP. Selectors are one class more specific than the default rules above so
-   they win at every breakpoint, including the 768–1024px band. */
+   templates/product.combo.json). Same full-bleed background scene as the
+   default PDP, but the main image is contained inside the left column instead
+   of centered on the page (50vw), so wide images such as combo boxes never run
+   over the details column. Everything else (column split, sticky gallery,
+   details) matches the default PDP. Selectors are one class more specific than
+   the default rules above so they win at every breakpoint, including the
+   768–1024px band. */
 @media only screen and (min-width: 768px) {
-  /* keep the gallery inside its grid column — no left bleed without a scene */
+  /* The gallery still bleeds left to the viewport edge (for the scene), so
+     offset the thumbnails and image by that bleed to keep them aligned to the
+     grid column. */
   body.template-product
     .product-single__wrapper
     .product-gallery.product-gallery--side {
-    margin-left: 0;
-    width: 100%;
-    --pdp-thumb-inset-left: 0px;
+    --pdp-thumb-inset-left: var(--pdp-gallery-bleed);
     --pdp-thumb-size: 38px;
     --pdp-thumb-gap: 24px;
   }
@@ -926,7 +927,7 @@ body.template-product .product__accordion__inner {
     justify-content: center;
     top: var(--pdp-image-pad-y);
     bottom: var(--pdp-image-pad-y);
-    left: 0;
+    left: var(--pdp-gallery-bleed);
     right: 0;
     transform: none;
     width: auto;
@@ -951,20 +952,5 @@ body.template-product .product__accordion__inner {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-  }
-
-  /* thumbnails sit on the plain page background, not a photo — swap the
-     white-on-photo frame for a subtle outline */
-  body.template-product
-    .product-gallery--side
-    .product-single__thumbnail-link {
-    border-color: rgba(26, 26, 26, 0.15);
-    box-shadow: none;
-  }
-  body.template-product
-    .product-gallery--side
-    .is-nav-selected
-    .product-single__thumbnail-link {
-    border-color: var(--idiom-olive, #5a5a1e);
   }
 }
