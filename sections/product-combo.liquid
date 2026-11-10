@@ -18,6 +18,7 @@
   {{ selector_id }} {
     --PT: {{ section.settings.padding_top }}px;
     --PB: {{ section.settings.padding_bottom }}px;
+    --pdp-combo-col-gap: {{ section.settings.combo_column_gap | default: 48 }}px;
 
     {% if bg_color_set -%}
       {%- if gradient != 'none' -%}
@@ -251,6 +252,16 @@
     {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "combo_column_gap",
+      "label": "Gap between image and details (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48
     },
     {
       "type": "select",
