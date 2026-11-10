@@ -135,6 +135,7 @@
   endcomment
   if pdp_layout == 'side'
     assign product_gallery_modifiers = product_gallery_modifiers | append: ' product-gallery--side'
+    assign product_wrapper_modifiers = product_wrapper_modifiers | append: ' product-single__wrapper--side'
     if product.media.size > 1 and hide_product_thumbnails == false
       assign product_gallery_modifiers = product_gallery_modifiers | append: ' product-gallery--has-thumbs'
     endif

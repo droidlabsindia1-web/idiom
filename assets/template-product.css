@@ -906,6 +906,12 @@ body.template-product .product__accordion__inner {
    the default rules above so they win at every breakpoint, including the
    768–1024px band. */
 @media only screen and (min-width: 768px) {
+  /* narrower gap between the image column and the details than the default
+     146px; set by the "Gap between image and details" section setting */
+  body.template-product .product-single__wrapper.product-single__wrapper--side {
+    --pdp-col-gap: var(--pdp-combo-col-gap, 48px);
+  }
+
   /* The gallery still bleeds left to the viewport edge (for the scene), so
      offset the thumbnails and image by that bleed to keep them aligned to the
      grid column. */
