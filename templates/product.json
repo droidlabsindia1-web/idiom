@@ -156,9 +156,10 @@
     },
     "idiom_scent_profile": {
       "type": "idiom-scent-profile",
+      "disabled": true,
       "settings": {
-        "title": "Scent profile",
-        "byline": "how loud is your fragrance",
+        "title": "Scent projection",
+        "byline": "",
         "metafield_namespace": "custom",
         "list_metafield_key": "scent_profiles",
         "product": "",
