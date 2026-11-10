@@ -158,7 +158,7 @@
       "type": "idiom-scent-profile",
       "settings": {
         "title": "Scent projection",
-        "byline": "how loud is your fragrance",
+        "byline": "",
         "metafield_namespace": "custom",
         "list_metafield_key": "scent_profiles",
         "product": "",
