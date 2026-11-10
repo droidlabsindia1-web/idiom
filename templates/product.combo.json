@@ -156,6 +156,7 @@
     },
     "idiom_scent_profile": {
       "type": "idiom-scent-profile",
+      "disabled": true,
       "settings": {
         "title": "Scent projection",
         "byline": "",
