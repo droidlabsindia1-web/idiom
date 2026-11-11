@@ -73,8 +73,8 @@
       ],
       "settings": {
         "height": "one-third-height",
-        "enable_mobile_height": false,
-        "mobile_height": "four-fifty-height-mobile",
+        "enable_mobile_height": true,
+        "mobile_height": "one-fifth-height-mobile",
         "image": "shopify://shop_images/idiom_in_real_life_pic.png",
         "overlay_opacity": 10,
         "transition": "zoom-out",
