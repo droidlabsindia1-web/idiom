@@ -19,9 +19,132 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "section_text_zCGMdN": {
+      "type": "section-text",
+      "blocks": {
+        "subheading_AeqVPA": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Subheading</p>",
+            "size": 100,
+            "margin_bottom": 16
+          }
+        },
+        "heading_rJm9Mi": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Smell like no one else™</p>",
+            "size": 100,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        },
+        "text_cJmRA7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Why have a signature scent when you can have a fragrance wardrobe?</p><p>Brighter for Monday morning. Darker for Friday drinks. Flowers whenever you like.&lt;br&gt;</p><p>That’s layering. Suit yourself.&nbsp;</p>",
+            "size": 100
+          }
+        },
+        "button_kijVJN": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_text": "Read More",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_AeqVPA",
+        "heading_rJm9Mi",
+        "text_cJmRA7",
+        "button_kijVJN"
+      ],
+      "name": "Text",
+      "settings": {
+        "text_position": "center",
+        "bg_color": "",
+        "gradient": "",
+        "text_color": "text-dark",
+        "width": "wrapper--narrow",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_with_text_xmDQ9n": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading_fWf7Jd": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>how it works</p>",
+            "size": 120,
+            "text_position": "left",
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": "",
+            "spacing_bottom": 12
+          }
+        },
+        "text_W7VL7z": {
+          "type": "text",
+          "settings": {
+            "text": "<p>wear an idiom solo. layer two or three together. or wear one over something you already own. Just go your way, follow your nose.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button_DTzg6i": {
+          "type": "button",
+          "settings": {
+            "button_text": "start layering",
+            "button_link": "shopify://collections/shop-everything",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading_fWf7Jd",
+        "text_W7VL7z",
+        "button_DTzg6i"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "block_bg_color": "",
+        "text_color": "text-dark",
+        "bg_color": "",
+        "gradient": "",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "section_text_zCGMdN",
+    "section_image_with_text_xmDQ9n"
   ]
 }
