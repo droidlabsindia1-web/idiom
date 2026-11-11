@@ -553,6 +553,80 @@
         "padding_top": 0,
         "padding_bottom": 60
       }
+    },
+    "section_accordions_rmVEL8": {
+      "type": "section-accordions",
+      "blocks": {
+        "text_RfL9Ab": {
+          "type": "text",
+          "settings": {
+            "title": "Do I have to layer idiom?",
+            "text": "<p>No. Every idiom is made to wear on its own too.</p>"
+          }
+        },
+        "text_JThP9a": {
+          "type": "text",
+          "settings": {
+            "title": "Why is idiom good for layering?",
+            "text": "<p>Each idiom is built around one compelling ingredient, with nothing crowding it out.</p><p>We call them single-minded fragrances, and it’s what makes them so good for layering. Two busy fragrances fight. Two focused ones get on.</p>"
+          }
+        },
+        "text_RjtjWk": {
+          "type": "text",
+          "settings": {
+            "title": "Can I layer with another brand?",
+            "text": "<p>Yes. Please do. Try an idiom over something you already own and see what it brings out.</p>"
+          }
+        },
+        "text_VEainY": {
+          "type": "text",
+          "settings": {
+            "title": "Which goes on first?",
+            "text": "<p>The one you want to lead. 3D always goes on top. Unless you want it to go underneath.</p>"
+          }
+        },
+        "text_JjnQjx": {
+          "type": "text",
+          "settings": {
+            "title": "Do I mix them in the bottle?",
+            "text": "<p>Please don’t. Layer on your skin, so you can change it each time.</p>"
+          }
+        },
+        "text_wjPUTC": {
+          "type": "text",
+          "settings": {
+            "title": "Not sure where to start?",
+            "text": "<p>Try one of the pairings above, or come and smell them with us in Soho.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_RfL9Ab",
+        "text_JThP9a",
+        "text_RjtjWk",
+        "text_VEainY",
+        "text_JjnQjx",
+        "text_wjPUTC"
+      ],
+      "name": "Accordions",
+      "settings": {
+        "layout": "two-columns",
+        "show_accordion_divider": false,
+        "line_thickness": "normal",
+        "subheading": "",
+        "title": "A few questions",
+        "type_style": "font-heading",
+        "heading_size": 100,
+        "text": "",
+        "tabs_bg_color": "#999843",
+        "bg_color": "",
+        "gradient": "",
+        "text_color": "text-dark",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -564,6 +638,7 @@
     "section_image_with_text_wfV48a",
     "section_list_collection_k64XKb",
     "section_products_list_8fKVqf",
-    "section_columns_ADcbDf"
+    "section_columns_ADcbDf",
+    "section_accordions_rmVEL8"
   ]
 }
