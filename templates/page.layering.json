@@ -27,7 +27,7 @@
         "height": "four-fifty-height",
         "enable_mobile_height": true,
         "mobile_height": "four-fifty-height-mobile",
-        "image": "shopify://shop_images/PEPPER_X_HYDE.png",
+        "image": "shopify://shop_images/Screenshot_2026-11-11_at_15.52.33.png",
         "overlay_opacity": 10,
         "transition": "zoom-out",
         "enable_zoom_animation": true,
@@ -111,7 +111,7 @@
         "heading_fWf7Jd": {
           "type": "heading",
           "settings": {
-            "title": "<p>how it works</p>",
+            "title": "<p>how to layer</p>",
             "size": 120,
             "text_position": "left",
             "heading_highlight_type": "underline-hand-drawn",
