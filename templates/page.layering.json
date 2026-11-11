@@ -131,6 +131,7 @@
         "layout": "inline",
         "image_location": "left",
         "image_width": "standard",
+        "image": "shopify://shop_images/the_rules_of_layer.png",
         "block_bg_color": "",
         "text_color": "text-dark",
         "bg_color": "",
