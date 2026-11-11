@@ -101,6 +101,7 @@
         },
         "image-1": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "position": "3",
             "image_second_menu": false,
@@ -115,6 +116,7 @@
         },
         "image_jaBX6w": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "position": "3",
             "image_second_menu": false,
@@ -129,6 +131,7 @@
         },
         "image_fzpGMA": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "position": "3",
             "image_second_menu": false,
@@ -143,6 +146,7 @@
         },
         "image_wQKCxY": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "position": "3",
             "image_second_menu": false,
