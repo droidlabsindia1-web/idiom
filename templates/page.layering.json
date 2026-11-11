@@ -20,6 +20,32 @@
         "padding_bottom": 60
       }
     },
+    "section_banner_image_WtnRAH": {
+      "type": "section-banner-image",
+      "name": "Banner image",
+      "settings": {
+        "height": "four-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "four-fifty-height-mobile",
+        "image": "shopify://shop_images/PEPPER_X_HYDE.png",
+        "overlay_opacity": 10,
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": true,
+        "increase_border_radius": true,
+        "content_width": 80,
+        "text_position": "left",
+        "text_alignment": "text-left",
+        "text_color": "text-light",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "heading": "Smell like no one else™",
+        "subtext": "Why have a signature scent when you can have a fragrance wardrobe? Brighter for Monday morning. Darker for Friday drinks. Flowers whenever you like.That’s layering. Suit yourself. ",
+        "cta_label": "",
+        "cta_url": ""
+      }
+    },
     "section_text_zCGMdN": {
       "type": "section-text",
       "blocks": {
@@ -67,6 +93,7 @@
         "text_cJmRA7",
         "button_kijVJN"
       ],
+      "disabled": true,
       "name": "Text",
       "settings": {
         "text_position": "center",
@@ -138,7 +165,7 @@
         "gradient": "",
         "section_width": "wrapper",
         "add_gutter": true,
-        "padding_top": 0,
+        "padding_top": 60,
         "padding_bottom": 60
       }
     },
@@ -476,6 +503,22 @@
     "section_columns_ADcbDf": {
       "type": "section-columns",
       "blocks": {
+        "text_block_9rm3en": {
+          "type": "text_block",
+          "settings": {
+            "title": "Add a title or tagline",
+            "heading_size": 120,
+            "text": "<p>Use this text to describe products, share details on availability and style, etc</p>",
+            "text_size": 100,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--text",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        },
         "text_block_T7Ep9L": {
           "type": "text_block",
           "settings": {
@@ -529,6 +572,7 @@
         }
       },
       "block_order": [
+        "text_block_9rm3en",
         "text_block_T7Ep9L",
         "text_block_KkRaqn",
         "text_block_zWLTeq"
@@ -631,6 +675,7 @@
   },
   "order": [
     "main",
+    "section_banner_image_WtnRAH",
     "section_text_zCGMdN",
     "section_image_with_text_xmDQ9n",
     "section_overlapping_images_8ChXrD",
