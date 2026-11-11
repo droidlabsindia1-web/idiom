@@ -503,22 +503,6 @@
     "section_columns_ADcbDf": {
       "type": "section-columns",
       "blocks": {
-        "text_block_9rm3en": {
-          "type": "text_block",
-          "settings": {
-            "title": "Add a title or tagline",
-            "heading_size": 120,
-            "text": "<p>Use this text to describe products, share details on availability and style, etc</p>",
-            "text_size": 100,
-            "button_text": "Learn More",
-            "button_link": "",
-            "button_color": "btn--black",
-            "button_style": "btn--text",
-            "button_size": "btn--medium",
-            "video_link_popup": "",
-            "video_link_color": "text-dark"
-          }
-        },
         "text_block_T7Ep9L": {
           "type": "text_block",
           "settings": {
@@ -572,7 +556,6 @@
         }
       },
       "block_order": [
-        "text_block_9rm3en",
         "text_block_T7Ep9L",
         "text_block_KkRaqn",
         "text_block_zWLTeq"
