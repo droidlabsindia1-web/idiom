@@ -20,8 +20,47 @@
         "padding_bottom": 60
       }
     },
+    "idiom_brand_story_BXbpXA": {
+      "type": "idiom-brand-story",
+      "blocks": {
+        "phrase_6TRrNe": {
+          "type": "phrase",
+          "settings": {
+            "text": "smell like no one else™"
+          }
+        },
+        "phrase_DKjVbG": {
+          "type": "phrase",
+          "settings": {
+            "text": "go your own way"
+          }
+        },
+        "phrase_iq7k8G": {
+          "type": "phrase",
+          "settings": {
+            "text": "layer or wear solo"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_6TRrNe",
+        "phrase_DKjVbG",
+        "phrase_iq7k8G"
+      ],
+      "name": "Brand Story",
+      "settings": {
+        "heading": "Smell like no one else™",
+        "subline": "",
+        "body": "Why have a signature scent when you can have a fragrance wardrobe? Brighter for Monday morning. Darker for Friday drinks. Flowers whenever you like.That’s layering. Suit yourself.",
+        "cta_label": "shop now",
+        "cta_url": "shopify://collections/shop-everything",
+        "grid_heading": "",
+        "grid_subtext": ""
+      }
+    },
     "section_banner_image_WtnRAH": {
       "type": "section-banner-image",
+      "disabled": true,
       "name": "Banner image",
       "settings": {
         "height": "four-fifty-height",
@@ -658,6 +697,7 @@
   },
   "order": [
     "main",
+    "idiom_brand_story_BXbpXA",
     "section_banner_image_WtnRAH",
     "section_text_zCGMdN",
     "section_image_with_text_xmDQ9n",
