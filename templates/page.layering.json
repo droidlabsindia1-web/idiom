@@ -138,7 +138,44 @@
         "gradient": "",
         "section_width": "wrapper",
         "add_gutter": true,
-        "padding_top": 60,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "section_overlapping_images_8ChXrD": {
+      "type": "section-overlapping-images",
+      "name": "Overlapping images",
+      "settings": {
+        "text_position": "left",
+        "text_alignment": "center",
+        "images_width": 750,
+        "images_offset": 60,
+        "image_1": "shopify://shop_images/final_thursday.png",
+        "image_link_1": "",
+        "image_2": "shopify://shop_images/imoortance_of_not_being_earnest_pic.png",
+        "image_link_2": "",
+        "hide_image_2": false,
+        "subheading": "",
+        "title": "<p>a few pointers</p>",
+        "heading_size": 100,
+        "heading_highlight_type": "underline-hand-drawn",
+        "highlight_color": "#000",
+        "highlight_text_color": "",
+        "description": "<ul><li>Start with finding an idiom you love</li><li>Then add brightness, bloom, smoke or spice with a second idiom</li><li>Dial it up and down if you want more rose, more lime or more smoke</li></ul>",
+        "text_size": 100,
+        "button_text": "",
+        "button_link": "",
+        "button_color": "btn--black",
+        "button_style": "btn--solid",
+        "button_size": "btn--medium",
+        "video_text": "",
+        "video_link": "",
+        "bg_color": "",
+        "gradient": "",
+        "animation": "horizontal",
+        "animation_intensity": 50,
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
         "padding_bottom": 60
       }
     }
@@ -146,6 +183,7 @@
   "order": [
     "main",
     "section_text_zCGMdN",
-    "section_image_with_text_xmDQ9n"
+    "section_image_with_text_xmDQ9n",
+    "section_overlapping_images_8ChXrD"
   ]
 }
