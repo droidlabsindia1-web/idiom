@@ -178,12 +178,53 @@
         "padding_top": 0,
         "padding_bottom": 60
       }
+    },
+    "idiom_brand_story_MnWgnk": {
+      "type": "idiom-brand-story",
+      "blocks": {
+        "phrase_7WNttC": {
+          "type": "phrase",
+          "settings": {
+            "text": "smell like no one else™"
+          }
+        },
+        "phrase_48pkeC": {
+          "type": "phrase",
+          "settings": {
+            "text": "go your own way"
+          }
+        },
+        "phrase_GCeL8Q": {
+          "type": "phrase",
+          "settings": {
+            "text": "layer or wear solo"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_7WNttC",
+        "phrase_48pkeC",
+        "phrase_GCeL8Q"
+      ],
+      "name": "Brand Story",
+      "settings": {
+        "butterfly_image": "shopify://shop_images/1_c4d0fbf5-e5d2-43fc-bba0-f6841fca5da5.png",
+        "moon_image": "shopify://shop_images/4_98de9911-5922-4f87-999e-1f1c83e77ed4.png",
+        "heading": "Customise a fragrance you already own",
+        "subline": "",
+        "body": "Layer to make it yours. Add lime for brightness, rose for bloom, pepper for heat, vetiver for green depth, Palo Santal for creamy woods, or Hyde for smoke and leather.",
+        "cta_label": "shop now",
+        "cta_url": "shopify://collections/shop-everything",
+        "grid_heading": "",
+        "grid_subtext": ""
+      }
     }
   },
   "order": [
     "main",
     "section_text_zCGMdN",
     "section_image_with_text_xmDQ9n",
-    "section_overlapping_images_8ChXrD"
+    "section_overlapping_images_8ChXrD",
+    "idiom_brand_story_MnWgnk"
   ]
 }
