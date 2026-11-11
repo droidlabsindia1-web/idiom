@@ -49,6 +49,8 @@
       ],
       "name": "Brand Story",
       "settings": {
+        "butterfly_image": "shopify://shop_images/Group_5.png",
+        "moon_image": "shopify://shop_images/group6.png",
         "heading": "Smell like no one else™",
         "subline": "",
         "body": "Why have a signature scent when you can have a fragrance wardrobe? Brighter for Monday morning. Darker for Friday drinks. Flowers whenever you like.That’s layering. Suit yourself.",
