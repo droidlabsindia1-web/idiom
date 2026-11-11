@@ -308,23 +308,23 @@
             "overlay_opacity": 30
           }
         },
-        "collection_DBpCVW": {
-          "type": "collection",
-          "settings": {
-            "collection": "woody",
-            "custom_collection_image": "shopify://shop_images/idiom-woody.png",
-            "heading": "Woody: adds depth, warmth and soul",
-            "block_text_color": "",
-            "bg_color": "",
-            "overlay_opacity": 30
-          }
-        },
         "collection_Y86yrF": {
           "type": "collection",
           "settings": {
             "collection": "spicy",
             "custom_collection_image": "shopify://shop_images/idiom-spicy.png",
             "heading": "Spicy: adds warmth, bite and a twist",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_DBpCVW": {
+          "type": "collection",
+          "settings": {
+            "collection": "woody",
+            "custom_collection_image": "shopify://shop_images/idiom-woody.png",
+            "heading": "Woody: adds depth, warmth and soul",
             "block_text_color": "",
             "bg_color": "",
             "overlay_opacity": 30
@@ -351,15 +351,27 @@
             "bg_color": "",
             "overlay_opacity": 30
           }
+        },
+        "collection_MbkUfG": {
+          "type": "collection",
+          "settings": {
+            "collection": "amber",
+            "custom_collection_image": "shopify://shop_images/idiom-amber.png",
+            "heading": "Amber: adds intimacy and reverb",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
         }
       },
       "block_order": [
         "collection_cdUwcT",
         "collection_Q3QQUf",
-        "collection_DBpCVW",
         "collection_Y86yrF",
+        "collection_DBpCVW",
         "collection_M7nkq6",
-        "collection_V66tGh"
+        "collection_V66tGh",
+        "collection_MbkUfG"
       ],
       "name": "Collection list",
       "settings": {
