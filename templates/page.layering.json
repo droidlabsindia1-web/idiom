@@ -218,6 +218,70 @@
         "grid_heading": "",
         "grid_subtext": ""
       }
+    },
+    "section_image_with_text_wfV48a": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading_Af4bCe": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>or take it into 3D</p>",
+            "size": 120,
+            "text_position": "left",
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": "",
+            "spacing_bottom": 12
+          }
+        },
+        "text_6TK6JA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>on its own, 3D is a modernist skin scent. over a fragrance it makes it rounder, softer and more enveloping, without losing what you loved about it.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button_6FmHMe": {
+          "type": "button",
+          "settings": {
+            "button_text": "shop 3D",
+            "button_link": "shopify://products/3d",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading_Af4bCe",
+        "text_6TK6JA",
+        "button_6FmHMe"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/2_e010f499-27d3-4e29-8068-8887f8341a4e.png",
+        "block_bg_color": "",
+        "text_color": "text-dark",
+        "bg_color": "",
+        "gradient": "",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -225,6 +289,7 @@
     "section_text_zCGMdN",
     "section_image_with_text_xmDQ9n",
     "section_overlapping_images_8ChXrD",
-    "idiom_brand_story_MnWgnk"
+    "idiom_brand_story_MnWgnk",
+    "section_image_with_text_wfV48a"
   ]
 }
