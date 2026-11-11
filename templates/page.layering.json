@@ -394,6 +394,165 @@
         "padding_top": 0,
         "padding_bottom": 60
       }
+    },
+    "section_products_list_8fKVqf": {
+      "type": "section-products-list",
+      "blocks": {
+        "product_jX9aaL": {
+          "type": "product",
+          "settings": {
+            "product": "discovery-kit",
+            "title": "",
+            "product_description": "<p>Try them all and find the combinations you love. 7 fragrances 120 combinations.</p>",
+            "button_text": "shop the layering kit",
+            "show_second_image": true,
+            "image_1": "shopify://shop_images/55.png",
+            "show_circle": true,
+            "hide_on_mobile": false,
+            "circle_text_color": "#000000",
+            "circle_rotate_animation": "rotate-on-scroll",
+            "circle_text": "idiom ~ layering made easy ~",
+            "circle_word_spacing": 1,
+            "circle_size": 150
+          }
+        },
+        "product_LLwHVY": {
+          "type": "product",
+          "settings": {
+            "product": "lime-bossa-x-vetiver-ace-duo",
+            "title": "DUOs",
+            "product_description": "<p>Ready-made pairings. Wear them together or on their own.</p>",
+            "button_text": "View Product",
+            "show_second_image": true,
+            "image_1": "shopify://shop_images/limevt.png",
+            "show_circle": true,
+            "hide_on_mobile": false,
+            "circle_text_color": "#000000",
+            "circle_rotate_animation": "rotate-on-scroll",
+            "circle_text": "New Arrival ~ New Arrival ~",
+            "circle_word_spacing": 3,
+            "circle_size": 150
+          }
+        },
+        "product_kjKYny": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "title": "",
+            "product_description": "",
+            "button_text": "View Product",
+            "show_second_image": true,
+            "show_circle": true,
+            "hide_on_mobile": false,
+            "circle_text_color": "#000000",
+            "circle_rotate_animation": "rotate-on-scroll",
+            "circle_text": "New Arrival ~ New Arrival ~",
+            "circle_word_spacing": 3,
+            "circle_size": 150
+          }
+        }
+      },
+      "block_order": [
+        "product_jX9aaL",
+        "product_LLwHVY",
+        "product_kjKYny"
+      ],
+      "disabled": true,
+      "name": "Products list",
+      "settings": {
+        "title": "",
+        "heading_size": 100,
+        "button_color": "btn--black",
+        "button_style": "btn--solid",
+        "button_size": "btn--medium",
+        "image_aspect_ratio": 1.4,
+        "bg_color": "",
+        "gradient": "",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_columns_ADcbDf": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_T7Ep9L": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/55.png",
+            "title": "The layering kit",
+            "heading_size": 120,
+            "text": "<p>Try them all and find the combinations you love. 7 fragrances 120 combinations.</p>",
+            "text_size": 100,
+            "button_text": "shop the layering kit",
+            "button_link": "shopify://products/discovery-kit",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        },
+        "text_block_KkRaqn": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/16_3770a1bc-c6a6-4fc0-a501-d4255c19bc5e.png",
+            "title": "duos and trios",
+            "heading_size": 120,
+            "text": "<p>Ready-made pairings. Wear them together or on their own.</p>",
+            "text_size": 100,
+            "button_text": "shop duos and trios",
+            "button_link": "shopify://products/discovery-kit",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        },
+        "text_block_zWLTeq": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/1_to_1.png",
+            "title": "try it with us",
+            "heading_size": 120,
+            "text": "<p>Come to Soho for a 1:1 scent appointment or a layering evening. Bring a fragrance you already</p><p>wear, if you like. Meet Bob the tiger.</p>",
+            "text_size": 100,
+            "button_text": "book an appointment",
+            "button_link": "shopify://pages/store",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_T7Ep9L",
+        "text_block_KkRaqn",
+        "text_block_zWLTeq"
+      ],
+      "name": "Text columns with images",
+      "settings": {
+        "title": "Layering made easy",
+        "heading_size": 100,
+        "align_text": "text-center",
+        "columns": 3,
+        "columns_mobile": "1",
+        "show_images": true,
+        "show_borders": false,
+        "equalize_height": true,
+        "desktop_aspect_ratio": 1.2,
+        "mobile_aspect_ratio": 1.2,
+        "bg_color": "",
+        "gradient": "",
+        "color_borders": "#000",
+        "layout_mobile": "carousel",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -403,6 +562,8 @@
     "section_overlapping_images_8ChXrD",
     "idiom_brand_story_MnWgnk",
     "section_image_with_text_wfV48a",
-    "section_list_collection_k64XKb"
+    "section_list_collection_k64XKb",
+    "section_products_list_8fKVqf",
+    "section_columns_ADcbDf"
   ]
 }
