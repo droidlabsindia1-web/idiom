@@ -282,6 +282,106 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "section_list_collection_k64XKb": {
+      "type": "section-list-collection",
+      "blocks": {
+        "collection_cdUwcT": {
+          "type": "collection",
+          "settings": {
+            "collection": "fresh",
+            "custom_collection_image": "shopify://shop_images/idiom-fresh.png",
+            "heading": "Fresh: adds lift, brightness and sunshine",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Q3QQUf": {
+          "type": "collection",
+          "settings": {
+            "collection": "floral",
+            "custom_collection_image": "shopify://shop_images/idiom-floral-original-screenshot.png",
+            "heading": "Floral: adds bloom, softness and colour",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_DBpCVW": {
+          "type": "collection",
+          "settings": {
+            "collection": "woody",
+            "custom_collection_image": "shopify://shop_images/idiom-woody.png",
+            "heading": "Woody: adds depth, warmth and soul",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Y86yrF": {
+          "type": "collection",
+          "settings": {
+            "collection": "spicy",
+            "custom_collection_image": "shopify://shop_images/idiom-spicy.png",
+            "heading": "Spicy: adds warmth, bite and a twist",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_M7nkq6": {
+          "type": "collection",
+          "settings": {
+            "collection": "juicy",
+            "custom_collection_image": "shopify://shop_images/idiom-juicy.png",
+            "heading": "Juicy: adds roundness, texture and allure",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_V66tGh": {
+          "type": "collection",
+          "settings": {
+            "collection": "smoke",
+            "custom_collection_image": "shopify://shop_images/WhatsApp_Image_2026-11-02_at_10.28.56.jpg",
+            "heading": "Smoke: adds shadow, depth and intrigue",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "collection_cdUwcT",
+        "collection_Q3QQUf",
+        "collection_DBpCVW",
+        "collection_Y86yrF",
+        "collection_M7nkq6",
+        "collection_V66tGh"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "title": "Layer by mood…",
+        "heading_size": 100,
+        "layout": "carousel",
+        "alignment": "center",
+        "collections_per_row": 4,
+        "columns_mobile": "1",
+        "image_shape": "circle",
+        "image_aspect_ratio": 1,
+        "enable_product_count": false,
+        "text_size": 130,
+        "overlay_text": false,
+        "enable_slider_mobile": true,
+        "section_bg_color": "",
+        "gradient": "",
+        "section_text_color": "",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -290,6 +390,7 @@
     "section_image_with_text_xmDQ9n",
     "section_overlapping_images_8ChXrD",
     "idiom_brand_story_MnWgnk",
-    "section_image_with_text_wfV48a"
+    "section_image_with_text_wfV48a",
+    "section_list_collection_k64XKb"
   ]
 }
