@@ -2,6 +2,12 @@
 {%- comment -%}
   Renders the star rating + review count row on the PDP.
 
+  Rating and count come from the Judge.me metafield `judgeme.review_widget_data`
+  (unstructured JSON written by the Judge.me app). If the metafield is stored as
+  JSON, its fields are read directly; if it comes back as a plain string, the two
+  values are pulled out with string parsing. Falls back to the older
+  `reviews.rating` / `custom.rating_count` metafields when Judge.me has no data.
+
   Accepts:
   - product: {Object} Current product (required)
 
@@ -10,15 +16,38 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign rating = product.metafields.reviews.rating.value.rating | default: 0
+  assign jdgm_field = product.metafields.judgeme.review_widget_data
+  assign rating = jdgm_field.value.average_rating
+  assign review_count = jdgm_field.value.number_of_reviews
+
+  if jdgm_field != blank and rating == blank
+    assign jdgm_raw = jdgm_field | append: ''
+
+    assign jdgm_parts = jdgm_raw | split: '"average_rating"'
+    if jdgm_parts.size > 1
+      assign rating = jdgm_parts[1] | split: ',' | first | remove: ':' | remove: '"' | strip
+    endif
+
+    assign jdgm_parts = jdgm_raw | split: '"number_of_reviews"'
+    if jdgm_parts.size > 1
+      assign review_count = jdgm_parts[1] | split: ',' | first | remove: ':' | remove: '"' | strip
+    endif
+  endif
+
+  if rating == blank
+    assign rating = product.metafields.reviews.rating.value.rating
+    assign review_count = product.metafields.custom.rating_count.value
+  endif
+
+  assign rating = rating | default: 0 | times: 1.0
+  assign review_count = review_count | default: 0 | times: 1
   assign full_stars = rating | round
-  assign review_count = product.metafields.custom.rating_count.value | default: 0
 -%}
-<div class="idiom-pdp-stars">
-  <span class="idiom-pdp-stars__icons">
+<div class="idiom-pdp-stars" aria-label="{{ rating | round: 2 }} out of 5 stars, {{ review_count }} reviews">
+  <span class="idiom-pdp-stars__icons" aria-hidden="true">
     {%- for i in (1..5) -%}
       {%- if i <= full_stars -%}★{%- else -%}☆{%- endif -%}
     {%- endfor -%}
   </span>
-  <span class="idiom-pdp-stars__count">{{ review_count }} reviews</span>
+  <span class="idiom-pdp-stars__count">{{ review_count }} {% if review_count == 1 %}review{% else %}reviews{% endif %}</span>
 </div>
