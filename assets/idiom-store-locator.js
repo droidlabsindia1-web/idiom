@@ -5,7 +5,7 @@
    Clicking the pin opens the store details <dialog>.
    ============================================ */
 (function () {
-  if (customElements.get('idiom-store-locator')) return;
+  if (customElements.get('idiom-store-map')) return;
 
   var PIN_SVG =
     '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="52" viewBox="0 0 40 52">' +
@@ -51,7 +51,7 @@
     return mapsPromise;
   }
 
-  class IdiomStoreLocator extends HTMLElement {
+  class IdiomStoreMap extends HTMLElement {
     connectedCallback() {
       this.mapEl = this.querySelector('[data-map]');
       this.dialog = this.querySelector('dialog');
@@ -149,5 +149,5 @@
     }
   }
 
-  customElements.define('idiom-store-locator', IdiomStoreLocator);
+  customElements.define('idiom-store-map', IdiomStoreMap);
 })();

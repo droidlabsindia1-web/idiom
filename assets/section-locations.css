@@ -101,3 +101,10 @@
 .no-js .location__image {
   margin-bottom: var(--grid-gutter);
 }
+/* --- idiom: store map under each location --- */
+.location__map {
+  margin-top: 28px;
+}
+.location__map .idiom-store-locator__map {
+  margin-top: 0;
+}

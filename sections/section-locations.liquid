@@ -24,6 +24,52 @@
     },
     {
       "type": "header",
+      "content": "Map"
+    },
+    {
+      "type": "range",
+      "id": "map_zoom",
+      "label": "Map zoom",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "map_height",
+      "label": "Map height",
+      "min": 160,
+      "max": 480,
+      "step": 10,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "text",
+      "id": "maps_api_key",
+      "label": "Google Maps API key (optional)",
+      "info": "Adds an interactive, draggable map with brand styling. Restrict the key to your store domains (HTTP referrers) in Google Cloud. Without a key a static map preview is shown."
+    },
+    {
+      "type": "select",
+      "id": "map_style",
+      "label": "Map style (needs API key)",
+      "options": [
+        { "value": "muted", "label": "Muted / brand" },
+        { "value": "standard", "label": "Standard Google" }
+      ],
+      "default": "muted"
+    },
+    {
+      "type": "text",
+      "id": "directions_label",
+      "label": "Popup directions button label",
+      "info": "Leave empty to hide.",
+      "default": "Get directions"
+    },
+    {
+      "type": "header",
       "content": "Colors"
     },
     {
@@ -82,6 +128,53 @@
           "type": "image_picker",
           "id": "image",
           "label": "Store image"
+        },
+        {
+          "type": "header",
+          "content": "Map"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_map",
+          "label": "Show map",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "latitude",
+          "label": "Latitude",
+          "info": "Most accurate pin placement. In Google Maps, right-click the store and copy the coordinates. Falls back to the address if empty."
+        },
+        {
+          "type": "text",
+          "id": "longitude",
+          "label": "Longitude"
+        },
+        {
+          "type": "header",
+          "content": "Store details popup"
+        },
+        {
+          "type": "text",
+          "id": "store_name",
+          "label": "Store name",
+          "info": "Defaults to the section heading."
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email"
+        },
+        {
+          "type": "richtext",
+          "id": "modal_note",
+          "label": "Extra note",
+          "info": "E.g. nearest tube station, accessibility info."
         }
       ]
     }

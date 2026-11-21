@@ -99,6 +99,28 @@
                 {{- block.settings.working_time -}}
               {%- endif -%}
 
+              {%- if block.settings.show_map -%}
+                {%- assign store_name = block.settings.store_name | default: heading -%}
+                <div class="location__map" style="--isl-map-h: {{ section.settings.map_height }}px;">
+                  {%- render 'idiom-store-map',
+                    id: block.id,
+                    name: store_name,
+                    address: block.settings.title,
+                    hours: block.settings.working_time,
+                    phone: block.settings.phone,
+                    email: block.settings.email,
+                    note: block.settings.modal_note,
+                    image: block.settings.image,
+                    lat: block.settings.latitude,
+                    lng: block.settings.longitude,
+                    zoom: section.settings.map_zoom,
+                    map_style: section.settings.map_style,
+                    api_key: section.settings.maps_api_key,
+                    directions_label: section.settings.directions_label
+                  -%}
+                </div>
+              {%- endif -%}
+
             </div>
           {%- endfor -%}
         {%- else -%}

@@ -89,6 +89,15 @@
   border: 0;
 }
 
+/* Keyless embed is a static preview so the overlaid pin always lines up */
+.idiom-store-locator__map iframe {
+  pointer-events: none;
+}
+
+.idiom-store-map {
+  display: block;
+}
+
 /* Custom red pin overlaid on the keyless embed (sits over the embed's own pin) */
 .idiom-store-locator__pin {
   position: absolute;
