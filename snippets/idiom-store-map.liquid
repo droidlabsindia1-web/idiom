@@ -105,66 +105,66 @@
 
     <div class="idiom-store-popover__body">
       {%- if address != blank -%}
-        <p class="idiom-store-popover__row"><strong>Address:</strong> {{ address }}</p>
-      {%- endif -%}
-
-      {%- if show_distance and lat != blank and lng != blank -%}
-        <p class="idiom-store-popover__row" data-distance hidden>
-          <strong>Distance:</strong> <span data-distance-value></span>
-        </p>
-      {%- endif -%}
-
-      {%- if directions_label != blank and map_query != blank -%}
-        <p class="idiom-store-popover__row">
-          <a class="idiom-store-popover__link idiom-store-popover__directions" href="{{ directions_url }}" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#E53935"/>
-            </svg>
-            {{ directions_label }}
-          </a>
-        </p>
-      {%- endif -%}
-
-      {%- if hours != blank -%}
-        <div class="idiom-store-popover__row idiom-store-popover__hours">
-          <strong>Timings:</strong>
-          {{ hours }}
+        <div class="idiom-store-popover__row">
+          <p class="idiom-store-popover__label">Address</p>
+          <p class="idiom-store-popover__value">{{ address }}</p>
+          {%- if directions_label != blank and map_query != blank -%}
+            <a class="idiom-store-popover__link" href="{{ directions_url }}" target="_blank" rel="noopener">
+              {{- directions_label -}}
+              <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false">
+                <path d="M4 12L12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
         </div>
       {%- endif -%}
 
-      {%- if phone != blank -%}
-        <p class="idiom-store-popover__row">
-          <strong>Contact:</strong>
-          <a class="idiom-store-popover__link" href="tel:{{ phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ phone }}</a>
-        </p>
+      {%- if show_distance and lat != blank and lng != blank -%}
+        <div class="idiom-store-popover__row" data-distance hidden>
+          <p class="idiom-store-popover__label">Distance</p>
+          <p class="idiom-store-popover__value"><span data-distance-value></span> away</p>
+        </div>
       {%- endif -%}
 
-      {%- if email != blank -%}
-        <p class="idiom-store-popover__row">
-          <strong>Email:</strong>
-          <a class="idiom-store-popover__link" href="mailto:{{ email }}">{{ email }}</a>
-        </p>
+      {%- if hours != blank -%}
+        <div class="idiom-store-popover__row">
+          <p class="idiom-store-popover__label">Hours</p>
+          <div class="idiom-store-popover__value">{{ hours }}</div>
+        </div>
+      {%- endif -%}
+
+      {%- if phone != blank or email != blank -%}
+        <div class="idiom-store-popover__row">
+          <p class="idiom-store-popover__label">Contact</p>
+          {%- if phone != blank -%}
+            <p class="idiom-store-popover__value">
+              <a href="tel:{{ phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ phone }}</a>
+            </p>
+          {%- endif -%}
+          {%- if email != blank -%}
+            <p class="idiom-store-popover__value"><a href="mailto:{{ email }}">{{ email }}</a></p>
+          {%- endif -%}
+        </div>
       {%- endif -%}
 
       {%- if note != blank -%}
-        <div class="idiom-store-popover__row idiom-store-popover__note">{{ note }}</div>
+        <div class="idiom-store-popover__row idiom-store-popover__value">{{ note }}</div>
       {%- endif -%}
 
-      {%- if book_label != blank and book_url != blank -%}
-        <p class="idiom-store-popover__row idiom-store-popover__book">
-          <a class="idiom-store-popover__link" href="{{ book_url }}">{{ book_label }}</a>
-        </p>
-      {%- endif -%}
+      {%- assign show_book = false -%}
+      {%- if book_label != blank and book_url != blank -%}{%- assign show_book = true -%}{%- endif -%}
+      {%- assign show_maps = false -%}
+      {%- if maps_label != blank and map_query != blank -%}{%- assign show_maps = true -%}{%- endif -%}
 
-      {%- if maps_label != blank and map_query != blank -%}
-        <a class="idiom-store-popover__maps" href="{{ maps_url }}" target="_blank" rel="noopener">
-          <svg viewBox="0 0 40 52" width="12" height="16" aria-hidden="true" focusable="false">
-            <path d="M20 0C9 0 0 8.9 0 19.9 0 34.8 20 52 20 52s20-17.2 20-32.1C40 8.9 31 0 20 0z" fill="#E53935"/>
-            <circle cx="20" cy="19" r="7" fill="#fff"/>
-          </svg>
-          {{ maps_label }}
-        </a>
+      {%- if show_book or show_maps -%}
+        <div class="idiom-store-popover__actions">
+          {%- if show_maps -%}
+            <a class="idiom-store-popover__btn" href="{{ maps_url }}" target="_blank" rel="noopener">{{ maps_label }}</a>
+          {%- endif -%}
+          {%- if show_book -%}
+            <a class="idiom-store-popover__btn idiom-store-popover__btn--outline" href="{{ book_url }}">{{ book_label }}</a>
+          {%- endif -%}
+        </div>
       {%- endif -%}
     </div>
   </div>
