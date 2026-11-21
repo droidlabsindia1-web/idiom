@@ -53,7 +53,7 @@
 .idiom-newsletter__heading {
   margin: 0;
   font-family: var(--idiom-nl-heading-font, var(--FONT-STACK-BODY));
-  font-weight: 400;
+  font-weight: var(--idiom-nl-heading-weight, 400);
   font-size: var(--idiom-nl-heading-size, 30px);
   line-height: 0.98;
   letter-spacing: -0.055em;
@@ -78,14 +78,15 @@
   align-items: center;
   width: 100%;
   min-height: 56px;
-  border: 1px solid currentColor;
+  border: 1px solid var(--idiom-nl-field-border, #1a1a1a);
   border-radius: 999px;
-  background: transparent;
+  background: var(--idiom-nl-field-bg, #fffbf3);
+  color: var(--idiom-nl-field-text, #1a1a1a);
   transition: box-shadow 0.2s ease;
 }
 
 .idiom-newsletter__pill:focus-within {
-  box-shadow: 0 0 0 1px currentColor;
+  box-shadow: 0 0 0 1px var(--idiom-nl-field-border, #1a1a1a);
 }
 
 .idiom-newsletter .idiom-newsletter__input {
@@ -135,8 +136,8 @@
 
 .idiom-newsletter__submit:hover,
 .idiom-newsletter__submit:focus-visible {
-  background: var(--idiom-nl-text, #1a1a1a);
-  color: var(--idiom-nl-bg, #fffbf3);
+  background: var(--idiom-nl-field-text, #1a1a1a);
+  color: var(--idiom-nl-field-bg, #fffbf3);
   outline: none;
 }
 

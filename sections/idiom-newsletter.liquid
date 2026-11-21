@@ -12,12 +12,36 @@
     assign heading_color = section.settings.text_color
   endif
 
-  if section.settings.heading_weight == 'bold'
-    assign heading_font = 'var(--FONT-STACK-HEADING)'
-  else
-    assign heading_font = 'var(--FONT-STACK-BODY)'
-  endif
+  comment
+    Theme ships only Farro Regular + Bold (each declared at weight 400 under its own family name).
+    Light (300) and Medium (500) come from Google Fonts' Farro, loaded only when chosen.
+    100/200 -> Light 300 (lightest Farro cut); 600-900 -> Bold file.
+  endcomment
+  assign heading_weight = section.settings.heading_weight | default: '400' | plus: 0
+  assign google_weight = blank
+  case heading_weight
+    when 100, 200, 300
+      assign google_weight = '300'
+      assign heading_font = '"Farro", var(--FONT-STACK-BODY)'
+      assign heading_font_weight = 300
+    when 500
+      assign google_weight = '500'
+      assign heading_font = '"Farro", var(--FONT-STACK-BODY)'
+      assign heading_font_weight = 500
+    when 600, 700, 800, 900
+      assign heading_font = 'var(--FONT-STACK-HEADING)'
+      assign heading_font_weight = 400
+    else
+      assign heading_font = 'var(--FONT-STACK-BODY)'
+      assign heading_font_weight = 400
+  endcase
 -%}
+
+{%- if google_weight != blank -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Farro:wght@{{ google_weight }}&display=swap">
+{%- endif -%}
 
 {%- style -%}
   #IdiomNewsletter--{{ section.id }} {
@@ -30,10 +54,14 @@
     --idiom-nl-heading-size: {{ section.settings.heading_size }}px;
     --idiom-nl-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
     --idiom-nl-heading-font: {{ heading_font }};
+    --idiom-nl-heading-weight: {{ heading_font_weight }};
     --idiom-nl-heading-color: {{ heading_color }};
     --idiom-nl-overlay: {{ section.settings.overlay_color }};
     --idiom-nl-overlay-opacity: {{ section.settings.overlay_opacity | times: 0.01 }};
     --idiom-nl-bg-position: {{ section.settings.bg_position }};
+    --idiom-nl-field-bg: {{ section.settings.field_bg_color | default: '#fffbf3' }};
+    --idiom-nl-field-border: {{ section.settings.field_border_color | default: '#1a1a1a' }};
+    --idiom-nl-field-text: {{ section.settings.field_text_color | default: '#1a1a1a' }};
   }
 {%- endstyle -%}
 
@@ -185,10 +213,18 @@
       "type": "select",
       "id": "heading_weight",
       "label": "Font weight",
-      "default": "regular",
+      "info": "Farro comes in Light (300), Regular (400), Medium (500) and Bold (700). 100–200 show as Light, 600–900 as Bold.",
+      "default": "400",
       "options": [
-        { "value": "regular", "label": "Regular" },
-        { "value": "bold", "label": "Bold" }
+        { "value": "100", "label": "100 – Thin" },
+        { "value": "200", "label": "200 – Extra light" },
+        { "value": "300", "label": "300 – Light" },
+        { "value": "400", "label": "400 – Regular" },
+        { "value": "500", "label": "500 – Medium" },
+        { "value": "600", "label": "600 – Semi bold" },
+        { "value": "700", "label": "700 – Bold" },
+        { "value": "800", "label": "800 – Extra bold" },
+        { "value": "900", "label": "900 – Black" }
       ]
     },
     {
@@ -236,6 +272,28 @@
       "type": "color",
       "id": "text_color",
       "label": "Text and border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Email field"
+    },
+    {
+      "type": "color",
+      "id": "field_bg_color",
+      "label": "Field background",
+      "default": "#fffbf3"
+    },
+    {
+      "type": "color",
+      "id": "field_border_color",
+      "label": "Field border",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "field_text_color",
+      "label": "Field text and arrow",
       "default": "#1a1a1a"
     },
     {
