@@ -20,10 +20,9 @@
 
 .idiom-newsletter__heading {
   margin: 0;
-  max-width: 15em;
   font-family: var(--FONT-STACK-BODY);
   font-weight: 400;
-  font-size: clamp(28px, 3.6vw, 52px);
+  font-size: 28px;
   line-height: 0.98;
   letter-spacing: -0.055em;
   color: inherit;
