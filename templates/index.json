@@ -397,7 +397,14 @@
           "settings": {
             "title": "12 Ingestre Place, Soho, London W1F 0JF",
             "working_time": "<p>Monday - Friday | 12.00 - 19.00</p><p>Saturday | 11.00 - 19.00</p><p>Sunday | 12.00 - 17.00</p>",
-            "image": "shopify://shop_images/2_b4d68846-2ed2-45ae-a7cc-5cd4bbbced2a.png"
+            "image": "shopify://shop_images/Screenshot_2026-11-18_at_15.43.00.png",
+            "show_map": true,
+            "latitude": "",
+            "longitude": "",
+            "store_name": "",
+            "phone": "",
+            "email": "",
+            "modal_note": ""
           }
         }
       },
@@ -408,6 +415,11 @@
       "settings": {
         "subheading": "get your layer on, IRL...",
         "title": "Idiom | Soho, London",
+        "map_zoom": 16,
+        "map_height": 260,
+        "maps_api_key": "",
+        "map_style": "muted",
+        "directions_label": "Get directions",
         "bg_color": "",
         "gradient": "",
         "padding_top": 60,
