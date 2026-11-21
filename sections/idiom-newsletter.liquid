@@ -4,6 +4,19 @@
 {%- liquid
   assign form_id = 'IdiomNewsletter--' | append: section.id
   assign placeholder = section.settings.placeholder | default: 'email'
+  assign bg_image = section.settings.bg_image
+  assign bg_image_mobile = section.settings.bg_image_mobile | default: bg_image
+
+  assign heading_color = section.settings.heading_color
+  if heading_color == blank or heading_color.alpha == 0.0
+    assign heading_color = section.settings.text_color
+  endif
+
+  if section.settings.heading_weight == 'bold'
+    assign heading_font = 'var(--FONT-STACK-HEADING)'
+  else
+    assign heading_font = 'var(--FONT-STACK-BODY)'
+  endif
 -%}
 
 {%- style -%}
@@ -12,10 +25,48 @@
     --idiom-nl-text: {{ section.settings.text_color }};
     --idiom-nl-pt: {{ section.settings.padding_top }}px;
     --idiom-nl-pb: {{ section.settings.padding_bottom }}px;
+    --idiom-nl-max: {{ section.settings.content_max_width }}px;
+    --idiom-nl-heading-max: {{ section.settings.heading_max_width }}px;
+    --idiom-nl-heading-size: {{ section.settings.heading_size }}px;
+    --idiom-nl-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --idiom-nl-heading-font: {{ heading_font }};
+    --idiom-nl-heading-color: {{ heading_color }};
+    --idiom-nl-overlay: {{ section.settings.overlay_color }};
+    --idiom-nl-overlay-opacity: {{ section.settings.overlay_opacity | times: 0.01 }};
+    --idiom-nl-bg-position: {{ section.settings.bg_position }};
   }
 {%- endstyle -%}
 
-<section class="idiom-newsletter" id="IdiomNewsletter--{{ section.id }}">
+<section
+  class="idiom-newsletter{% if bg_image %} idiom-newsletter--has-image{% endif %}"
+  id="IdiomNewsletter--{{ section.id }}"
+>
+  {%- if bg_image -%}
+    <div class="idiom-newsletter__media" aria-hidden="true">
+      {{
+        bg_image
+        | image_url: width: 3000
+        | image_tag:
+          widths: '768, 1100, 1500, 2000, 2600, 3000',
+          sizes: '100vw',
+          loading: 'lazy',
+          alt: '',
+          class: 'idiom-newsletter__bg idiom-newsletter__bg--desktop'
+      }}
+      {{
+        bg_image_mobile
+        | image_url: width: 1200
+        | image_tag:
+          widths: '480, 768, 1200',
+          sizes: '100vw',
+          loading: 'lazy',
+          alt: '',
+          class: 'idiom-newsletter__bg idiom-newsletter__bg--mobile'
+      }}
+      <div class="idiom-newsletter__overlay"></div>
+    </div>
+  {%- endif -%}
+
   <div class="idiom-newsletter__inner">
     {%- if section.settings.heading != blank -%}
       <h2 class="idiom-newsletter__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>
@@ -108,6 +159,71 @@
     },
     {
       "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size (desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size (mobile)",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Font weight",
+      "default": "regular",
+      "options": [
+        { "value": "regular", "label": "Regular" },
+        { "value": "bold", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Font colour",
+      "info": "Leave empty to use the text colour below"
+    },
+    {
+      "type": "header",
+      "content": "Width"
+    },
+    {
+      "type": "range",
+      "id": "heading_max_width",
+      "min": 200,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Heading max width",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 600,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Content max width",
+      "info": "Width of the heading + email row",
+      "default": 1280
+    },
+    {
+      "type": "header",
       "content": "Colours"
     },
     {
@@ -121,6 +237,51 @@
       "id": "text_color",
       "label": "Text and border",
       "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Mobile image",
+      "info": "Optional. Uses the main image if empty"
+    },
+    {
+      "type": "select",
+      "id": "bg_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "center top", "label": "Top" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay colour",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "info": "Darkens the image so text stays readable",
+      "default": 0
     },
     {
       "type": "header",

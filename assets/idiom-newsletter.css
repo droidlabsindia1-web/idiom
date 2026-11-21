@@ -4,13 +4,45 @@
    ============================================ */
 
 .idiom-newsletter {
+  position: relative;
+  overflow: hidden;
   background: var(--idiom-nl-bg, var(--idiom-cream, #fffbf3));
   color: var(--idiom-nl-text, var(--idiom-black, #1a1a1a));
   padding: var(--idiom-nl-pt, 96px) 48px var(--idiom-nl-pb, 96px);
 }
 
+/* --- Background image --- */
+.idiom-newsletter__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.idiom-newsletter__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--idiom-nl-bg-position, center center);
+}
+
+.idiom-newsletter__bg--mobile {
+  display: none;
+}
+
+.idiom-newsletter__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--idiom-nl-overlay, #000);
+  opacity: var(--idiom-nl-overlay-opacity, 0);
+}
+
 .idiom-newsletter__inner {
-  max-width: 1280px;
+  position: relative;
+  z-index: 1;
+  max-width: var(--idiom-nl-max, 1280px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -20,14 +52,14 @@
 
 .idiom-newsletter__heading {
   margin: 0;
-  font-family: var(--FONT-STACK-BODY);
+  font-family: var(--idiom-nl-heading-font, var(--FONT-STACK-BODY));
   font-weight: 400;
-  font-size: 30px;
+  font-size: var(--idiom-nl-heading-size, 30px);
   line-height: 0.98;
   letter-spacing: -0.055em;
-  color: inherit;
+  color: var(--idiom-nl-heading-color, inherit);
   text-transform: none;
-  max-width: 520px;
+  max-width: var(--idiom-nl-heading-max, 520px);
 }
 
 .idiom-newsletter__form-wrap {
@@ -166,7 +198,15 @@
   }
 
   .idiom-newsletter__heading {
-    font-size: 30px;
+    font-size: var(--idiom-nl-heading-size-mobile, 30px);
+  }
+
+  .idiom-newsletter__bg--desktop {
+    display: none;
+  }
+
+  .idiom-newsletter__bg--mobile {
+    display: block;
   }
 
   .idiom-newsletter__pill {
