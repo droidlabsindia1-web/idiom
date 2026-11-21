@@ -69,6 +69,27 @@
       "default": "Get directions"
     },
     {
+      "type": "text",
+      "id": "book_label",
+      "label": "Popup \"book a visit\" link label",
+      "info": "Shown when a booking link is set.",
+      "default": "Book a visit"
+    },
+    {
+      "type": "text",
+      "id": "maps_label",
+      "label": "Popup Google Maps button label",
+      "info": "Leave empty to hide.",
+      "default": "View in Google Maps"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_distance",
+      "label": "Show distance from visitor in popup",
+      "info": "Asks the visitor for their location when they open the popup. Needs latitude / longitude.",
+      "default": true
+    },
+    {
       "type": "header",
       "content": "Colors"
     },
@@ -175,6 +196,11 @@
           "id": "modal_note",
           "label": "Extra note",
           "info": "E.g. nearest tube station, accessibility info."
+        },
+        {
+          "type": "url",
+          "id": "book_url",
+          "label": "Book a visit link"
         }
       ]
     }

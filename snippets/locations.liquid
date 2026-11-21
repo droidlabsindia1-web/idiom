@@ -110,13 +110,16 @@
                     phone: block.settings.phone,
                     email: block.settings.email,
                     note: block.settings.modal_note,
-                    image: block.settings.image,
                     lat: block.settings.latitude,
                     lng: block.settings.longitude,
                     zoom: section.settings.map_zoom,
                     map_style: section.settings.map_style,
                     api_key: section.settings.maps_api_key,
-                    directions_label: section.settings.directions_label
+                    directions_label: section.settings.directions_label,
+                    book_label: section.settings.book_label,
+                    book_url: block.settings.book_url,
+                    maps_label: section.settings.maps_label,
+                    show_distance: section.settings.show_distance
                   -%}
                 </div>
               {%- endif -%}

@@ -108,3 +108,7 @@
 .location__map .idiom-store-locator__map {
   margin-top: 0;
 }
+/* With 2+ stores Flickity clips the slide; let the open store popover overflow it */
+.locations .flickity-viewport:has(.idiom-store-popover:not([hidden])) {
+  overflow: visible;
+}
