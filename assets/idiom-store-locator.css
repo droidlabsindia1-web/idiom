@@ -1,0 +1,309 @@
+/* ============================================
+   idiom — Store Locator (split content + map / media)
+   ============================================ */
+
+.idiom-store-locator {
+  background: var(--isl-bg, var(--idiom-cream));
+  color: var(--isl-text, var(--idiom-black));
+  padding: var(--isl-pt, 60px) 48px var(--isl-pb, 60px);
+}
+
+.idiom-store-locator__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.idiom-store-locator--media-left .idiom-store-locator__content {
+  order: 2;
+}
+
+/* --- Left: content --- */
+.idiom-store-locator__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.idiom-store-locator__eyebrow {
+  font-family: var(--FONT-STACK-BODY);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.idiom-store-locator__heading {
+  font-family: var(--FONT-STACK-HEADING);
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 0 0 32px;
+  color: inherit;
+}
+
+.idiom-store-locator__address {
+  font-family: var(--FONT-STACK-HEADING);
+  font-size: clamp(17px, 1.5vw, 22px);
+  font-weight: 700;
+  font-style: normal;
+  margin: 0 0 10px;
+}
+
+.idiom-store-locator__hours,
+.idiom-store-locator__desc {
+  font-family: var(--FONT-STACK-BODY);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.idiom-store-locator__hours p,
+.idiom-store-locator__desc p {
+  margin: 0;
+}
+
+.idiom-store-locator__desc {
+  margin-top: 16px;
+}
+
+/* --- Map --- */
+.idiom-store-locator__map {
+  position: relative;
+  width: 100%;
+  height: var(--isl-map-h, 260px);
+  margin-top: 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #c9d0d9;
+}
+
+.idiom-store-locator__map-canvas,
+.idiom-store-locator__map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Custom red pin overlaid on the keyless embed (sits over the embed's own pin) */
+.idiom-store-locator__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 40px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform: translate(-50%, -100%);
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+  transition: transform 0.2s ease;
+}
+
+.idiom-store-locator__pin:hover,
+.idiom-store-locator__pin:focus-visible {
+  transform: translate(-50%, -100%) scale(1.1);
+}
+
+.idiom-store-locator__pin svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.idiom-store-locator__map-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #4a5160;
+}
+
+/* --- Right: media --- */
+.idiom-store-locator__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--isl-media-ratio, 1 / 1);
+  overflow: hidden;
+  border-radius: var(--isl-media-radius, 0);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.idiom-store-locator__media img,
+.idiom-store-locator__media video,
+.idiom-store-locator__media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+/* --- Store details modal --- */
+.idiom-store-modal {
+  width: min(92vw, 420px);
+  max-height: 90vh;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: var(--idiom-cream);
+  color: var(--idiom-black);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+}
+
+.idiom-store-modal::backdrop {
+  background: rgba(26, 26, 26, 0.55);
+}
+
+.idiom-store-modal[open] {
+  animation: idiom-store-modal-in 0.22s ease-out;
+}
+
+@keyframes idiom-store-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.idiom-store-modal__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.idiom-store-modal__body {
+  padding: 24px;
+}
+
+.idiom-store-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--idiom-white);
+  color: var(--idiom-black);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.idiom-store-modal__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 40px 16px 0;
+}
+
+.idiom-store-modal__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.idiom-store-modal__item {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.idiom-store-modal__item svg {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--idiom-olive);
+}
+
+.idiom-store-modal__item p {
+  margin: 0;
+}
+
+.idiom-store-modal__item a {
+  color: inherit;
+}
+
+.idiom-store-modal__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 22px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--idiom-olive);
+  color: var(--idiom-white);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.idiom-store-modal__cta:hover {
+  background: var(--idiom-olive-dark);
+}
+
+/* --- Tablet --- */
+@media (max-width: 768px) {
+  .idiom-store-locator {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .idiom-store-locator__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Media first on stacked layouts so the store front leads */
+  .idiom-store-locator__media {
+    order: -1;
+  }
+
+  .idiom-store-locator--media-left .idiom-store-locator__content {
+    order: 0;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 480px) {
+  .idiom-store-locator {
+    padding: 40px 16px;
+  }
+
+  .idiom-store-locator__heading {
+    margin-bottom: 20px;
+  }
+
+  .idiom-store-locator__map {
+    height: min(var(--isl-map-h, 260px), 240px);
+  }
+}
