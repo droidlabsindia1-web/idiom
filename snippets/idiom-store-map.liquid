@@ -58,12 +58,41 @@
     {%- if map_query != blank -%}
       <iframe
         data-map-fallback
+        data-embed-base="https://maps.google.com/maps?q={{ map_query }}&output=embed"
         src="https://maps.google.com/maps?q={{ map_query }}&z={{ zoom }}&output=embed"
         title="{{ 'Map showing' | append: ' ' | append: name | escape }}"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         tabindex="-1"
       ></iframe>
+
+      {%- comment -%}
+        The keyless embed is click-through (so the pin stays locked on the store):
+        clicking the map — including Google's own "Open in Maps" / satellite /
+        fullscreen controls — opens the store in Google Maps instead.
+      {%- endcomment -%}
+      <a
+        class="idiom-store-locator__map-link"
+        data-map-fallback
+        href="{{ maps_url }}"
+        target="_blank"
+        rel="noopener"
+        aria-label="{{ 'Open' | append: ' ' | append: name | append: ' in Google Maps' | escape }}"
+      ></a>
+
+      <div class="idiom-store-locator__zoom" data-map-fallback>
+        <button type="button" data-zoom-step="1" aria-label="Zoom in">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+            <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" data-zoom-step="-1" aria-label="Zoom out">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+            <path d="M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
       <button
         type="button"
         class="idiom-store-locator__pin"

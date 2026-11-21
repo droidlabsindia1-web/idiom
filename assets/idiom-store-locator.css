@@ -97,6 +97,54 @@
   pointer-events: none;
 }
 
+/* Keyless embed: whole map opens Google Maps (embed itself is click-through) */
+.idiom-store-locator__map-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Keyless embed: our own zoom control, top-right (clear of Google's controls) */
+.idiom-store-locator__zoom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.idiom-store-locator__zoom button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.idiom-store-locator__zoom button + button {
+  border-top: 1px solid rgba(26, 26, 26, 0.12);
+}
+
+.idiom-store-locator__zoom button:hover {
+  background: #f3efe6;
+}
+
+.idiom-store-locator__zoom button:disabled {
+  color: rgba(26, 26, 26, 0.3);
+  cursor: default;
+}
+
 /* Custom red pin overlaid on the keyless embed (sits over the embed's own pin) */
 .idiom-store-locator__pin {
   position: absolute;
@@ -172,9 +220,10 @@
 
 .idiom-store-popover {
   position: absolute;
-  left: 50%;
-  /* pin tip sits at the map centre; pin is 52px tall, plus room for the arrow */
-  bottom: calc(50% + 64px);
+  /* anchored to the pin tip: map centre by default, JS map updates --pin-x/--pin-y.
+     Pin is 52px tall, plus room for the arrow. */
+  left: var(--pop-x, var(--pin-x, 50%));
+  bottom: calc(100% - var(--pin-y, 50%) + 64px);
   z-index: 20;
   /* never wider than the map it's centred on, so it can't spill off-screen on mobile */
   width: min(340px, 100%);
@@ -218,8 +267,8 @@
 .idiom-store-map:has(.idiom-store-popover:not([hidden]))::after {
   content: "";
   position: absolute;
-  left: 50%;
-  bottom: calc(50% + 55px);
+  left: var(--pin-x, 50%);
+  bottom: calc(100% - var(--pin-y, 50%) + 55px);
   z-index: 21;
   width: 0;
   height: 0;

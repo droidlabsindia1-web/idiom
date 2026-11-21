@@ -107,6 +107,16 @@
         btn.addEventListener('click', () => this.close(true));
       });
 
+      // Keyless embed: zoom by reloading the iframe at a new zoom level.
+      // The embed always centres on the store, so the overlaid pin stays on it.
+      this.embedZoom = parseInt(this.mapEl && this.mapEl.dataset.zoom, 10) || 16;
+      this.querySelectorAll('[data-zoom-step]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.zoomEmbed(parseInt(btn.dataset.zoomStep, 10));
+        });
+      });
+
       if (!this.mapEl || !this.mapEl.dataset.apiKey) return;
 
       // Lazy-init the JS map when it nears the viewport (saves API loads)
@@ -128,7 +138,24 @@
 
     disconnectedCallback() {
       if (this.io) this.io.disconnect();
+      if (this.onFullscreen) {
+        document.removeEventListener('fullscreenchange', this.onFullscreen);
+        document.removeEventListener('webkitfullscreenchange', this.onFullscreen);
+      }
       this.close(false);
+    }
+
+    zoomEmbed(step) {
+      var iframe = this.mapEl.querySelector('iframe[data-embed-base]');
+      if (!iframe) return;
+      var next = Math.min(21, Math.max(3, this.embedZoom + step));
+      if (next === this.embedZoom) return;
+      this.embedZoom = next;
+      iframe.src = iframe.dataset.embedBase + '&z=' + next;
+      this.querySelectorAll('[data-zoom-step]').forEach((btn) => {
+        var s = parseInt(btn.dataset.zoomStep, 10);
+        btn.disabled = (s > 0 && next >= 21) || (s < 0 && next <= 3);
+      });
     }
 
     get isOpen() {
@@ -144,10 +171,8 @@
       if (!this.popoverEl || this.isOpen) return;
       this.trigger = trigger && trigger.focus ? trigger : null;
 
-      // JS map: bring the marker back to centre so the popover arrow points at it
-      if (this.map && this.position) this.map.setCenter(this.position);
-
       this.popoverEl.hidden = false;
+      this.positionPopover();
       if (this.trigger) this.trigger.setAttribute('aria-expanded', 'true');
       var closeBtn = this.popoverEl.querySelector('[data-popover-close]');
       if (closeBtn) closeBtn.focus({ preventScroll: true });
@@ -179,7 +204,33 @@
     }
 
     onDocClick(e) {
-      if (!this.popoverEl.contains(e.target)) this.close(false);
+      if (this.popoverEl.contains(e.target)) return;
+      // On the live map, clicks on controls (zoom, map type...) keep it open;
+      // a click on the map itself closes it via the map's own click listener
+      if (this.map && this.mapEl.contains(e.target)) return;
+      this.close(false);
+    }
+
+    // Live map only: pin the popover to the marker's on-screen position.
+    // (The keyless embed keeps the CSS default: marker at the map centre.)
+    positionPopover() {
+      if (!this.map || !this.overlay || !this.isOpen) return;
+      var proj = this.overlay.getProjection();
+      if (!proj) return;
+      var pt = proj.fromLatLngToContainerPixel(new google.maps.LatLng(this.position));
+      var box = this.map.getDiv(); // also correct while the map is fullscreen
+      var w = box.clientWidth;
+      var h = box.clientHeight;
+      if (pt.x < 0 || pt.x > w || pt.y < 0 || pt.y > h) {
+        this.close(false); // marker scrolled out of view
+        return;
+      }
+      this.style.setProperty('--pin-x', pt.x + 'px');
+      this.style.setProperty('--pin-y', pt.y + 'px');
+      // Keep the card itself inside the map; the arrow stays on the pin
+      var half = this.popoverEl.offsetWidth / 2;
+      var popX = half * 2 >= w ? w / 2 : Math.min(Math.max(pt.x, half), w - half);
+      this.style.setProperty('--pop-x', popX + 'px');
     }
 
     onKeydown(e) {
@@ -222,9 +273,19 @@
             styles: d.style === 'muted' ? MUTED_STYLE : null,
             disableDefaultUI: true,
             zoomControl: true,
+            mapTypeControl: true,
+            mapTypeControlOptions: { style: maps.MapTypeControlStyle.HORIZONTAL_BAR },
+            fullscreenControl: true,
             gestureHandling: 'cooperative',
             clickableIcons: false
           });
+
+          // Empty overlay just to get at the map's pixel projection
+          this.overlay = new maps.OverlayView();
+          this.overlay.onAdd = function () {};
+          this.overlay.draw = function () {};
+          this.overlay.onRemove = function () {};
+          this.overlay.setMap(this.map);
 
           var marker = new maps.Marker({
             position: this.position,
@@ -241,9 +302,20 @@
             this.toggle(null);
           });
 
-          // The popover is anchored to the map centre, so close it once the map moves
-          this.map.addListener('dragstart', () => this.close(false));
-          this.map.addListener('zoom_changed', () => this.close(false));
+          // Keep the popover on the marker as the map pans / zooms
+          this.map.addListener('bounds_changed', () => this.positionPopover());
+          this.map.addListener('click', () => this.close(false));
+
+          // Fullscreen shows only the map element, so carry the popover into it
+          this.popoverHome = this.popoverEl.parentNode;
+          this.onFullscreen = () => {
+            var fs = document.fullscreenElement || document.webkitFullscreenElement;
+            if (fs && this.mapEl.contains(fs)) fs.appendChild(this.popoverEl);
+            else if (this.popoverEl.parentNode !== this.popoverHome) this.popoverHome.appendChild(this.popoverEl);
+            this.positionPopover();
+          };
+          document.addEventListener('fullscreenchange', this.onFullscreen);
+          document.addEventListener('webkitfullscreenchange', this.onFullscreen);
 
           // Swap the embed fallback out for the live map
           this.mapEl.querySelectorAll('[data-map-fallback]').forEach((el) => el.remove());
