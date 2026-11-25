@@ -87,7 +87,7 @@
         "phrase_2": {
           "type": "phrase",
           "settings": {
-            "text": "go your own way…"
+            "text": "go your own way"
           }
         },
         "phrase_3": {
@@ -155,7 +155,7 @@
       "settings": {
         "collection": "",
         "max_products": 3,
-        "heading": "meet some current favourites…",
+        "heading": "what's trending",
         "subtext": "",
         "show_price": false
       }
@@ -166,7 +166,7 @@
         "height": "six-fifty-height",
         "enable_mobile_height": true,
         "mobile_height": "five-fifty-height-mobile",
-        "image": "shopify://shop_images/2_a0b17689-efe8-41e5-ab68-e86c10d9aebd.png",
+        "image": "shopify://shop_images/idiom_desktop_bannerjgu.jpg",
         "image_mobile": "shopify://shop_images/MOBILE_BANNER_-_IDIOMlime.png",
         "overlay_opacity": 20,
         "transition": "zoom-out",
@@ -301,8 +301,8 @@
       ],
       "name": "idiom Product Trio",
       "settings": {
-        "heading": "not sure how to layer?",
-        "subtext": "try our perfectly paired duos..."
+        "heading": "meet the duos",
+        "subtext": "Two idioms that layer beautifully. Together in one set."
       }
     },
     "idiom-loyalty": {

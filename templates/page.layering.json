@@ -1,0 +1,714 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "bg_color": "",
+        "gradient": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "idiom_brand_story_BXbpXA": {
+      "type": "idiom-brand-story",
+      "blocks": {
+        "phrase_6TRrNe": {
+          "type": "phrase",
+          "settings": {
+            "text": "smell like no one else™"
+          }
+        },
+        "phrase_DKjVbG": {
+          "type": "phrase",
+          "settings": {
+            "text": "go your own way"
+          }
+        },
+        "phrase_iq7k8G": {
+          "type": "phrase",
+          "settings": {
+            "text": "layer or wear solo"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_6TRrNe",
+        "phrase_DKjVbG",
+        "phrase_iq7k8G"
+      ],
+      "name": "Brand Story",
+      "settings": {
+        "butterfly_image": "shopify://shop_images/Group_5.png",
+        "moon_image": "shopify://shop_images/group6.png",
+        "heading": "Smell like no one else™",
+        "subline": "",
+        "body": "Layering lets you customise a fragrance and make it your own. Why have a signature scent when you can have a fragrance wardrobe?  layer. wear solo. suit yourself.",
+        "cta_label": "shop now",
+        "cta_url": "shopify://collections/shop-everything",
+        "grid_heading": "",
+        "grid_subtext": ""
+      }
+    },
+    "section_banner_image_WtnRAH": {
+      "type": "section-banner-image",
+      "disabled": true,
+      "name": "Banner image",
+      "settings": {
+        "height": "four-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "four-fifty-height-mobile",
+        "image": "shopify://shop_images/Screenshot_2026-11-11_at_15.52.33.png",
+        "overlay_opacity": 10,
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": true,
+        "increase_border_radius": true,
+        "content_width": 80,
+        "text_position": "left",
+        "text_alignment": "text-left",
+        "text_color": "text-light",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "heading": "Smell like no one else™",
+        "subtext": "Why have a signature scent when you can have a fragrance wardrobe? Brighter for Monday morning. Darker for Friday drinks. Flowers whenever you like.That’s layering. Suit yourself. ",
+        "cta_label": "",
+        "cta_url": ""
+      }
+    },
+    "section_text_zCGMdN": {
+      "type": "section-text",
+      "blocks": {
+        "subheading_AeqVPA": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Subheading</p>",
+            "size": 100,
+            "margin_bottom": 16
+          }
+        },
+        "heading_rJm9Mi": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Smell like no one else™</p>",
+            "size": 100,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        },
+        "text_cJmRA7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Why have a signature scent when you can have a fragrance wardrobe?</p><p>Brighter for Monday morning. Darker for Friday drinks. Flowers whenever you like.&lt;br&gt;</p><p>That’s layering. Suit yourself.&nbsp;</p>",
+            "size": 100
+          }
+        },
+        "button_kijVJN": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_text": "Read More",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_AeqVPA",
+        "heading_rJm9Mi",
+        "text_cJmRA7",
+        "button_kijVJN"
+      ],
+      "disabled": true,
+      "name": "Text",
+      "settings": {
+        "text_position": "center",
+        "bg_color": "",
+        "gradient": "",
+        "text_color": "text-dark",
+        "width": "wrapper--narrow",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_with_text_xmDQ9n": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading_fWf7Jd": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>how to layer</p>",
+            "size": 120,
+            "text_position": "left",
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": "",
+            "spacing_bottom": 12
+          }
+        },
+        "text_W7VL7z": {
+          "type": "text",
+          "settings": {
+            "text": "<p>wear an idiom solo. layer two or three together. or wear one over something you already own. Just go your way, follow your nose.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button_DTzg6i": {
+          "type": "button",
+          "settings": {
+            "button_text": "start layering",
+            "button_link": "shopify://collections/shop-everything",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading_fWf7Jd",
+        "text_W7VL7z",
+        "button_DTzg6i"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-11-11_at_13.21.10.jpg",
+        "block_bg_color": "",
+        "text_color": "text-dark",
+        "bg_color": "",
+        "gradient": "",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_overlapping_images_8ChXrD": {
+      "type": "section-overlapping-images",
+      "name": "Overlapping images",
+      "settings": {
+        "text_position": "left",
+        "text_alignment": "center",
+        "images_width": 750,
+        "images_offset": 60,
+        "image_1": "shopify://shop_images/WhatsApp_Image_2026-11-11_at_13.21.19.jpg",
+        "image_link_1": "",
+        "image_2": "shopify://shop_images/WhatsApp_Image_2026-11-11_at_13.21.14.jpg",
+        "image_link_2": "",
+        "hide_image_2": false,
+        "subheading": "",
+        "title": "<p>a few pointers</p>",
+        "heading_size": 100,
+        "heading_highlight_type": "underline-hand-drawn",
+        "highlight_color": "#000",
+        "highlight_text_color": "",
+        "description": "<ul><li>Start with finding an idiom you love</li><li>Then add brightness, bloom, smoke or spice with a second idiom</li><li>Dial it up and down if you want more rose, more lime or more smoke</li></ul>",
+        "text_size": 100,
+        "button_text": "",
+        "button_link": "",
+        "button_color": "btn--black",
+        "button_style": "btn--solid",
+        "button_size": "btn--medium",
+        "video_text": "",
+        "video_link": "",
+        "bg_color": "",
+        "gradient": "",
+        "animation": "horizontal",
+        "animation_intensity": 50,
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "idiom_brand_story_MnWgnk": {
+      "type": "idiom-brand-story",
+      "blocks": {
+        "phrase_7WNttC": {
+          "type": "phrase",
+          "settings": {
+            "text": "smell like no one else™"
+          }
+        },
+        "phrase_48pkeC": {
+          "type": "phrase",
+          "settings": {
+            "text": "go your own way"
+          }
+        },
+        "phrase_GCeL8Q": {
+          "type": "phrase",
+          "settings": {
+            "text": "layer or wear solo"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_7WNttC",
+        "phrase_48pkeC",
+        "phrase_GCeL8Q"
+      ],
+      "name": "Brand Story",
+      "settings": {
+        "butterfly_image": "shopify://shop_images/1_c4d0fbf5-e5d2-43fc-bba0-f6841fca5da5.png",
+        "moon_image": "shopify://shop_images/4_98de9911-5922-4f87-999e-1f1c83e77ed4.png",
+        "heading": "Customise a fragrance you already own",
+        "subline": "",
+        "body": "Layer to make it yours. Add lime for brightness, rose for bloom, pepper for heat, vetiver for green depth, Palo Santal for creamy woods, or Hyde for smoke and leather.",
+        "cta_label": "shop now",
+        "cta_url": "shopify://collections/shop-everything",
+        "grid_heading": "",
+        "grid_subtext": ""
+      }
+    },
+    "section_image_with_text_wfV48a": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading_Af4bCe": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>or take it into 3D</p>",
+            "size": 120,
+            "text_position": "left",
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": "",
+            "spacing_bottom": 12
+          }
+        },
+        "text_6TK6JA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>on its own, 3D is a modernist skin scent. over a fragrance it makes it rounder, softer and more enveloping, without losing what you loved about it.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button_6FmHMe": {
+          "type": "button",
+          "settings": {
+            "button_text": "shop 3D",
+            "button_link": "shopify://products/3d",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading_Af4bCe",
+        "text_6TK6JA",
+        "button_6FmHMe"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/2_e010f499-27d3-4e29-8068-8887f8341a4e.png",
+        "block_bg_color": "",
+        "text_color": "text-dark",
+        "bg_color": "",
+        "gradient": "",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_list_collection_k64XKb": {
+      "type": "section-list-collection",
+      "blocks": {
+        "collection_cdUwcT": {
+          "type": "collection",
+          "settings": {
+            "collection": "fresh",
+            "custom_collection_image": "shopify://shop_images/idiom-fresh.png",
+            "heading": "Fresh: adds lift, brightness and sunshine",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Q3QQUf": {
+          "type": "collection",
+          "settings": {
+            "collection": "floral",
+            "custom_collection_image": "shopify://shop_images/idiom-floral-original-screenshot.png",
+            "heading": "Floral: adds bloom, softness and colour",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_Y86yrF": {
+          "type": "collection",
+          "settings": {
+            "collection": "spicy",
+            "custom_collection_image": "shopify://shop_images/idiom-spicy.png",
+            "heading": "Spicy: adds warmth, bite and a twist",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_DBpCVW": {
+          "type": "collection",
+          "settings": {
+            "collection": "woody",
+            "custom_collection_image": "shopify://shop_images/idiom-woody.png",
+            "heading": "Woody: adds depth, warmth and soul",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_M7nkq6": {
+          "type": "collection",
+          "settings": {
+            "collection": "juicy",
+            "custom_collection_image": "shopify://shop_images/idiom-juicy.png",
+            "heading": "Juicy: adds roundness, texture and allure",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_V66tGh": {
+          "type": "collection",
+          "settings": {
+            "collection": "smoke",
+            "custom_collection_image": "shopify://shop_images/WhatsApp_Image_2026-11-02_at_10.28.56.jpg",
+            "heading": "Smoke: adds shadow, depth and intrigue",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_MbkUfG": {
+          "type": "collection",
+          "settings": {
+            "collection": "amber",
+            "custom_collection_image": "shopify://shop_images/idiom-amber.png",
+            "heading": "Amber: adds intimacy and reverb",
+            "block_text_color": "",
+            "bg_color": "",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "collection_cdUwcT",
+        "collection_Q3QQUf",
+        "collection_Y86yrF",
+        "collection_DBpCVW",
+        "collection_M7nkq6",
+        "collection_V66tGh",
+        "collection_MbkUfG"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "title": "Layer by mood…",
+        "heading_size": 100,
+        "layout": "carousel",
+        "alignment": "center",
+        "collections_per_row": 4,
+        "columns_mobile": "1",
+        "image_shape": "circle",
+        "image_aspect_ratio": 1,
+        "enable_product_count": false,
+        "text_size": 130,
+        "overlay_text": false,
+        "enable_slider_mobile": true,
+        "section_bg_color": "",
+        "gradient": "",
+        "section_text_color": "",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "section_products_list_8fKVqf": {
+      "type": "section-products-list",
+      "blocks": {
+        "product_jX9aaL": {
+          "type": "product",
+          "settings": {
+            "product": "discovery-kit",
+            "title": "",
+            "product_description": "<p>Try them all and find the combinations you love. 7 fragrances 120 combinations.</p>",
+            "button_text": "shop the layering kit",
+            "show_second_image": true,
+            "image_1": "shopify://shop_images/55.png",
+            "show_circle": true,
+            "hide_on_mobile": false,
+            "circle_text_color": "#000000",
+            "circle_rotate_animation": "rotate-on-scroll",
+            "circle_text": "idiom ~ layering made easy ~",
+            "circle_word_spacing": 1,
+            "circle_size": 150
+          }
+        },
+        "product_LLwHVY": {
+          "type": "product",
+          "settings": {
+            "product": "lime-bossa-x-vetiver-ace-duo",
+            "title": "DUOs",
+            "product_description": "<p>Ready-made pairings. Wear them together or on their own.</p>",
+            "button_text": "View Product",
+            "show_second_image": true,
+            "image_1": "shopify://shop_images/limevt.png",
+            "show_circle": true,
+            "hide_on_mobile": false,
+            "circle_text_color": "#000000",
+            "circle_rotate_animation": "rotate-on-scroll",
+            "circle_text": "New Arrival ~ New Arrival ~",
+            "circle_word_spacing": 3,
+            "circle_size": 150
+          }
+        },
+        "product_kjKYny": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "title": "",
+            "product_description": "",
+            "button_text": "View Product",
+            "show_second_image": true,
+            "show_circle": true,
+            "hide_on_mobile": false,
+            "circle_text_color": "#000000",
+            "circle_rotate_animation": "rotate-on-scroll",
+            "circle_text": "New Arrival ~ New Arrival ~",
+            "circle_word_spacing": 3,
+            "circle_size": 150
+          }
+        }
+      },
+      "block_order": [
+        "product_jX9aaL",
+        "product_LLwHVY",
+        "product_kjKYny"
+      ],
+      "disabled": true,
+      "name": "Products list",
+      "settings": {
+        "title": "",
+        "heading_size": 100,
+        "button_color": "btn--black",
+        "button_style": "btn--solid",
+        "button_size": "btn--medium",
+        "image_aspect_ratio": 1.4,
+        "bg_color": "",
+        "gradient": "",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_columns_ADcbDf": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_T7Ep9L": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/55.png",
+            "title": "The layering kit",
+            "heading_size": 120,
+            "text": "<p>Try them all and find the combinations you love. 7 fragrances 120 combinations.</p>",
+            "text_size": 100,
+            "button_text": "shop the layering kit",
+            "button_link": "shopify://products/discovery-kit",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        },
+        "text_block_KkRaqn": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/16_3770a1bc-c6a6-4fc0-a501-d4255c19bc5e.png",
+            "title": "duos and trios",
+            "heading_size": 120,
+            "text": "<p>Ready-made pairings. Wear them together or on their own.</p>",
+            "text_size": 100,
+            "button_text": "shop duos and trios",
+            "button_link": "shopify://products/discovery-kit",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        },
+        "text_block_zWLTeq": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/1_to_1.png",
+            "title": "try it with us",
+            "heading_size": 120,
+            "text": "<p>Come to Soho for a 1:1 scent appointment or a layering evening. Bring a fragrance you already</p><p>wear, if you like. Meet Bob the tiger.</p>",
+            "text_size": 100,
+            "button_text": "book an appointment",
+            "button_link": "shopify://pages/store",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--medium",
+            "video_link_popup": "",
+            "video_link_color": "text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_T7Ep9L",
+        "text_block_KkRaqn",
+        "text_block_zWLTeq"
+      ],
+      "name": "Text columns with images",
+      "settings": {
+        "title": "Layering made easy",
+        "heading_size": 100,
+        "align_text": "text-center",
+        "columns": 3,
+        "columns_mobile": "1",
+        "show_images": true,
+        "show_borders": false,
+        "equalize_height": true,
+        "desktop_aspect_ratio": 1.2,
+        "mobile_aspect_ratio": 1.2,
+        "bg_color": "",
+        "gradient": "",
+        "color_borders": "#000",
+        "layout_mobile": "carousel",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "section_accordions_rmVEL8": {
+      "type": "section-accordions",
+      "blocks": {
+        "text_RfL9Ab": {
+          "type": "text",
+          "settings": {
+            "title": "Do I have to layer idiom?",
+            "text": "<p>No. Every idiom is made to wear on its own too.</p>"
+          }
+        },
+        "text_JThP9a": {
+          "type": "text",
+          "settings": {
+            "title": "Why is idiom good for layering?",
+            "text": "<p>Each idiom is built around one compelling ingredient, with nothing crowding it out.</p><p>We call them single-minded fragrances, and it’s what makes them so good for layering. Two busy fragrances fight. Two focused ones get on.</p>"
+          }
+        },
+        "text_RjtjWk": {
+          "type": "text",
+          "settings": {
+            "title": "Can I layer with another brand?",
+            "text": "<p>Yes. Please do. Try an idiom over something you already own and see what it brings out.</p>"
+          }
+        },
+        "text_VEainY": {
+          "type": "text",
+          "settings": {
+            "title": "Which goes on first?",
+            "text": "<p>The one you want to lead. 3D always goes on top. Unless you want it to go underneath.</p>"
+          }
+        },
+        "text_JjnQjx": {
+          "type": "text",
+          "settings": {
+            "title": "Do I mix them in the bottle?",
+            "text": "<p>Please don’t. Layer on your skin, so you can change it each time.</p>"
+          }
+        },
+        "text_wjPUTC": {
+          "type": "text",
+          "settings": {
+            "title": "Not sure where to start?",
+            "text": "<p>Try one of the pairings above, or come and smell them with us in Soho.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_RfL9Ab",
+        "text_JThP9a",
+        "text_RjtjWk",
+        "text_VEainY",
+        "text_JjnQjx",
+        "text_wjPUTC"
+      ],
+      "name": "Accordions",
+      "settings": {
+        "layout": "two-columns",
+        "show_accordion_divider": false,
+        "line_thickness": "normal",
+        "subheading": "",
+        "title": "A few questions",
+        "type_style": "font-heading",
+        "heading_size": 100,
+        "text": "",
+        "tabs_bg_color": "#999843",
+        "bg_color": "",
+        "gradient": "",
+        "text_color": "text-dark",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "idiom_brand_story_BXbpXA",
+    "section_banner_image_WtnRAH",
+    "section_text_zCGMdN",
+    "section_image_with_text_xmDQ9n",
+    "section_overlapping_images_8ChXrD",
+    "idiom_brand_story_MnWgnk",
+    "section_image_with_text_wfV48a",
+    "section_list_collection_k64XKb",
+    "section_products_list_8fKVqf",
+    "section_columns_ADcbDf",
+    "section_accordions_rmVEL8"
+  ]
+}
