@@ -1,0 +1,221 @@
+/* ============================================
+   idiom newsletter — footer group strip
+   Heading left, pill-shaped email field right
+   ============================================ */
+
+.idiom-newsletter {
+  position: relative;
+  overflow: hidden;
+  background: var(--idiom-nl-bg, var(--idiom-cream, #fffbf3));
+  color: var(--idiom-nl-text, var(--idiom-black, #1a1a1a));
+  padding: var(--idiom-nl-pt, 96px) 48px var(--idiom-nl-pb, 96px);
+}
+
+/* --- Background image --- */
+.idiom-newsletter__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.idiom-newsletter__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--idiom-nl-bg-position, center center);
+}
+
+.idiom-newsletter__bg--mobile {
+  display: none;
+}
+
+.idiom-newsletter__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--idiom-nl-overlay, #000);
+  opacity: var(--idiom-nl-overlay-opacity, 0);
+}
+
+.idiom-newsletter__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--idiom-nl-max, 1280px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px 80px;
+}
+
+.idiom-newsletter__heading {
+  margin: 0;
+  font-family: var(--idiom-nl-heading-font, var(--FONT-STACK-BODY));
+  font-weight: var(--idiom-nl-heading-weight, 400);
+  font-size: var(--idiom-nl-heading-size, 30px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  color: var(--idiom-nl-heading-color, inherit);
+  text-transform: none;
+  max-width: var(--idiom-nl-heading-max, 520px);
+}
+
+.idiom-newsletter__form-wrap {
+  width: 100%;
+  max-width: 560px;
+  justify-self: end;
+}
+
+.idiom-newsletter__form {
+  margin: 0;
+}
+
+.idiom-newsletter__pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid var(--idiom-nl-field-border, #1a1a1a);
+  border-radius: 999px;
+  background: var(--idiom-nl-field-bg, #fffbf3);
+  color: var(--idiom-nl-field-text, #1a1a1a);
+  transition: box-shadow 0.2s ease;
+}
+
+.idiom-newsletter__pill:focus-within {
+  box-shadow: 0 0 0 1px var(--idiom-nl-field-border, #1a1a1a);
+}
+
+.idiom-newsletter .idiom-newsletter__input {
+  flex: 1;
+  min-width: 0;
+  height: 54px;
+  margin: 0;
+  padding: 0 8px 0 28px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font-family: var(--FONT-STACK-BODY);
+  font-size: 16px; /* 16px prevents iOS zoom on focus */
+  letter-spacing: 0;
+  outline: none;
+}
+
+.idiom-newsletter .idiom-newsletter__input::placeholder {
+  color: inherit;
+  opacity: 1;
+}
+
+.idiom-newsletter .idiom-newsletter__input:focus::placeholder {
+  opacity: 0.45;
+}
+
+.idiom-newsletter__submit {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.idiom-newsletter__submit:hover,
+.idiom-newsletter__submit:focus-visible {
+  background: var(--idiom-nl-field-text, #1a1a1a);
+  color: var(--idiom-nl-field-bg, #fffbf3);
+  outline: none;
+}
+
+.idiom-newsletter__message {
+  margin: 12px 0 0 28px;
+  font-family: var(--FONT-STACK-BODY);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.idiom-newsletter__message--success {
+  margin: 0;
+  font-size: 18px;
+}
+
+.idiom-newsletter__message--error {
+  color: #a3261b;
+}
+
+.idiom-newsletter__disclaimer {
+  margin: 12px 0 0 28px;
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+.idiom-newsletter__disclaimer p {
+  margin: 0;
+}
+
+.idiom-newsletter__disclaimer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* --- Tablet --- */
+@media only screen and (max-width: 768px) {
+  .idiom-newsletter {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .idiom-newsletter__inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .idiom-newsletter__form-wrap {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+/* --- Mobile --- */
+@media only screen and (max-width: 480px) {
+  .idiom-newsletter {
+    padding: min(var(--idiom-nl-pt, 96px), 56px) 16px
+      min(var(--idiom-nl-pb, 96px), 56px);
+  }
+
+  .idiom-newsletter__heading {
+    font-size: var(--idiom-nl-heading-size-mobile, 30px);
+  }
+
+  .idiom-newsletter__bg--desktop {
+    display: none;
+  }
+
+  .idiom-newsletter__bg--mobile {
+    display: block;
+  }
+
+  .idiom-newsletter__pill {
+    min-height: 52px;
+  }
+
+  .idiom-newsletter .idiom-newsletter__input {
+    height: 50px;
+    padding-left: 22px;
+  }
+}

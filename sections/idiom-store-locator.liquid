@@ -1,0 +1,408 @@
+{%- comment -%}
+  idiom — Store Locator
+  Split layout: left = eyebrow / heading / address / hours + Google map with red pin,
+  right = image, GIF or video. Clicking the pin opens a store-details modal.
+
+  Map modes:
+  - Google Maps API key set + latitude/longitude → interactive JS map with a custom red marker.
+  - No key → keyless Google Maps embed (static preview) with a red pin button on top.
+{%- endcomment -%}
+
+{{ 'idiom-store-locator.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+  assign store_name = s.store_name | default: s.heading
+
+  assign media_class = ''
+  if s.media_position == 'left'
+    assign media_class = ' idiom-store-locator--media-left'
+  endif
+-%}
+
+<div
+  class="idiom-store-locator{{ media_class }}"
+  style="
+    --isl-bg: {{ s.bg_color }};
+    --isl-text: {{ s.text_color }};
+    --isl-pt: {{ s.padding_top }}px;
+    --isl-pb: {{ s.padding_bottom }}px;
+    --isl-map-h: {{ s.map_height }}px;
+    --isl-media-ratio: {{ s.media_ratio }};
+    --isl-media-radius: {{ s.media_radius }}px;
+  "
+>
+  <div class="idiom-store-locator__inner">
+    {%- comment -%} Left: content + map {%- endcomment -%}
+    <div class="idiom-store-locator__content">
+      {%- if s.eyebrow != blank -%}
+        <p class="idiom-store-locator__eyebrow">{{ s.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if s.heading != blank -%}
+        <h2 class="idiom-store-locator__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+
+      {%- if s.address != blank -%}
+        <address class="idiom-store-locator__address">{{ s.address }}</address>
+      {%- endif -%}
+
+      {%- if s.hours != blank -%}
+        <div class="idiom-store-locator__hours">{{ s.hours }}</div>
+      {%- endif -%}
+
+      {%- if s.description != blank -%}
+        <div class="idiom-store-locator__desc">{{ s.description }}</div>
+      {%- endif -%}
+
+      {%- if s.show_map -%}
+        {%- render 'idiom-store-map',
+          id: section.id,
+          name: store_name,
+          address: s.address,
+          hours: s.hours,
+          phone: s.phone,
+          email: s.email,
+          note: s.modal_note,
+          lat: s.latitude,
+          lng: s.longitude,
+          zoom: s.map_zoom,
+          map_style: s.map_style,
+          api_key: s.maps_api_key,
+          directions_label: s.directions_label,
+          book_label: s.book_label,
+          book_url: s.book_url,
+          maps_label: s.maps_label,
+          show_distance: s.show_distance
+        -%}
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Right: image / GIF / video {%- endcomment -%}
+    <div class="idiom-store-locator__media">
+      {%- if s.media_type == 'video' and s.video != blank -%}
+        {{
+          s.video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            playsinline: true,
+            controls: false,
+            preload: 'metadata',
+            image_size: '1400x'
+        }}
+      {%- elsif s.media_type == 'video_url' and s.video_url != blank -%}
+        {%- if s.video_url.type == 'youtube' -%}
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/{{ s.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ s.video_url.id }}&controls=0&playsinline=1&rel=0"
+            title="{{ store_name | escape }}"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        {%- elsif s.video_url.type == 'vimeo' -%}
+          <iframe
+            src="https://player.vimeo.com/video/{{ s.video_url.id }}?background=1&autoplay=1&loop=1&muted=1"
+            title="{{ store_name | escape }}"
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        {%- endif -%}
+      {%- elsif s.image != blank -%}
+        {%- assign alt = s.image.alt | default: store_name -%}
+        {%- if s.image.src contains '.gif' -%}
+          {%- comment -%} Single source keeps GIF animation intact {%- endcomment -%}
+          <img
+            src="{{ s.image | image_url: width: 1600 }}"
+            alt="{{ alt | escape }}"
+            width="{{ s.image.width }}"
+            height="{{ s.image.height }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{
+            s.image
+            | image_url: width: 1800
+            | image_tag:
+              loading: 'lazy',
+              alt: alt,
+              widths: '480, 720, 960, 1200, 1500, 1800',
+              sizes: '(max-width: 768px) 100vw, 50vw'
+          }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Store locator",
+  "tag": "section",
+  "class": "idiom-store-locator-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Get your layer on, IRL..."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Idiom | Soho, London"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "12 Ingestre Place, Soho, London W1F 0JF"
+    },
+    {
+      "type": "richtext",
+      "id": "hours",
+      "label": "Opening hours",
+      "info": "One line per paragraph.",
+      "default": "<p>Monday - Friday | 12.00 - 19.00</p><p>Saturday | 11.00 - 19.00</p><p>Sunday | 12.00 - 17.00</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Map"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_map",
+      "label": "Show map",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "latitude",
+      "label": "Latitude",
+      "info": "Most accurate pin placement. In Google Maps, right-click the store and copy the coordinates. Falls back to the address if empty.",
+      "default": "51.5135"
+    },
+    {
+      "type": "text",
+      "id": "longitude",
+      "label": "Longitude",
+      "default": "-0.1365"
+    },
+    {
+      "type": "range",
+      "id": "map_zoom",
+      "label": "Zoom",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "map_height",
+      "label": "Map height",
+      "min": 160,
+      "max": 480,
+      "step": 10,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "text",
+      "id": "maps_api_key",
+      "label": "Google Maps API key (optional)",
+      "info": "Adds an interactive, draggable map with styling. Restrict the key to your store domains (HTTP referrers) in Google Cloud. Without a key a static map preview is shown."
+    },
+    {
+      "type": "select",
+      "id": "map_style",
+      "label": "Map style (needs API key)",
+      "options": [
+        { "value": "muted", "label": "Muted / brand" },
+        { "value": "standard", "label": "Standard Google" }
+      ],
+      "default": "muted"
+    },
+    {
+      "type": "header",
+      "content": "Store details popup"
+    },
+    {
+      "type": "text",
+      "id": "store_name",
+      "label": "Store name",
+      "info": "Defaults to the heading."
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+    },
+    {
+      "type": "richtext",
+      "id": "modal_note",
+      "label": "Extra note",
+      "info": "E.g. nearest tube station, accessibility info."
+    },
+    {
+      "type": "text",
+      "id": "directions_label",
+      "label": "Directions button label",
+      "info": "Leave empty to hide.",
+      "default": "get directions"
+    },
+    {
+      "type": "url",
+      "id": "book_url",
+      "label": "Book a visit link"
+    },
+    {
+      "type": "text",
+      "id": "book_label",
+      "label": "Popup \"book a visit\" link label",
+      "info": "Shown when a booking link is set.",
+      "default": "book a visit"
+    },
+    {
+      "type": "text",
+      "id": "maps_label",
+      "label": "Popup Google Maps button label",
+      "info": "Leave empty to hide.",
+      "default": "view on google maps"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_distance",
+      "label": "Show distance from visitor in popup",
+      "info": "Asks the visitor for their location when they open the popup. Needs latitude / longitude.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image / GIF" },
+        { "value": "video", "label": "Video (uploaded)" },
+        { "value": "video_url", "label": "Video (YouTube / Vimeo)" }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image or GIF"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Plays muted on loop."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube / Vimeo URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "select",
+      "id": "media_ratio",
+      "label": "Media shape",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "4 / 3", "label": "Landscape" },
+        { "value": "16 / 9", "label": "Wide" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "media_radius",
+      "label": "Media corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Media position (desktop)",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Colors & spacing"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#fffbf3"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Store locator"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

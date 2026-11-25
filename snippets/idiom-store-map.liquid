@@ -1,0 +1,200 @@
+{%- comment -%}
+  idiom — Store map with red pin + store-details modal.
+  Used by sections/idiom-store-locator.liquid and snippets/locations.liquid.
+
+  Map modes:
+  - api_key + lat/lng → interactive Google Maps JS map with custom red marker.
+  - otherwise → keyless Google Maps embed (static preview) with a red pin button on top.
+
+  Accepts:
+  - id: {String} unique id (e.g. section.id or block.id) — required
+  - name: {String} store name (modal title)
+  - address: {String}
+  - hours: {String} richtext HTML
+  - phone, email: {String}
+  - note: {String} richtext HTML
+  - lat, lng: {String} coordinates (optional, address used if blank)
+  - zoom: {Number} default 16
+  - map_style: {String} 'muted' | 'standard'
+  - api_key: {String} Google Maps JS API key (optional)
+  - directions_label: {String} "Get directions" link, blank to hide
+  - book_label, book_url: {String} "Book a visit" link, hidden if either is blank
+  - maps_label: {String} "View in Google Maps" button, blank to hide
+  - show_distance: {Boolean} show distance from the visitor (asks for location when the popup opens; needs lat/lng)
+{%- endcomment -%}
+
+{%- liquid
+  assign lat = lat | strip
+  assign lng = lng | strip
+  assign api_key = api_key | strip
+  assign zoom = zoom | default: 16
+
+  if lat != blank and lng != blank
+    assign map_query = lat | append: ',' | append: lng
+  else
+    assign map_query = address | url_encode
+  endif
+
+  assign directions_url = 'https://www.google.com/maps/dir/?api=1&destination=' | append: map_query
+  assign maps_url = 'https://www.google.com/maps/search/?api=1&query=' | append: map_query
+  assign popover_id = 'StorePopover-' | append: id
+-%}
+
+{%- comment -%} Safe to include per render: the JS guards against double-definition {%- endcomment -%}
+{{ 'idiom-store-locator.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'idiom-store-locator.js' | asset_url }}" defer></script>
+
+<idiom-store-map class="idiom-store-map">
+  <div
+    class="idiom-store-locator__map"
+    data-map
+    data-lat="{{ lat | escape }}"
+    data-lng="{{ lng | escape }}"
+    data-zoom="{{ zoom }}"
+    data-style="{{ map_style }}"
+    data-title="{{ name | escape }}"
+    {% if api_key != blank %}data-api-key="{{ api_key | escape }}"{% endif %}
+  >
+    {%- if map_query != blank -%}
+      <iframe
+        data-map-fallback
+        data-embed-base="https://maps.google.com/maps?q={{ map_query }}&output=embed"
+        src="https://maps.google.com/maps?q={{ map_query }}&z={{ zoom }}&output=embed"
+        title="{{ 'Map showing' | append: ' ' | append: name | escape }}"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        tabindex="-1"
+      ></iframe>
+
+      {%- comment -%}
+        The keyless embed is click-through (so the pin stays locked on the store):
+        clicking the map — including Google's own "Open in Maps" / satellite /
+        fullscreen controls — opens the store in Google Maps instead.
+      {%- endcomment -%}
+      <a
+        class="idiom-store-locator__map-link"
+        data-map-fallback
+        href="{{ maps_url }}"
+        target="_blank"
+        rel="noopener"
+        aria-label="{{ 'Open' | append: ' ' | append: name | append: ' in Google Maps' | escape }}"
+      ></a>
+
+      <div class="idiom-store-locator__zoom" data-map-fallback>
+        <button type="button" data-zoom-step="1" aria-label="Zoom in">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+            <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" data-zoom-step="-1" aria-label="Zoom out">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+            <path d="M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="idiom-store-locator__pin"
+        data-map-fallback
+        data-open-store-modal
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="{{ popover_id }}"
+        aria-label="{{ 'View store details for' | append: ' ' | append: name | escape }}"
+      >
+        <svg viewBox="0 0 40 52" aria-hidden="true" focusable="false">
+          <path d="M20 0C9 0 0 8.9 0 19.9 0 34.8 20 52 20 52s20-17.2 20-32.1C40 8.9 31 0 20 0z" fill="#E53935"/>
+          <circle cx="20" cy="19" r="7" fill="#fff"/>
+        </svg>
+      </button>
+    {%- else -%}
+      <div class="idiom-store-locator__map-placeholder">
+        Add the store address or latitude / longitude to show the map.
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div
+    class="idiom-store-popover"
+    id="{{ popover_id }}"
+    role="dialog"
+    aria-labelledby="{{ popover_id }}-title"
+    data-store-popover
+    hidden
+  >
+    <div class="idiom-store-popover__header">
+      <h3 class="idiom-store-popover__title" id="{{ popover_id }}-title">{{ name }}</h3>
+      <button type="button" class="idiom-store-popover__close" data-popover-close aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="idiom-store-popover__body">
+      {%- if address != blank -%}
+        <div class="idiom-store-popover__row">
+          <p class="idiom-store-popover__label">Address</p>
+          <p class="idiom-store-popover__value">{{ address }}</p>
+          {%- if directions_label != blank and map_query != blank -%}
+            <a class="idiom-store-popover__link" href="{{ directions_url }}" target="_blank" rel="noopener">
+              {{- directions_label -}}
+              <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false">
+                <path d="M4 12L12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if show_distance and lat != blank and lng != blank -%}
+        <div class="idiom-store-popover__row" data-distance hidden>
+          <p class="idiom-store-popover__label">Distance</p>
+          <p class="idiom-store-popover__value"><span data-distance-value></span> away</p>
+        </div>
+      {%- endif -%}
+
+      {%- if hours != blank -%}
+        <div class="idiom-store-popover__row">
+          <p class="idiom-store-popover__label">Hours</p>
+          <div class="idiom-store-popover__value">{{ hours }}</div>
+        </div>
+      {%- endif -%}
+
+      {%- if phone != blank or email != blank -%}
+        <div class="idiom-store-popover__row">
+          <p class="idiom-store-popover__label">Contact</p>
+          {%- if phone != blank -%}
+            <p class="idiom-store-popover__value">
+              <a href="tel:{{ phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ phone }}</a>
+            </p>
+          {%- endif -%}
+          {%- if email != blank -%}
+            <p class="idiom-store-popover__value"><a href="mailto:{{ email }}">{{ email }}</a></p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if note != blank -%}
+        <div class="idiom-store-popover__row idiom-store-popover__value">{{ note }}</div>
+      {%- endif -%}
+
+      {%- assign show_book = false -%}
+      {%- if book_label != blank and book_url != blank -%}{%- assign show_book = true -%}{%- endif -%}
+      {%- assign show_maps = false -%}
+      {%- if maps_label != blank and map_query != blank -%}{%- assign show_maps = true -%}{%- endif -%}
+
+      {%- if show_book or show_maps -%}
+        <div class="idiom-store-popover__actions">
+          {%- if show_maps -%}
+            <a class="idiom-store-popover__btn" href="{{ maps_url }}" target="_blank" rel="noopener">{{ maps_label }}</a>
+          {%- endif -%}
+          {%- if show_book -%}
+            <a class="idiom-store-popover__btn idiom-store-popover__btn--outline" href="{{ book_url }}">{{ book_label }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</idiom-store-map>

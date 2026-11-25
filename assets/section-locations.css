@@ -28,7 +28,9 @@
 .locations .flickity-enabled:hover > .flickity-prev-next-button:not(:disabled) {
   transform: none;
 }
-.locations .flickity-enabled:hover > .flickity-prev-next-button:not(:disabled):hover {
+.locations
+  .flickity-enabled:hover
+  > .flickity-prev-next-button:not(:disabled):hover {
   transform: scale(1.12);
 }
 .locations .flickity-slider .location__image {
@@ -42,10 +44,16 @@
   opacity: 1 !important;
 }
 .locations .flickity-slider .location__store {
-  transition: opacity 0.5s, z-index 0.5s, transform 0s 0.5s;
+  transition:
+    opacity 0.5s,
+    z-index 0.5s,
+    transform 0s 0.5s;
 }
 .locations .flickity-slider .location__store.is-selected {
-  transition: opacity 1s, z-index 1s, transform 1s;
+  transition:
+    opacity 1s,
+    z-index 1s,
+    transform 1s;
 }
 
 @media only screen and (min-width: 768px) {
@@ -80,6 +88,9 @@
   .location__store {
     padding-bottom: calc(var(--gutter) / 2);
   }
+  .locations__info {
+    padding-right: 0;
+  }
 }
 .location__store p {
   margin: 0;
@@ -100,4 +111,15 @@
 
 .no-js .location__image {
   margin-bottom: var(--grid-gutter);
+}
+/* --- idiom: store map under each location --- */
+.location__map {
+  margin-top: 28px;
+}
+.location__map .idiom-store-locator__map {
+  margin-top: 0;
+}
+/* With 2+ stores Flickity clips the slide; let the open store popover overflow it */
+.locations .flickity-viewport:has(.idiom-store-popover:not([hidden])) {
+  overflow: visible;
 }
